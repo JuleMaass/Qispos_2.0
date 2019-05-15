@@ -1,0 +1,1 @@
+mit dieser datei können wir auf die inhalte der db zugreifen (bedenkt, dass der db server laufen muss und ihr eurer pw eingebt)
