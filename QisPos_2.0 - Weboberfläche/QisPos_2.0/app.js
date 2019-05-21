@@ -3,11 +3,68 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mysql = require('mysql');
+var app = express();
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "Test123Jugend13",
+  database: "mynewdb",
+  multipleStatements: true
+});
+
+//Connection
+db.connect((err)=>{
+  if(err){
+        throw err;
+    }
+     console.log('MySql connected...');
+});
+//get student
+app.get('/students', (req, res)=>{
+  db.query('SELECT * FROM student',(err, rows, fields)=>{
+    if(err)
+    console.log(err);
+    else 
+    res.send(rows);
+  }
+)
+});
+//get one student
+app.get('/students/:id', (req, res)=>{
+  db.query('SELECT * FROM student WHERE id = ?',[req.params.id],(err, rows, fields)=>{
+    if(err)
+    console.log(err);
+    else 
+    res.send(rows);
+  }
+)
+});
+
+//create DB
+/*app.get('/createdb', (req, res) =>{
+    let sql = 'CREATE DB nodemysql' ;
+     db.query(sql, (err, result)=>{
+       if(err) throw err;
+       console.log(result);
+       res.send('database created...');
+     });
+});*/
+
+//Select from table
+app.get('/getposts', (req, rex) =>{
+  let sql = 'SELECT * FROM modul';
+  db.query(sql, (err, results)=>{
+      if(err) throw err;
+      conole.log(results);
+      res.send('Post fetched...')
+  })
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
