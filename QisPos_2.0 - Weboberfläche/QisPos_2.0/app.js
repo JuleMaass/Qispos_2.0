@@ -46,15 +46,7 @@ app.get('/students/:id', (req, res)=>{
 )
 });
 
-//create DB
-/*app.get('/createdb', (req, res) =>{
-    let sql = 'CREATE DB nodemysql' ;
-     db.query(sql, (err, result)=>{
-       if(err) throw err;
-       console.log(result);
-       res.send('database created...');
-     });
-});*/
+
 
 //Select from table
 app.get('/getposts', (req, rex) =>{

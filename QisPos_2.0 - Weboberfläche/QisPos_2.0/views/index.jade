@@ -1,19 +1,17 @@
 extends layout
 
 block content
+  h1= title
+  p Welcome to #{title}
+  p please sign in:
 
-  script(id ="login" type="text/javascript", src="/scripts/login.js")
+  p username:
+   input(type = 'text').class-name#andyid
 
-  div(id="mainDiv")
+  p password:
+    input(type = 'text').class-name#andyid
 
-    h1(id="test")= title
 
-    div(id="menuDiv")
-      p(id="menuText") Username
-      input(id ="username" type = 'text')
-      p(id="menuText") Password
-      input(id="password" type = 'text')
 
-    button(id="loginButton" onClick= "login()") Log In
-    
-    p(id="madeByText") Developed by Florian Buchholz, Jule Maaß and Lukas Werdermann 
+
+ 
