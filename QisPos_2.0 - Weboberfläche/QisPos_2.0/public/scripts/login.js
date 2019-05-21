@@ -1,7 +1,9 @@
 function login(){
 
-    var username = document.getElementById("usernameblah").value;
-    var password = document.getElementById("passwordblah").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    var testTexT = document.getElementById("testText").value;
 
     if(username == null) {
         
