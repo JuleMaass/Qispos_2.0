@@ -6,14 +6,26 @@ var logger = require('morgan');
 var mysql = require('mysql');
 var app = express();
 
+var expressLayouts = require('express-ejs-layouts');
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+
+
+
+//Routes
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Test123Jugend13",
+  password: "password",
   database: "mynewdb",
   multipleStatements: true
 });
@@ -56,11 +68,14 @@ app.get('/getposts', (req, rex) =>{
       conole.log(results);
       res.send('Post fetched...')
   })
-})
+});
 
-// view engine setup
+
+
+
+/*// view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -86,5 +101,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+*/
 module.exports = app;
