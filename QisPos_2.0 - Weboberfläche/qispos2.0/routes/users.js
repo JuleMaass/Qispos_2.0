@@ -18,6 +18,12 @@ db.connect((err) => {
 
 //Login Page/view
 router.get('/login', (req, res) => res.render('login', {
+
+  error: ''
+}));
+
+//Logout Page/view
+router.get('/logout', (req, res) => res.render('login', {
   error: ''
 }));
 
@@ -56,6 +62,7 @@ router.post('/register', (req, res) => {
 });
 
 
+
 //Login handle
 router.post('/login', (req, res) => {
   const {
@@ -72,7 +79,8 @@ router.post('/login', (req, res) => {
     });
   }
 
-  var sqlabfrage = "SELECT benutzername FROM student WHERE email = ? AND PW = ?;";
+  var sqlabfrage = "SELECT benutzername, id FROM student WHERE email = ? AND PW = ?;";
+  var sqlabfrage2 = "SELECT id FROM student WHERE benutzername = sqlabfrage;";
   db.query(sqlabfrage, [email, password], (err, result) => {
     if (result[0] == null) {
       errors.push({
@@ -83,17 +91,29 @@ router.post('/login', (req, res) => {
     if (errors.length > 0) {
 
       // console.log(errors.length)
+     
       console.log(errors[0].msg)
       res.render('login', {
         error: errors[0].msg
       })
     } else {
      var nutzername = result[0].benutzername;
+     console.log(result[0].id);
+     console.log(result[0]);
+     var nutzerid = result[0].id;
       res.render('dashboard', {
-        user: nutzername
+        
+        user: nutzername,
+        nutzerid: nutzerid
+        
+        
       })
     }
   });
+
+
+
+  
 
   
 
