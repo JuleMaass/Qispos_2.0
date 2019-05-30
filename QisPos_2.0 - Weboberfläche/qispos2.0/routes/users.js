@@ -1,19 +1,12 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 var mysql = require('mysql');
 var config = require('../config');
+var connection = require('../services/connection');
 
-
-const db = mysql.createConnection(config.db);
-
-db.connect((err) => {
-  if (err) {
-    console.log('Error connecting to Db');
-    return;
-  }
-  console.log('Connection established');
-});
-
+const db = connection.create_connection();
 
 
 //Login Page/view
@@ -110,12 +103,6 @@ router.post('/login', (req, res) => {
       })
     }
   });
-
-
-
-  
-
-  
 
 });
 

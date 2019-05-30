@@ -43,29 +43,5 @@ app.get('/', function(req, res) {
 });
 
 
-//Connection
-
-// console.log(config);
-
-const db = mysql.createConnection(config.db);
-
-
-//  db.connect((err)=>{
-//     if(err){
-//           throw err;
-//       }
-//        console.log('MySql connected...');
-//   });
-
-//  console.log(db);
-
-//  db.connect(function(err) {
-//     if (err) throw err;
-//     db.query("SELECT * FROM student", function (err, result, fields) {
-//       if (err) throw err;
-//       console.log(result);
-//     });
-//   });
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
