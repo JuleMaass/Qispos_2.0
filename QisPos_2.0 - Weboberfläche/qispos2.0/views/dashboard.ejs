@@ -30,10 +30,10 @@ var sql = "SELECT T1.student_id, T1.note, T2.bezeichnung FROM student_has_klausu
 
 
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Notenübersicht">Notenübersicht</a>
+                    <a class="nav-link" data-toggle="tab" href="#Notenübersicht">Noten</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Modulübersicht">Modulübersicht</a>
+                    <a class="nav-link" data-toggle="tab" href="#Modulübersicht">Module</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#Ranking">Ranking</a>
@@ -51,31 +51,22 @@ var sql = "SELECT T1.student_id, T1.note, T2.bezeichnung FROM student_has_klausu
     </nav>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade active show" id="Termine">
-            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher
-                retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid.
-                Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate
-                nisi qui.</p>
+            <p>Diese Woche</p>
+
+            <p>Kommende Termine</p>
         </div>
         <div class="tab-pane fade" id="Notenübersicht">
-            <p>Hier ist eine Übersicht deiner bisherigen Noten: </p>
+            <p>Durchschnitt <!--<%= durchschnitt%> --></p>
+            
         </div>
         <div class="tab-pane fade" id="Modulübersicht">
-            <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro
-                fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone
-                skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings
-                gentrify squid 8-bit cred pitchfork.</p>
+            <p>Module</p>
         </div>
         <div class="tab-pane fade" id="Ranking">
-            <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master
-                cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party
-                locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they
-                sold out farm-to-table VHS viral locavore cosby sweater.</p>
+            <p>Deine Position <!--<%= position%> --></p>
+            <p>Durchschnitt <!--<%= durchschnitt%> --></p>
         </div>
         <div class="tab-pane fade" id="Evaluation">
-            <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master
-                cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party
-                locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they
-                sold out farm-to-table VHS viral locavore cosby sweater.</p>
+            <input type="text" placeholder="Dozent">
         </div>
     </div>
