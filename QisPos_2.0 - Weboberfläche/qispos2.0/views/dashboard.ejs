@@ -1,6 +1,6 @@
 <p class="lead mb-3"> </p>
 <div class="lead mb-4, jumbotron jumbotron-fluid">
-    <h1 class="display-3, text-center">QisPos 2.0</h1>   
+    <h1 class="display-3, text-center">QisPos 2.0</h1>
 
     <p class="lead mb-3, text-center">Welcome <%= user %></p>
     <p class="lead mb-3, text-center">Deine ID ist <%=  nutzerid %></p>
@@ -18,54 +18,156 @@
         </button>
 
         <form action="/users/navheader" method="POST">
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <!-- <ul class="navbar-nav mr-auto"> -->
-            <ul class="nav nav-pills flex-column flex-sm-row">
-                
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Termine">Termine <span
-                    class="sr-only">(current)</span></a>
-                </li>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <!-- <ul class="navbar-nav mr-auto"> -->
+                <ul class="nav nav-pills flex-column flex-sm-row">
 
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Notenübersicht">Noten</a>
-                </li>
+                    <li class="nav-item "><a class="nav-link" data-toggle="tab" href="#Termine">Termine </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Modulübersicht">Module</a>
-                </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" data-toggle="tab" href="#Notenübersicht">Noten</a></a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Ranking">Ranking</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#Modulübersicht">Module</a></a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Evaluation">Evaluation</a>
-                </li>
-               
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#Ranking">Ranking</a></a>
+                    </li>
 
-            </ul>
-            </ul>
-        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#Evaluation">Evaluation</a><span
+                            class="sr-only">(current)</span></a>
+                    </li>
+
+
+                </ul>
+                </ul>
+            </div>
         </form>
     </nav>
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade active show" id="Termine">
-            <p>Diese Woche</p>
 
-            <p>Kommende Termine</p>
+
+    <p class="lead mb-3"> </p>
+    <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Name des Studierenden</th>
+                <th scope="col">Studiengang</th>
+                <th scope="col">Matrikelnummer</th>
+                <th scope="col">Anschrift</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr class="table-light">
+                <td>%= user name %</td>
+                <td>%= user studiengang %</td>
+                <td>%= user matrikelnummer%</td>
+                <td>%= user anschrift%</td>
+              </tr>
+             
+            </tbody>
+          </table> 
+
+    <div id="myTabContent" class="tab-content">
+
+        <div class="tab-pane fade, jumbotron " id="Termine">
+
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        11.06.19
+                        <h5 class="mb-1">Datenbanken Arbeitszettel</h5>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" value="" unchecked="">
+                                Erledigt
+                            </label>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        11.06.19
+                        <h5 class="mb-1">Computergrafiken Aufgabe 8a</h5>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input " type="checkbox" value="" unchecked="">
+                                Erledigt
+                            </label>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        28.06.19
+                        <h5 class="mb-1">Datenbanken Projekt Abgabe</h5>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" value="" unchecked="">
+                                Erledigt
+                            </label>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        10.07.19
+                        <h5 class="mb-1">Englisch Klausur</h5>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" value="" unchecked="">
+                                Erledigt
+                            </label>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
         </div>
-        <div class="tab-pane fade" id="Notenübersicht">
-            <p>Durchschnitt </p>
-            
+        <div class="tab-pane fade, jumbotron" id="Notenübersicht">
+
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Column heading</th>
+                        <th scope="col">Column heading</th>
+                        <th scope="col">Column heading</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      <tr class="table-light">
+                        <th scope="row">Light</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                      </tr>
+                     
+                    </tbody>
+                  </table> 
+
         </div>
-        <div class="tab-pane fade" id="Modulübersicht">
+        <div class="tab-pane fade, jumbotron" id="Modulübersicht">
             <p>Module</p>
         </div>
-        <div class="tab-pane fade" id="Ranking">
+        <div class="tab-pane fade, jumbotron" id="Ranking">
             <p>Deine Position</p>
             <p>Durchschnitt</p>
         </div>
-        <div class="tab-pane fade" id="Evaluation">
+        <div class="tab-pane fade, jumbotron" id="Evaluation">
             <input type="text" placeholder="Dozent">
         </div>
     </div>
+
+</div>
