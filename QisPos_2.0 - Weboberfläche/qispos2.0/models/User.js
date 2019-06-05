@@ -1,12 +1,8 @@
-var mysql = require('mysql');
-var Sequelize = require('sequelize'),
-bcrypt = require('bcrypt');
-var config = require('../config'),
-db = require('../services/database');
+var Sequelize = require('sequelize');
+var bcrypt = require('bcrypt');
+var db = require('../services/database');
 
-
-
-var modelDefinition ={
+var userSchema ={
     benutzername:{
         type: Sequelize.STRING,
         allowNull: false
@@ -25,7 +21,7 @@ var modelDefinition ={
     }
 }
 //Modeloptions
-var modelOptions ={
+var userOptions ={
     instanceMethods:{
         comparePasswords: comparePasswords
     },
@@ -35,7 +31,7 @@ var modelOptions ={
 };
 
 //Define the User model
-var userModel =  db.define('student', modelDefinition, modelOptions);
+var userModel =  db.define('student', userSchema, userOptions);
 
 //Compares two passwords
 function comparePasswords(PW, callback)
@@ -56,7 +52,7 @@ function hashPassword(student) {
         });
     }
 }
-module.exports = userModel;
+// module.exports = userModel;
 
 // const user = mysql.model('user', userSchema);
 

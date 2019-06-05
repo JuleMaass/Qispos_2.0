@@ -1,19 +1,25 @@
 const express = require('express');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
-var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var sequelize = require('sequelize');
 var passport = require('passport');
-var jwt = require('jsonwebtoken');
 var hookJWTStrategy = require('./services/passportStrategy');
-var config = require('./config');
 const app = express();
 
 ///Session
-app.use(session({secret: 'ssshhhhh'}));
+app.use(session({
+    
+    secret: "sosecret",
+    saveUninitialized: false,
+    resave: false
 
+}));
+
+app.use(function(req, res, next) {
+    res.locals.user = req.session.user;
+    next();
+  });
 
 ///EJS
 app.use(expressLayouts);
@@ -36,6 +42,8 @@ hookJWTStrategy(passport);
 //Routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+
+
 app.use(passport.initialize());
 
 //Set the static files location.
@@ -49,3 +57,5 @@ app.get('/', function(req, res) {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
+
+
