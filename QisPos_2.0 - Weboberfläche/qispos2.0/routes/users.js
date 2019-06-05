@@ -8,6 +8,10 @@ var connection = require('../services/connection');
 
 const db = connection.create_connection();
 
+router.post('/navheader', (req, res) => {
+
+  console.log("Es hat funktioniert");
+});
 
 //Login Page/view
 router.get('/login', (req, res) => res.render('login', {
@@ -54,8 +58,6 @@ router.post('/register', (req, res) => {
 
 });
 
-
-
 //Login handle
 router.post('/login', (req, res) => {
   const {
@@ -94,6 +96,7 @@ router.post('/login', (req, res) => {
      console.log(result[0].id);
      console.log(result[0]);
      var nutzerid = result[0].id;
+
       res.render('dashboard', {
         
         user: nutzername,
@@ -102,6 +105,51 @@ router.post('/login', (req, res) => {
         
       })
     }
+  });
+
+});
+
+//Note handle
+router.post('/note', (req, res) => {
+  const {
+    email,
+    password
+  } = req.body;
+  let errors = [];
+
+  //check requires fields
+  if (!email || !password) {
+
+    errors.push({
+      msg: 'Please fill in all fields'
+    });
+  }
+
+  var sqlabfrage = "SELECT benutzername, id FROM student WHERE email = ? AND PW = ?;";
+  var sqlabfrage2 = "SELECT id FROM student WHERE benutzername = sqlabfrage;";
+  db.query(sqlabfrage, [email, password], (err, result) => {
+    if (result[0] == null) {
+      errors.push({
+        msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
+      });
+    }
+
+    if (errors.length > 0) {
+
+      // console.log(errors.length)
+     
+      console.log(errors[0].msg)
+      res.render('login', {
+        error: errors[0].msg
+      })
+    } else {
+     var nutzername = result[0].benutzername;
+     console.log(result[0].id);
+     console.log(result[0]);
+     var nutzerid = result[0].id;
+
+    }
+
   });
 
 });

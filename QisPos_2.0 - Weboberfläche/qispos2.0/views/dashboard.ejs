@@ -1,9 +1,6 @@
 <p class="lead mb-3"> </p>
 <div class="lead mb-4, jumbotron jumbotron-fluid">
-    <h1 class="display-3, text-center">QisPos 2.0</h1>
-
-var sql = "SELECT T1.student_id, T1.note, T2.bezeichnung FROM student_has_klausur T1 inner join klausur T2 WHERE T1.student_id = 1 AND T2.id = (SELECT T1.klausur_id WHERE T1.student_id = 1);";
-   
+    <h1 class="display-3, text-center">QisPos 2.0</h1>   
 
     <p class="lead mb-3, text-center">Welcome <%= user %></p>
     <p class="lead mb-3, text-center">Deine ID ist <%=  nutzerid %></p>
@@ -20,34 +17,36 @@ var sql = "SELECT T1.student_id, T1.note, T2.bezeichnung FROM student_has_klausu
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <form action="/users/navheader" method="POST">
         <div class="collapse navbar-collapse" id="navbarColor01">
             <!-- <ul class="navbar-nav mr-auto"> -->
             <ul class="nav nav-pills flex-column flex-sm-row">
-
+                
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Termine">Termine <span
-                            class="sr-only">(current)</span></a> </li>
-
-
+                    class="sr-only">(current)</span></a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#Notenübersicht">Noten</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#Modulübersicht">Module</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#Ranking">Ranking</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#Evaluation">Evaluation</a>
                 </li>
+               
+
             </ul>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
+        </form>
     </nav>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade active show" id="Termine">
