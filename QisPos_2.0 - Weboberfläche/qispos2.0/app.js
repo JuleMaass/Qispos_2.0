@@ -6,7 +6,11 @@ var morgan = require('morgan');
 var passport = require('passport');
 var hookJWTStrategy = require('./services/passportStrategy');
 
+var User = require('./models/User');
+
 const app = express();
+
+
 
 ///Sessions
 app.use(session({
