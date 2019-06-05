@@ -18,6 +18,14 @@ var userSchema ={
     PW:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    vorname: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    nachname: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 }
 //Modeloptions
@@ -52,7 +60,7 @@ function hashPassword(student) {
         });
     }
 }
-// module.exports = userModel;
+module.exports = userModel;
 
-// const user = mysql.model('user', userSchema);
+
 

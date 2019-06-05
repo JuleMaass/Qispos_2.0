@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-var connection = require('../services/connection');
+var db = require('../services/connection');
 
-const db = connection.create_connection();
-
+var User = require('../models/User');
 
 // Welcome Page
 router.get('/', (req, res) => res.redirect('welcome'));
@@ -20,7 +19,9 @@ router.post('/register', (req, res) => {
         benutzername,
         id,
         email,
-        PW
+        PW,
+        vorname,
+        nachname
     } = req.body;
     let errors = [];
 
@@ -37,10 +38,21 @@ router.post('/register', (req, res) => {
             benutzername,
             id,
             email,
-            PW
+            PW,
+            vorname,
+            nachname
         })
     } else {
-        res.send('pass')
+
+        // User.create({
+        //     benutzername: benutzername,
+        //     id: id,
+        //     email: email,
+        //     PW: PW,
+        //     vorname: vorname,
+        //     nachname: nachname
+        //   });
+
     }
 
 });
@@ -59,7 +71,8 @@ router.post('/login', (req, res) => {
 
     const {
         email,
-        password
+        password,
+        dozent
     } = req.body;
     let errors = [];
 
@@ -71,8 +84,18 @@ router.post('/login', (req, res) => {
         });
     }
 
-    var sqlabfrage = "SELECT benutzername, id FROM student WHERE email = ? AND PW = ?;";
-    var sqlabfrage2 = "SELECT id FROM student WHERE benutzername = sqlabfrage;";
+    console.log(dozent)
+
+
+    if (dozent) {
+        var sqlabfrage = "SELECT benutzername, id FROM dozent WHERE email = ? AND PW = ?;";
+    } else {
+        var sqlabfrage = "SELECT benutzername, id FROM student WHERE email = ? AND PW = ?;";
+    }
+
+
+
+
     db.query(sqlabfrage, [email, password], (err, result) => {
         if (result[0] == null) {
             errors.push({
@@ -90,16 +113,19 @@ router.post('/login', (req, res) => {
             })
         } else {
             var nutzername = result[0].benutzername;
-            console.log(result[0].id);
-            console.log(result[0]);
             var nutzerid = result[0].id;
 
 
             sess.nutzername = nutzername; // equivalent to $_SESSION['email'] in PHP.
             sess.nutzerid = nutzerid;
 
-            res.redirect('/users/dashboard');
-
+            if (dozent) {
+                sess.dozent = true;
+                res.redirect('/users/dashboard_dozent');
+            } else {
+                sess.dozent = false;
+                res.redirect('/users/dashboard');
+            }
         }
     });
 

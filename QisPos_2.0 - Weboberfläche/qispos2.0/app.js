@@ -5,9 +5,10 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var passport = require('passport');
 var hookJWTStrategy = require('./services/passportStrategy');
+
 const app = express();
 
-///Session
+///Sessions
 app.use(session({
     
     secret: "sosecret",
@@ -48,11 +49,6 @@ app.use(passport.initialize());
 
 //Set the static files location.
 app.use(express.static(__dirname + '../../public'));
-
-//Home route.
-app.get('/', function(req, res) {
-    res.send('Nice meeting you wizard, I\'m Gandalf!');
-});
 
 
 const PORT = process.env.PORT || 5000;

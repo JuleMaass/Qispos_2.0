@@ -2,9 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-var connection = require('../services/connection');
+var db = require('../services/connection');
 
-const db = connection.create_connection();
 
 
 // Welcome Page für nicht eingeloggte
@@ -32,6 +31,23 @@ router.get('/dashboard', (req, res) => {
   } else {
 
     res.render('dashboard', {
+      nutzername: sess.nutzername,
+      nutzerid: sess.nutzerid
+
+    });
+
+  }
+});
+
+//Dashboard
+router.get('/dashboard_dozent', (req, res) => {
+  let sess = req.session;
+
+  if (sess.nutzername == null) {
+    res.redirect('../login')
+  } else {
+
+    res.render('dashboard_dozent', {
       nutzername: sess.nutzername,
       nutzerid: sess.nutzerid
 

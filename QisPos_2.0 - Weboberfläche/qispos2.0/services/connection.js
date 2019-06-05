@@ -5,15 +5,16 @@ var config = require('../config');
 
 const databaseConnection = mysql.createConnection(config.db);
 
-exports.create_connection = function () {
+  // if (databaseConnection.state == "disconnected") {
+    databaseConnection.connect((err) => {
+      if (err) {
+        console.log(err)
+        console.log('Error connecting to Db');
+        return;
+      } 
+      console.log('Connection established');
+    });
+  
 
-  console.log(config);
-  databaseConnection.connect((err) => {
-  if (err) {
-    console.log('Error connecting to Db');
-    return;
-  }
-  console.log('Connection established');
-});
-return databaseConnection;
-};
+  module.exports = databaseConnection;
+  
