@@ -49,33 +49,37 @@
         </form>
     </nav>
 
-
+<var table-size></var>
     <p class="lead mb-3"> </p>
-    <table class="table table-hover">
+    <div class="container container-small" style="align-items: center">
+    <table class="table table-sm" style="font-size:70%; width: 40%">
             <thead>
-              <tr>
-                <th scope="col">Name des Studierenden</th>
-                <th scope="col">Studiengang</th>
-                <th scope="col">Matrikelnummer</th>
-                <th scope="col">Anschrift</th>
-              </tr>
+                <tr>
+                    <th scope="col">Name des Studierenden</th>
+                    <th scope="col">Studiengang</th>
+                    <th scope="col">Angestrebter Abschluss</th>
+                    <th scope="col">Matrikelnummer</th>
+                    <th scope="col">Anschrift</th>
+                </tr>
             </thead>
             <tbody>
-              
-              <tr class="table-light">
-                <td>%= user name %</td>
-                <td>%= user studiengang %</td>
-                <td>%= user matrikelnummer%</td>
-                <td>%= user anschrift%</td>
-              </tr>
-             
+    
+                <tr class="table-active">
+                    <td>%= user name %</td>
+                    <td>%= user studiengang %</td>
+                    <td>%= user abschluss %</td>
+                    <td>%= user matrikelnummer%</td>
+                    <td>%= user anschrift%</td>
+                </tr>
+    
             </tbody>
-          </table> 
-
+        </table>
+    </div>
     <div id="myTabContent" class="tab-content">
 
         <div class="tab-pane fade, jumbotron " id="Termine">
-
+            <input class="form-control mr-sm-2" type="text" placeholder="Such nach Terminen">
+            <p class="lead mb-3"> </p>
             <div class="list-group">
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
@@ -134,28 +138,80 @@
         </div>
         <div class="tab-pane fade, jumbotron" id="Notenübersicht">
 
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="text" placeholder="Such nach Modulen">
+
             <table class="table table-hover">
-                    <thead>
-                      <tr>
+                <thead>
+                    <tr>
                         <th scope="col">Type</th>
                         <th scope="col">Column heading</th>
                         <th scope="col">Column heading</th>
                         <th scope="col">Column heading</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      
-                      <tr class="table-light">
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-active">
+                        <th scope="row">Active</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Default</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-primary">
+                        <th scope="row">Primary</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <th scope="row">Secondary</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-success">
+                        <th scope="row">Success</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-danger">
+                        <th scope="row">Danger</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-warning">
+                        <th scope="row">Warning</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-info">
+                        <th scope="row">Info</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                    <tr class="table-light">
                         <th scope="row">Light</th>
                         <td>Column content</td>
                         <td>Column content</td>
                         <td>Column content</td>
-                      </tr>
-                     
-                    </tbody>
-                  </table> 
+                    </tr>
+                    <tr class="table-dark">
+                        <th scope="row">Dark</th>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                        <td>Column content</td>
+                    </tr>
+                </tbody>
+            </table>
 
         </div>
         <div class="tab-pane fade, jumbotron" id="Modulübersicht">
