@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
@@ -9,6 +10,9 @@ var jwt = require('jsonwebtoken');
 var hookJWTStrategy = require('./services/passportStrategy');
 var config = require('./config');
 const app = express();
+
+///Session
+app.use(session({secret: 'ssshhhhh'}));
 
 
 ///EJS

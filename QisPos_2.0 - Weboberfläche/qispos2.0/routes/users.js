@@ -60,6 +60,8 @@ router.post('/register', (req, res) => {
 
 //Login handle
 router.post('/login', (req, res) => {
+  let sess = req.session;
+
   const {
     email,
     password
@@ -86,73 +88,93 @@ router.post('/login', (req, res) => {
     if (errors.length > 0) {
 
       // console.log(errors.length)
-     
+
       console.log(errors[0].msg)
       res.render('login', {
         error: errors[0].msg
       })
     } else {
-     var nutzername = result[0].benutzername;
-     console.log(result[0].id);
-     console.log(result[0]);
-     var nutzerid = result[0].id;
+      var nutzername = result[0].benutzername;
+      console.log(result[0].id);
+      console.log(result[0]);
+      var nutzerid = result[0].id;
 
-      res.render('dashboard', {
-        
-        user: nutzername,
-        nutzerid: nutzerid
-        
-        
-      })
+
+      sess.nutzername = nutzername; // equivalent to $_SESSION['email'] in PHP.
+      sess.nutzerid = nutzerid;
+
+      res.redirect('/users/dashboard');
+
     }
   });
 
 });
 
-//Note handle
-router.post('/note', (req, res) => {
-  const {
-    email,
-    password
-  } = req.body;
-  let errors = [];
+//Register Page/view
+router.get('/dashboard', (req, res) => {
+      let sess = req.session;
 
-  //check requires fields
-  if (!email || !password) {
+      if (sess.nutzername == null) {
+        res.render('login', {
+            error: ''
+          });
+        }
+        else {
 
-    errors.push({
-      msg: 'Please fill in all fields'
-    });
-  }
+          res.render('dashboard', {
+              user: sess.nutzername,
+              nutzerid: sess.nutzerid
 
-  var sqlabfrage = "SELECT benutzername, id FROM student WHERE email = ? AND PW = ?;";
-  var sqlabfrage2 = "SELECT id FROM student WHERE benutzername = sqlabfrage;";
-  db.query(sqlabfrage, [email, password], (err, result) => {
-    if (result[0] == null) {
-      errors.push({
-        msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
+          });
+
+      }
+ } );
+
+
+    //Note handle
+    router.post('/note', (req, res) => {
+      const {
+        email,
+        password
+      } = req.body;
+      let errors = [];
+
+      //check requires fields
+      if (!email || !password) {
+
+        errors.push({
+          msg: 'Please fill in all fields'
+        });
+      }
+
+      var sqlabfrage = "SELECT benutzername, id FROM student WHERE email = ? AND PW = ?;";
+      var sqlabfrage2 = "SELECT id FROM student WHERE benutzername = sqlabfrage;";
+      db.query(sqlabfrage, [email, password], (err, result) => {
+        if (result[0] == null) {
+          errors.push({
+            msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
+          });
+        }
+
+        if (errors.length > 0) {
+
+          // console.log(errors.length)
+
+          console.log(errors[0].msg)
+          res.render('login', {
+            error: errors[0].msg
+          })
+        } else {
+          var nutzername = result[0].benutzername;
+          console.log(result[0].id);
+          console.log(result[0]);
+          var nutzerid = result[0].id;
+
+        }
+
       });
-    }
 
-    if (errors.length > 0) {
-
-      // console.log(errors.length)
-     
-      console.log(errors[0].msg)
-      res.render('login', {
-        error: errors[0].msg
-      })
-    } else {
-     var nutzername = result[0].benutzername;
-     console.log(result[0].id);
-     console.log(result[0]);
-     var nutzerid = result[0].id;
-
-    }
-
-  });
-
-});
+    });
 
 
-module.exports = router;
+    module.exports = router;
