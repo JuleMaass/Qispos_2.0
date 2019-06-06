@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 var db = require('../services/connection');
 
-var User = require('../models/User');
+
 
 // Welcome Page
 router.get('/', (req, res) => res.redirect('welcome'));
