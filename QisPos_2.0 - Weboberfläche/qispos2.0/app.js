@@ -3,14 +3,14 @@ const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var passport = require('passport');
-var hookJWTStrategy = require('./services/passportStrategy');
+// var passport = require('passport');
+// var passportStrategy = require('./services/passportStrategy');
 
 var User = require('./models/User');
 
+
+
 const app = express();
-
-
 
 ///Sessions
 app.use(session({
@@ -37,11 +37,11 @@ app.use(bodyParser.json());
 // 5: Hook up the HTTP logger.
 app.use(morgan('dev'));
 
-// Hook up Passport.
-app.use(passport.initialize());
+// // Hook up Passport.
+// app.use(passport.initialize());
 
-// Hook the passport JWT strategy.
-hookJWTStrategy(passport);
+// // Hook the passport JWT strategy.
+// passportStrategy(passport);
 
 
 //Routes
@@ -49,10 +49,25 @@ app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 
 
-app.use(passport.initialize());
-
 //Set the static files location.
 app.use(express.static(__dirname + '../../public'));
+
+
+
+// // Find all users
+// User.findAll().then(users => {
+//   console.log("All users:", JSON.stringify(users, null, 4));
+// });
+
+// // Change everyone without a last name to "Doe"
+// User.update({ benutzername: "kkönig" }, {
+//   where: {
+//     nachname: 'König'
+//   }
+// }).then(() => {
+//   console.log("Done");
+// });
+
 
 
 const PORT = process.env.PORT || 5000;

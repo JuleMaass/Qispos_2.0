@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 var db = require('../services/connection');
 
+var User = require('../models/User');
 
 
 // Welcome Page
@@ -16,17 +17,14 @@ router.get('/register', (req, res) => res.render('register'));
 //Register handle
 router.post('/register', (req, res) => {
     const {
-        benutzername,
-        id,
-        email,
-        PW,
         vorname,
-        nachname
+        nachname,
+        PW
     } = req.body;
     let errors = [];
 
     //check requires fields
-    if (!benutzername || !id || !email || !PW) {
+    if (!PW || !vorname || !nachname) {
         errors.push({
             msg: 'Please fill in all fields'
         });
@@ -35,29 +33,42 @@ router.post('/register', (req, res) => {
     if (errors.length > 0) {
         res.render('register', {
             errors,
-            benutzername,
-            id,
-            email,
-            PW,
             vorname,
-            nachname
+            nachname,
+            PW
         })
     } else {
 
-        // User.create({
-        //     benutzername: benutzername,
-        //     id: id,
-        //     email: email,
-        //     PW: PW,
-        //     vorname: vorname,
-        //     nachname: nachname
-        //   });
+
+        var benutzername = vorname.substring(0, 1) + nachname;
+        var id;
+        User.findAndCountAll().then(result => {
+            id = result.count + 1;
+            var email = benutzername + '@hs-bremen.de'
+
+            User.create({
+                benutzername: benutzername,
+                id: id,
+                email: email,
+                PW: PW,
+                vorname: vorname,
+                nachname: nachname
+            }).then(() => {
+                res.redirect('/login')
+            });
+        });
 
     }
-
+    // User.create({
+    //     benutzername: benutzername,
+    //     id: id,
+    //     email: email,
+    //     PW: PW,
+    //     vorname: vorname,
+    //     nachname: nachname
+    // }).then(() => {
+    // });
 });
-
-
 //Login Page/view
 router.get('/login', (req, res) => res.render('login', {
 
@@ -88,9 +99,9 @@ router.post('/login', (req, res) => {
 
 
     if (dozent) {
-        var sqlabfrage = "SELECT benutzername, id FROM dozent WHERE email = ? AND PW = ?;";
+        var sqlabfrage = "SELECT benutzername, id FROM dozents WHERE email = ? AND PW = ?;";
     } else {
-        var sqlabfrage = "SELECT benutzername, id FROM student WHERE email = ? AND PW = ?;";
+        var sqlabfrage = "SELECT benutzername, id FROM students WHERE email = ? AND PW = ?;";
     }
 
 

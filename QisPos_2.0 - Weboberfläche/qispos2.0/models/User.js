@@ -1,8 +1,17 @@
 var Sequelize = require('sequelize');
-var bcrypt = require('bcrypt');
-var db = require('../services/database');
+var sequelize = require('../services/sequelize');
 
-var userSchema ={
+
+
+
+
+const Model = Sequelize.Model;
+
+
+class Student extends Model {}
+
+
+Student.init({
     benutzername:{
         type: Sequelize.STRING,
         allowNull: false
@@ -27,40 +36,55 @@ var userSchema ={
         type: Sequelize.STRING,
         allowNull: false
     }
-}
-//Modeloptions
-var userOptions ={
-    instanceMethods:{
-        comparePasswords: comparePasswords
-    },
-    hooks:{
-        beforeValidate: hashPassword
-    }
-};
+}, {
+  sequelize,
+  timestamps: false,
+  modelName: 'student'
+ 
 
-//Define the User model
-var userModel =  db.define('student', userSchema, userOptions);
-
-//Compares two passwords
-function comparePasswords(PW, callback)
-{
-    bcrypt.compare(PW, this.PW, function(error, isMatch) {
-        if(error) {
-            return callback(error);
-        }
-
-        return callback(null, isMatch);
-    });
-}
-// Hashes the password for a user object.
-function hashPassword(student) {
-    if(student.changed('PW')) {
-        return bcrypt.hash(student.PW, 10).then(function(PW) {
-            student.PW = PW;
-        });
-    }
-}
-module.exports = userModel;
+});
 
 
 
+module.exports = Student;
+
+
+
+// // Find all users
+// User.findAll().then(users => {
+//     console.log("All users:", JSON.stringify(users, null, 4));
+//   });
+  
+//   // Create a new user
+//   User.create({ firstName: "Jane", lastName: "Doe" }).then(jane => {
+//     console.log("Jane's auto-generated ID:", jane.id);
+//   });
+  
+//   // Delete everyone named "Jane"
+//   User.destroy({
+//     where: {
+//       firstName: "Jane"
+//     }
+//   }).then(() => {
+//     console.log("Done");
+//   });
+  
+//   // Change everyone without a last name to "Doe"
+//   User.update({ lastName: "Doe" }, {
+//     where: {
+//       lastName: null
+//     }
+//   }).then(() => {
+//     console.log("Done");
+//   });
+
+
+ // User.create({
+    //     benutzername: benutzername,
+    //     id: id,
+    //     email: email,
+    //     PW: PW,
+    //     vorname: vorname,
+    //     nachname: nachname
+    // }).then(() => {
+    // });

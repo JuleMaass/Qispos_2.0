@@ -3,6 +3,7 @@
 
 var config = module.exports;
 
+
 config.db = {
     user: 'root',
     password: 'password',

@@ -6,27 +6,8 @@
       </h1>
 
       <form action="/register" method="POST">
-        <div class="form-group">
-          <label for="Benutzername">Username</label>
-          <input type="benutzername" id="benutzername" name="benutzername" class="form-control" placeholder="Enter Name"
-            value="<%= typeof benutzername != 'undefined' ? benutzername : '' %>" />
-        </div>
-
-        <div class="form-group">
-          <label for="id">ID</label>
-          <input type="id" id="id" name="id" class="form-control" placeholder="Create id"
-            value="<%= typeof id != 'undefined' ? id : '' %>" />
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email"
-            value="<%= typeof email != 'undefined' ? email : '' %>" />
-        </div>
-        <div class="form-group">
-          <label for="PW">Password</label>
-          <input type="PW" id="PW" name="PW" class="form-control" placeholder="Enter Passwort"
-            value="<%= typeof PW != 'undefined' ? PW : '' %>" />
-        </div>
+        
+       
 
         <div class="form-group">
             <label for="vorname">Vorname</label>
@@ -38,6 +19,12 @@
               <label for="nachname">Nachname</label>
               <input type="nachname" id="nachname" name="nachname" class="form-control" placeholder="Enter Nachname"
                 value="<%= typeof nachname != 'undefined' ? nachname : '' %>" />
+            </div>
+
+            <div class="form-group">
+              <label for="PW">Password</label>
+              <input type="PW" id="PW" name="PW" class="form-control" placeholder="Enter Passwort"
+                value="<%= typeof PW != 'undefined' ? PW : '' %>" />
             </div>
         <button type="submit" class="btn btn-primary btn-block">
           Register
