@@ -6,7 +6,7 @@ var morgan = require('morgan');
 // var passport = require('passport');
 // var passportStrategy = require('./services/passportStrategy');
 
-var User = require('./models/User');
+var Student = require('./models/Student');
 
 
 
@@ -68,8 +68,6 @@ app.use(express.static(__dirname + '../../public'));
 //   console.log("Done");
 // });
 
-
-//  
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

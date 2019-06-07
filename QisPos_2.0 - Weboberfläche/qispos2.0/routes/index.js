@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 var db = require('../services/connection');
 
-var User = require('../models/User');
+var Student = require('../models/Student');
 
 
 // Welcome Page
@@ -43,34 +43,31 @@ router.post('/register', (req, res) => {
         var buchstabenanzahl = 1;
         var benutzername = vorname.substring(0, buchstabenanzahl) + nachname;
         var test;
-     do {
+        do {
 
-        console.log(test);
-        // search for attributes
-        User.findOne({
-            where: {
-                benutzername: benutzername
-            }
-        }).then(user => {
+            // search for attributes
+            Student.findOne({
+                where: {
+                    benutzername: benutzername
+                }
+            }).then(user => {
 
-            console.log(user);
-            test = user
-            if (test != null) {
-                buchstabenanzahl++; 
-                benutzername = vorname.substring(0, buchstabenanzahl) + nachname;
-                console.log(benutzername);
-            }
-        });
-    } while (test != null);
+                test = user
+                if (test != null) {
+                    buchstabenanzahl++;
+                    benutzername = vorname.substring(0, buchstabenanzahl) + nachname;
+                }
+            });
+        } while (test != null);
 
 
 
         var id;
-        User.findAndCountAll().then(result => {
+        Student.findAndCountAll().then(result => {
             id = result.count + 1;
             var email = benutzername + '@hs-bremen.de'
 
-            User.create({
+            Student.create({
                 benutzername: benutzername,
                 id: id,
                 email: email,
@@ -97,14 +94,14 @@ router.post('/login', (req, res) => {
     let sess = req.session;
 
     const {
-        email,
+        benutzername,
         password,
         dozent
     } = req.body;
     let errors = [];
 
     //check requires fields
-    if (!email || !password) {
+    if (!benutzername || !password) {
 
         errors.push({
             msg: 'Please fill in all fields'
@@ -113,47 +110,124 @@ router.post('/login', (req, res) => {
 
 
 
+
     if (dozent) {
-        var sqlabfrage = "SELECT benutzername, id FROM dozents WHERE email = ? AND PW = ?;";
+        Dozent.findOne({
+            where: {
+                benutzername: benutzername,
+                PW: password
+            }
+        }).then(result => {
+    
+            if (result == null) {
+                errors.push({
+                    msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
+                });
+            }
+    
+            if (errors.length > 0) {
+    
+                // console.log(errors.length)
+    
+                console.log(errors[0].msg)
+                res.render('login', {
+                    error: errors[0].msg
+                })
+            } else {
+    
+    
+                sess.nutzername = result.benutzername; // equivalent to $_SESSION['email'] in PHP.
+                sess.nutzerid = result.id;
+    
+                if (dozent) {
+                    sess.dozent = true;
+                    res.redirect('/users/dashboard_dozent');
+                } else {
+                    sess.dozent = false;
+                    res.redirect('/users/dashboard');
+                }
+            }
+    
+    
+        });
     } else {
-        var sqlabfrage = "SELECT benutzername, id FROM students WHERE email = ? AND PW = ?;";
+        Student.findOne({
+            where: {
+                benutzername: benutzername,
+                PW: password
+            }
+        }).then(result => {
+            // console.log(result);
+    
+            if (result == null) {
+                errors.push({
+                    msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
+                });
+            }
+    
+            if (errors.length > 0) {
+    
+                // console.log(errors.length)
+    
+                console.log(errors[0].msg)
+                res.render('login', {
+                    error: errors[0].msg
+                })
+            } else {
+    
+    
+                sess.nutzername = result.benutzername; // equivalent to $_SESSION['email'] in PHP.
+                sess.nutzerid = result.id;
+    
+                if (dozent) {
+                    sess.dozent = true;
+                    res.redirect('/users/dashboard_dozent');
+                } else {
+                    sess.dozent = false;
+                    res.redirect('/users/dashboard');
+                }
+            }
+    
+    
+        });
     }
 
 
+    
 
 
-    db.query(sqlabfrage, [email, password], (err, result) => {
-        if (result[0] == null) {
-            errors.push({
-                msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
-            });
-        }
+    // db.query(sqlabfrage, [benutzername, password], (err, result) => {
+    //     if (result[0] == null) {
+    //         errors.push({
+    //             msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
+    //         });
+    //     }
 
-        if (errors.length > 0) {
+    //     if (errors.length > 0) {
 
-            // console.log(errors.length)
+    //         // console.log(errors.length)
 
-            console.log(errors[0].msg)
-            res.render('login', {
-                error: errors[0].msg
-            })
-        } else {
-            var nutzername = result[0].benutzername;
-            var nutzerid = result[0].id;
+    //         console.log(errors[0].msg)
+    //         res.render('login', {
+    //             error: errors[0].msg
+    //         })
+    //     } else {
+    //         var nutzername = result[0].benutzername;
+    //         var nutzerid = result[0].id;
 
 
-            sess.nutzername = nutzername; // equivalent to $_SESSION['email'] in PHP.
-            sess.nutzerid = nutzerid;
+    //         sess.nutzername = nutzername; // equivalent to $_SESSION['email'] in PHP.
+    //         sess.nutzerid = nutzerid;
 
-            if (dozent) {
-                sess.dozent = true;
-                res.redirect('/users/dashboard_dozent');
-            } else {
-                sess.dozent = false;
-                res.redirect('/users/dashboard');
-            }
-        }
-    });
+    //         if (dozent) {
+    //             sess.dozent = true;
+    //             res.redirect('/users/dashboard_dozent');
+    //         } else {
+    //             sess.dozent = false;
+    //             res.redirect('/users/dashboard');
+    //         }
+    //     }
+    // });
 
 });
 
