@@ -40,7 +40,31 @@ router.post('/register', (req, res) => {
     } else {
 
 
-        var benutzername = vorname.substring(0, 1) + nachname;
+        var buchstabenanzahl = 1;
+        var benutzername = vorname.substring(0, buchstabenanzahl) + nachname;
+        var test;
+     do {
+
+        console.log(test);
+        // search for attributes
+        User.findOne({
+            where: {
+                benutzername: benutzername
+            }
+        }).then(user => {
+
+            console.log(user);
+            test = user
+            if (test != null) {
+                buchstabenanzahl++; 
+                benutzername = vorname.substring(0, buchstabenanzahl) + nachname;
+                console.log(benutzername);
+            }
+        });
+    } while (test != null);
+
+
+
         var id;
         User.findAndCountAll().then(result => {
             id = result.count + 1;
@@ -59,15 +83,7 @@ router.post('/register', (req, res) => {
         });
 
     }
-    // User.create({
-    //     benutzername: benutzername,
-    //     id: id,
-    //     email: email,
-    //     PW: PW,
-    //     vorname: vorname,
-    //     nachname: nachname
-    // }).then(() => {
-    // });
+
 });
 //Login Page/view
 router.get('/login', (req, res) => res.render('login', {
@@ -95,7 +111,6 @@ router.post('/login', (req, res) => {
         });
     }
 
-    console.log(dozent)
 
 
     if (dozent) {
