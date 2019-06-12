@@ -8,50 +8,48 @@ var sequelize = require('../services/sequelize');
 const Model = Sequelize.Model;
 
 
-class Student extends Model {}
+class Student_belegt_modul extends Model {}
 
 
-Student.init({
-    benutzername:{
+Student_belegt_modul.init({
+    student_id:{
         type: Sequelize.STRING,
-        allowNull: false
-    },
-    id:{
-        type: Sequelize.INTEGER,
         primaryKey: true,
-        allowNull: false,
-        autoIncrement: true 
+        allowNull: false
     },
-    email:{
+    modul_id:{
         type: Sequelize.STRING,
+        primaryKey: true,
+        allowNull: false
     },
-    PW:{
+    klausur_id:{
+        type: Sequelize.STRING,
+        primaryKey: true,
+        allowNull: false
+    },
+    note:{
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    versuch: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    vorname: {
+    credits: {
         type: Sequelize.STRING,
-        allowNull: false
-    },
-    nachname: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    matrikelnummer: {
-        type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     }
 }, {
   sequelize,
   timestamps: false,
-  modelName: 'student'
+  modelName: 'student_belegt_modul'
  
 
 });
 
 
 
-module.exports = Student;
+module.exports = Student_belegt_modul;
 
 
 

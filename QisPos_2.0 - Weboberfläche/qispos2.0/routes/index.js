@@ -64,16 +64,16 @@ router.post('/register', (req, res) => {
 
         var id;
         Student.findAndCountAll().then(result => {
-            id = result.count + 1;
+            id = result.count;
             var email = benutzername + '@hs-bremen.de'
 
             Student.create({
                 benutzername: benutzername,
-                id: id,
                 email: email,
                 PW: PW,
                 vorname: vorname,
-                nachname: nachname
+                nachname: nachname,
+                matrikelnummer: 50000+ id
             }).then(() => {
                 res.redirect('/login')
             });
