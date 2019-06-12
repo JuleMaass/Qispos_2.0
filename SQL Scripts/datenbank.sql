@@ -16,6 +16,24 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `dozents`
+--
+
+DROP TABLE IF EXISTS `dozents`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `dozents` (
+  `benutzername` varchar(45) NOT NULL,
+  `id` int(11) NOT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  `PW` int(11) NOT NULL,
+  `vorname` varchar(30) DEFAULT NULL,
+  `nachname` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `dozents`
 --
 
@@ -24,6 +42,21 @@ LOCK TABLES `dozents` WRITE;
 INSERT INTO `dozents` VALUES ('pkrug',100,'pkrug@hs-bremen.de',100100,'peter','krug'),('oheike',200,'oheike@hs-bremen.de',200200,'otto','heike'),('tbruns',300,'tbruns@hs-bremen.de',300300,'torben','bruns');
 /*!40000 ALTER TABLE `dozents` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `klausurs`
+--
+
+DROP TABLE IF EXISTS `klausurs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `klausurs` (
+  `id` int(11) NOT NULL,
+  `bezeichnung` varchar(30) NOT NULL,
+  `datum` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `klausurs`
@@ -36,6 +69,23 @@ INSERT INTO `klausurs` VALUES (1,'Matheklausur1',NULL),(2,'Matheklausur2',NULL),
 UNLOCK TABLES;
 
 --
+-- Table structure for table `moduls`
+--
+
+DROP TABLE IF EXISTS `moduls`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `moduls` (
+  `id` int(11) NOT NULL,
+  `modulname` varchar(30) NOT NULL,
+  `semester` int(11) DEFAULT NULL,
+  `credits` int(11) DEFAULT NULL,
+  `dozent_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`dozent_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `moduls`
 --
 
@@ -46,6 +96,24 @@ INSERT INTO `moduls` VALUES (10,'Mathe-leicht',1,4,100),(11,'Mathe2',2,4,100),(1
 UNLOCK TABLES;
 
 --
+-- Table structure for table `student_belegt_moduls`
+--
+
+DROP TABLE IF EXISTS `student_belegt_moduls`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `student_belegt_moduls` (
+  `student_id` int(11) NOT NULL,
+  `modul_id` int(11) NOT NULL,
+  `klausur_id` int(11) NOT NULL,
+  `note` varchar(45) DEFAULT NULL,
+  `versuch` varchar(45) NOT NULL,
+  `credits` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`student_id`,`modul_id`,`klausur_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Dumping data for table `student_belegt_moduls`
 --
 
@@ -54,6 +122,24 @@ LOCK TABLES `student_belegt_moduls` WRITE;
 INSERT INTO `student_belegt_moduls` VALUES (1,11,2,NULL,'1',NULL),(1,12,3,'3.0','2','4'),(2,10,1,'2.0','1','4'),(3,14,5,'1.0','1','2'),(3,14,6,'2.0','1','2');
 /*!40000 ALTER TABLE `student_belegt_moduls` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `students`
+--
+
+DROP TABLE IF EXISTS `students`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `students` (
+  `benutzername` varchar(255) NOT NULL,
+  `id` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `PW` varchar(255) NOT NULL,
+  `vorname` varchar(255) NOT NULL,
+  `nachname` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `students`
@@ -82,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-12 10:11:12
+-- Dump completed on 2019-06-12 10:25:52
