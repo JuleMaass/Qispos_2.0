@@ -64,6 +64,14 @@ LOCK TABLES `students` WRITE;
 INSERT INTO `students` VALUES ('phans','1','phans@hs-bremen.de','111','Peter','Hans'),('HKrome','10','HKrome@hs-bremen.de','tttest','Horst','Krome'),('HKramer','11','HKramer@hs-bremen.de','313111','Hugo','Kramer'),('HuKramer','12','HuKramer@hs-bremen.de','313111','Hugo','Kramer'),('BTannert','13','BTannert@hs-bremen.de','999','Benjamin','Tannert'),('kkönig','2','könig@hs-bremen.de','222','Klaus','König'),('hulla','3','hulla@hs-bremen.de','333','Horst','Ulla'),('lmeier','4','lmeier@hs-bremen.de','444','Lisa','Meier'),('hschmitz','5','hschmitz@hs-bremen.de','555','Heinz','Schmitz'),('FBuchholz','7','FBuchholz@hs-bremen.de','test','Florian','Buchholz'),('JMaaß','9','JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß'),('Kreativ','9222','Werdmal@kreativ.de','000','Horst','Uschibert'),('Jörg','999','buchholz@hs-bremen.de','zrr','Jörg','Buchholz');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'mynewdb'
+--
+
+--
+-- Dumping routines for database 'mynewdb'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -74,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-12 10:05:43
+-- Dump completed on 2019-06-12 10:11:12
