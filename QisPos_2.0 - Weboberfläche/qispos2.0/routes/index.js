@@ -49,7 +49,7 @@ router.post('/register', (req, res) => {
             Student.findOne({
                 where: {
                     benutzername: benutzername
-                }
+                } 
             }).then(user => {
 
                 test = user
@@ -68,11 +68,11 @@ router.post('/register', (req, res) => {
             var email = benutzername + '@hs-bremen.de'
 
             Student.create({
-                benutzername: benutzername,
-                email: email,
+                benutzername: benutzername.toLowerCase(),
+                email: email.toLowerCase(),
                 PW: PW,
-                vorname: vorname,
-                nachname: nachname,
+                vorname: vorname.toLowerCase(),
+                nachname: nachname.toLowerCase(),
                 matrikelnummer: 50000+ id
             }).then(() => {
                 res.redirect('/login')
@@ -90,7 +90,7 @@ router.get('/login', (req, res) => res.render('login', {
 
 
 //Login handle
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     let sess = req.session;
 
     const {
@@ -127,7 +127,7 @@ router.post('/login', (req, res) => {
     
             if (errors.length > 0) {
     
-                // console.log(errors.length)
+        
     
                 console.log(errors[0].msg)
                 res.render('login', {
@@ -136,7 +136,7 @@ router.post('/login', (req, res) => {
             } else {
     
     
-                sess.nutzername = result.benutzername; // equivalent to $_SESSION['email'] in PHP.
+                sess.nutzername = result.benutzername; 
                 sess.nutzerid = result.id;
     
                 if (dozent) {
@@ -157,7 +157,6 @@ router.post('/login', (req, res) => {
                 PW: password
             }
         }).then(result => {
-            // console.log(result);
     
             if (result == null) {
                 errors.push({
@@ -165,19 +164,14 @@ router.post('/login', (req, res) => {
                 });
             }
     
-            if (errors.length > 0) {
-    
-                // console.log(errors.length)
-    
+            if (errors.length > 0) {    
                 console.log(errors[0].msg)
                 res.render('login', {
                     error: errors[0].msg
                 })
             } else {
     
-    
-                sess.nutzername = result.benutzername; // equivalent to $_SESSION['email'] in PHP.
-                sess.nutzerid = result.id;
+                sess.nutzer = result;
     
                 if (dozent) {
                     sess.dozent = true;

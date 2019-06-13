@@ -2,9 +2,6 @@ const express = require('express');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
-var morgan = require('morgan');
-// var passport = require('passport');
-// var passportStrategy = require('./services/passportStrategy');
 
 var Student = require('./models/Student');
 
@@ -33,15 +30,6 @@ app.set('view engine', 'ejs');
 //Bodyparser
 app.use(express.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-// 5: Hook up the HTTP logger.
-app.use(morgan('dev'));
-
-// // Hook up Passport.
-// app.use(passport.initialize());
-
-// // Hook the passport JWT strategy.
-// passportStrategy(passport);
 
 
 //Routes
