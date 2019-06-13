@@ -103,9 +103,9 @@ DROP TABLE IF EXISTS `student_belegt_moduls`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `student_belegt_moduls` (
-  `student_id` int(11) NOT NULL,
-  `modul_id` int(11) NOT NULL,
-  `klausur_id` int(11) NOT NULL,
+  `student_id` varchar(45) NOT NULL,
+  `modul_id` varchar(45) NOT NULL,
+  `klausur_id` varchar(45) NOT NULL,
   `note` varchar(45) DEFAULT NULL,
   `versuch` varchar(45) NOT NULL,
   `credits` varchar(45) DEFAULT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE `student_belegt_moduls` (
 
 LOCK TABLES `student_belegt_moduls` WRITE;
 /*!40000 ALTER TABLE `student_belegt_moduls` DISABLE KEYS */;
-INSERT INTO `student_belegt_moduls` VALUES (1,11,2,NULL,'1',NULL),(1,12,3,'3.0','2','4'),(2,10,1,'2.0','1','4'),(3,14,5,'1.0','1','2'),(3,14,6,'2.0','1','2');
+INSERT INTO `student_belegt_moduls` VALUES ('1','11','2',NULL,'1',NULL),('1','12','3','3.0','2','4'),('2','10','1','2.0','1','4'),('3','14','5','1.0','1','2'),('3','14','6','2.0','1','2');
 /*!40000 ALTER TABLE `student_belegt_moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,13 +132,14 @@ DROP TABLE IF EXISTS `students`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `students` (
   `benutzername` varchar(255) NOT NULL,
-  `id` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `PW` varchar(255) NOT NULL,
   `vorname` varchar(255) NOT NULL,
   `nachname` varchar(255) NOT NULL,
+  `matrikelnummer` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10014 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +148,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES ('phans','1','phans@hs-bremen.de','111','Peter','Hans'),('HKrome','10','HKrome@hs-bremen.de','tttest','Horst','Krome'),('HKramer','11','HKramer@hs-bremen.de','313111','Hugo','Kramer'),('HuKramer','12','HuKramer@hs-bremen.de','313111','Hugo','Kramer'),('BTannert','13','BTannert@hs-bremen.de','999','Benjamin','Tannert'),('kkönig','2','könig@hs-bremen.de','222','Klaus','König'),('hulla','3','hulla@hs-bremen.de','333','Horst','Ulla'),('lmeier','4','lmeier@hs-bremen.de','444','Lisa','Meier'),('hschmitz','5','hschmitz@hs-bremen.de','555','Heinz','Schmitz'),('FBuchholz','7','FBuchholz@hs-bremen.de','test','Florian','Buchholz'),('JMaaß','9','JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß'),('Kreativ','9222','Werdmal@kreativ.de','000','Horst','Uschibert'),('Jörg','999','buchholz@hs-bremen.de','zrr','Jörg','Buchholz');
+INSERT INTO `students` VALUES ('phans',10000,'phans@hs-bremen.de','111','Peter','Hans',50000),('hschmitz',10001,'hschmitz@hs-bremen.de','555','Heinz','Schmitz',50001),('JMaaß',10002,'JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß',50002),('FBuchholz',10003,'FBuchholz@hs-bremen.de','test','Florian','Buchholz',50003),('HKramer',10004,'HKramer@hs-bremen.de','313111','Hugo','Kramer',50004),('HuKramer',10005,'HuKramer@hs-bremen.de','313111','Hugo','Kramer',50005),('HKrome',10006,'HKrome@hs-bremen.de','tttest','Horst','Krome',50006),('Jörg',10007,'buchholz@hs-bremen.de','zrr','Jörg','Buchholz',50007),('Kreativ',10008,'Werdmal@kreativ.de','000','Horst','Uschibert',50008),('BTannert',10009,'BTannert@hs-bremen.de','999','Benjamin','Tannert',50009),('kkönig',10010,'könig@hs-bremen.de','222','Klaus','König',50010),('hulla',10011,'hulla@hs-bremen.de','333','Horst','Ulla',50011),('FWoichek',10012,'FWoichek@hs-bremen.de','superheld','Fabian','Woichek',50012),('WTjark',10013,'WTjark@hs-bremen.de','232','Wio','Tjark',50013);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-12 10:25:52
+-- Dump completed on 2019-06-13 10:42:00
