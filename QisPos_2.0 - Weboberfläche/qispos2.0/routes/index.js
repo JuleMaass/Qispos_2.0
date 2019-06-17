@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-var db = require('../services/connection');
+var sequelize = require('../services/sequelize');
 
 var Student = require('../models/Student');
-
 
 // Welcome Page
 router.get('/', (req, res) => res.redirect('welcome'));
@@ -48,36 +47,41 @@ router.post('/register', (req, res) => {
             // search for attributes
             Student.findOne({
                 where: {
-                    benutzername: benutzername
-                } 
+                    benutzername: benutzername.toLowerCase()
+                }
             }).then(user => {
 
                 test = user
                 if (test != null) {
                     buchstabenanzahl++;
-                    benutzername = vorname.substring(0, buchstabenanzahl) + nachname;
+                    benutzername = (vorname.substring(0, buchstabenanzahl) + nachname).toLowerCase();
                 }
             });
         } while (test != null);
 
 
 
-        var id;
-        Student.findAndCountAll().then(result => {
-            id = result.count;
-            var email = benutzername + '@hs-bremen.de'
+        var email = benutzername.toLowerCase() + '@hs-bremen.de'
 
-            Student.create({
-                benutzername: benutzername.toLowerCase(),
-                email: email.toLowerCase(),
-                PW: PW,
-                vorname: vorname.toLowerCase(),
-                nachname: nachname.toLowerCase(),
-                matrikelnummer: 50000+ id
-            }).then(() => {
-                res.redirect('/login')
-            });
+        Student.create({
+            benutzername: benutzername.toLowerCase(),
+            email: email,
+            PW: PW,
+            vorname: jsUcfirst(vorname.toLowerCase()),
+            nachname: jsUcfirst(nachname.toLowerCase()),
+        }).then((result) => {
+
+            Student.update({
+                matrikelnummer: result.id + 40000
+            }, {
+                where: {
+                    id: result.id
+                }
+            })
+
+            res.redirect('/login')
         });
+
 
     }
 
@@ -118,37 +122,30 @@ router.post('/login', async (req, res) => {
                 PW: password
             }
         }).then(result => {
-    
+
             if (result == null) {
                 errors.push({
                     msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
                 });
             }
-    
+
             if (errors.length > 0) {
-    
-        
-    
+
+
+
                 console.log(errors[0].msg)
                 res.render('login', {
                     error: errors[0].msg
                 })
             } else {
-    
-    
-                sess.nutzername = result.benutzername; 
-                sess.nutzerid = result.id;
-    
-                if (dozent) {
-                    sess.dozent = true;
-                    res.redirect('/users/dashboard_dozent');
-                } else {
-                    sess.dozent = false;
-                    res.redirect('/users/dashboard');
-                }
+
+
+                sess.nutzer = result;
+                sess.dozent = true;
+                res.redirect('/users/dashboard_dozent');
             }
-    
-    
+
+
         });
     } else {
         Student.findOne({
@@ -157,37 +154,46 @@ router.post('/login', async (req, res) => {
                 PW: password
             }
         }).then(result => {
-    
+
             if (result == null) {
                 errors.push({
                     msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
                 });
             }
-    
-            if (errors.length > 0) {    
+
+            if (errors.length > 0) {
                 console.log(errors[0].msg)
                 res.render('login', {
                     error: errors[0].msg
                 })
             } else {
-    
+
+
+                // // Beispiel für einen Callable
+                // sequelize
+                //     .query(' call all_pruefung_student(:id)', {
+                //         replacements: {
+                //             id: 10001
+                //         }
+                //     })
+                //     .then(v => console.log(v));
+
+
+
                 sess.nutzer = result;
-    
-                if (dozent) {
-                    sess.dozent = true;
-                    res.redirect('/users/dashboard_dozent');
-                } else {
-                    sess.dozent = false;
-                    res.redirect('/users/dashboard');
-                }
+                sess.dozent = false;
+                res.redirect('/users/dashboard');
             }
-    
-    
+
+
         });
     }
 
 
-    
+
+
+
+
 
 
     // db.query(sqlabfrage, [benutzername, password], (err, result) => {
@@ -224,5 +230,13 @@ router.post('/login', async (req, res) => {
     // });
 
 });
+
+
+function jsUcfirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
+
 
 module.exports = router;

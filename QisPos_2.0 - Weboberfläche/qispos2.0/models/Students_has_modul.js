@@ -3,53 +3,39 @@ var sequelize = require('../services/sequelize');
 
 
 
-
-
 const Model = Sequelize.Model;
 
 
-class Student_belegt_modul extends Model {}
+class Students_has_modul extends Model {}
 
 
-Student_belegt_modul.init({
-    student_id:{
-        type: Sequelize.STRING,
+Students_has_modul.init({
+    students_id:{
+        type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false
     },
-    modul_id:{
-        type: Sequelize.STRING,
+    moduls_id:{
+        type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false
     },
-    klausur_id:{
-        type: Sequelize.STRING,
-        primaryKey: true,
-        allowNull: false
-    },
-    note:{
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    versuch: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    credits: {
-        type: Sequelize.STRING,
+    
+    status: {
+        type: Sequelize.BOOLEAN,
         allowNull: true
     }
 }, {
   sequelize,
   timestamps: false,
-  modelName: 'student_belegt_modul'
+  modelName: 'Students_has_modul'
  
 
 });
 
 
 
-module.exports = Student_belegt_modul;
+module.exports = Students_has_modul;
 
 
 

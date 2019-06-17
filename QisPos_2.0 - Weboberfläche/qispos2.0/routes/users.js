@@ -4,7 +4,6 @@ const express = require('express');
 const router = express.Router();
 var db = require('../services/connection');
 var Student = require('../models/Student');
-var Student_belegt_modul = require('../models/Student_belegt_modul');
 
 var sess;
 
@@ -12,10 +11,10 @@ var sess;
 // Welcome Page für nicht eingeloggte
 router.get('/', (req, res) => res.redirect('../login'));
 
-router.post('/navheader', (req, res) => {
+// router.get('/dashboard', (req, res) => {
 
-  console.log("Es hat funktioniert");
-});
+//   console.log("Es hat funktioniert");
+// });
 
 
 //Logout Page/view
@@ -33,7 +32,6 @@ router.get('/dashboard', async (req, res) => {
 
     var students = await Student.findAll();
 
-    console.log("tes22t");
     res.render('dashboard', {
       nutzername: sess.nutzer.benutzername,
       nutzerid: sess.nutzer.id,
@@ -52,13 +50,15 @@ router.get('/dashboard', async (req, res) => {
 router.get('/dashboard_dozent', (req, res) => {
   let sess = req.session;
 
-  if (sess.nutzername == null) {
+  if (sess.nutzer.benutzername == null) {
     res.redirect('../login')
   } else {
 
     res.render('dashboard_dozent', {
-      nutzername: sess.nutzername,
-      nutzerid: sess.nutzerid
+      nutzername: sess.nutzer.benutzername,
+      nutzerid: sess.nutzer.id,
+      students: students,
+      student: sess.nutzer
 
     });
 
