@@ -9,6 +9,8 @@
     
     $(document).ready(function () {
 $('#notenTable').DataTable();
+$('#übersichtTable').DataTable();
+$('#rankingTable').DataTable();
 $('.dataTables_length').addClass('bs-select');
 
 });
@@ -97,8 +99,8 @@ $(function () {
                 <tr class="table">
 
                     <td><%= student.benutzername %></td>
-                    <td>Empty</td>
-                    <td>Empty</td>
+                    <td><%= studiengang[0].bezeichnung %></td>
+                    <td><%= studiengang[0].abschluss %></td>
                     <td><%= student.matrikelnummer %></td>
 
                 </tr>
@@ -109,14 +111,19 @@ $(function () {
     </div>
     <div id="myTabContent" class="tab-content">
 
+
+
+
         <div class="tab-pane fade, jumbotron, active " id="Termine">
             <input class="form-control mr-sm-2" type="text" placeholder="Suche nach Modulen">
             <p class="lead mb-3"> </p>
             <div class="list-group">
+                    <% for (var i = 0; i < pruefungen.length; i++) {
+                        %>
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                        11.06.19
-                        <h5 class="mb-1">Datenbanken Arbeitszettel</h5>
+                        <%= pruefungen[i].pruefungsdatum %>
+                        <h5 class="mb-1"><%= pruefungen[i].bezeichnung %></h5>
 
                         <div class="form-check">
                             <label class="form-check-label">
@@ -126,45 +133,8 @@ $(function () {
                         </div>
                     </div>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        11.06.19
-                        <h5 class="mb-1">Computergrafiken Aufgabe 8a</h5>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input " type="checkbox" value="" unchecked="">
-                                Erledigt
-                            </label>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        28.06.19
-                        <h5 class="mb-1">Datenbanken Projekt Abgabe</h5>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" value="" unchecked="">
-                                Erledigt
-                            </label>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        10.07.19
-                        <h5 class="mb-1">Englisch Klausur</h5>
-
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" value="" unchecked="">
-                                Erledigt
-                            </label>
-                        </div>
-                    </div>
-                </a>
+                <% } %>
+               
             </div>
 
         </div>
@@ -192,262 +162,20 @@ $(function () {
                 </thead>
                 <tbody>
 
-
+                        <% for (var i = 0; i < pruefungen.length; i++) {
+                            %>
                      <tr class="table-light">
 
-                        <td>1351</td>
-                        <td>Programmieren 1 </td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>6 </td>
-                        <td>1 </td>
+                        <td><%= noten[i].nummer %></td>
+                        <td><%= noten[i].bezeichnung %> </td>
+                        <td><%= noten[i].semester %> </td>
+                        <td><%= noten[i].note %> </td>
+                        <td><%= noten[i].credits %> </td>
+                        <td><%= noten[i].versuch %> </td>
                     </tr>
-                    <tr class="table-light">
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                 <tr class="table-light">
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                 <tr class="table-light">
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-
-                                       
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                         
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                        
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                     
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                          
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                         
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                      
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                        
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                       
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                         
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                         
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                         
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                        
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-                                       
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-
-
-                        <td>1351</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>SoSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-
-
-                        <td>1391</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
-                     <tr class="table-light">
-
-
-                        <td>12321</td>
-                        <td>Mensch-Computer-Interaktion EA</td>
-                        <td>WiSe 18/19 </td>
-                        <td>1,0 </td>
-                        <td>0 </td>
-                        <td>1 </td>
-                    </tr>
+                    <% } %>
+                    
+              
 
 
                 </tbody>
@@ -470,10 +198,10 @@ $(function () {
                         <!-- <ul class="navbar-nav mr-auto"> -->
                         <ul class="nav nav-pills flex-column flex-sm-row">
 
-                            <li class="nav-item "><a class="nav-link" data-toggle="tab" href="#Übersicht">Übersicht </a>
+                            <li class="nav-item show active "><a class="nav-link" data-toggle="tab" href="#Übersicht">Übersicht </a>
                             </li>
 
-                            <li class="nav-item active">
+                            <li class="nav-item ">
                                 <a class="nav-link" data-toggle="tab" href="#Anmelden">Anmelden</a>
                             </li>
 
@@ -481,10 +209,11 @@ $(function () {
                     </div>
                 </form>
             </nav>
-
+            
             <div id="mySecTabContent" class="tab-content">
                 <div class="tab-pane fade, active" id="Übersicht">
-                    <table class="table">
+                    
+            <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="übersichtTable">
                         <thead>
                             <tr class="table-secondary">
                                 <th scope="col">Prf.-nummer.</th>
@@ -499,57 +228,25 @@ $(function () {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-light">
-                                <td>1411</td>
-                                <td>Datenbankbasierte Web-Anwendung EA </td>
-                                <td>Tannert </td>
-                                <td>SoSe 19 </td>
-                                <td>01 </td>
-                                <td>12.03.2019 </td>
-                                <td>31.08.2019 </td>
-                                <td>angemeldet </td>
-                            </tr>
-                            <tr class="table-light">
-                                <td>1421</td>
-                                <td>Computergrafik EA </td>
-                                <td>Krug </td>
-                                <td>SoSe 19 </td>
-                                <td>01 </td>
-                                <td>12.03.2019 </td>
-                                <td>31.08.2019 </td>
-                                <td>angemeldet </td>
-                            </tr>
-                            <tr class="table-light">
-                                <td>1431</td>
-                                <td>Projekt 2 PA </td>
-                                <td>Thema: Betaville </td>
-                                <td>SoSe 19 </td>
-                                <td>01 </td>
-                                <td>12.03.2019 </td>
-                                <td>31.08.2019 </td>
-                                <td>angemeldet </td>
-                            </tr>
-                            <tr class="table-light">
-                                <td>1441</td>
-                                <td>Gestaltung: Ausgewählte Kapitel EA </td>
-                                <td>Teufel </td>
-                                <td>SoSe 19 </td>
-                                <td>01 </td>
-                                <td>12.03.2019 </td>
-                                <td>31.08.2019 </td>
-                                <td>angemeldet </td>
-                            </tr>
-                            <tr class="table-light">
-                                <td>1541</td>
-                                <td>Wahlmodul Medieninformatik 1 (HSB) TL</td>
-                                <td>Englisch </td>
-                                <td>SoSe 19 </td>
-                                <td>01 </td>
-                                <td>12.03.2019 </td>
-                                <td>31.08.2019 </td>
-                                <td>angemeldet </td>
-                            </tr>
 
+
+
+           
+                  
+                    <% for (var i = 0; i < pruefungen.length; i++) {
+                        %>
+
+                            <tr class="table-light">
+                                <td><%= moduls[i].nummer %></td>
+                                <td><%= moduls[i].bezeichnung %> </td>
+                                <td><%= moduls[i].benutzername %>  </td>
+                                <td><%= moduls[i].semester %> </td>
+                                <td><%= moduls[i].versuch %> </td>
+                                <td><%= moduls[i].anmeldedatum %> </td>
+                                <td><%= moduls[i].pruefungsdatum %> </td>
+                                <td><%= moduls[i].status %> </td>
+                            </tr>
+                            <% } %>
                         </tbody>
                     </table>
                     <button type="button" class="btn btn-secondary">als PDF downloaden</button>
@@ -741,7 +438,7 @@ $(function () {
 
         <div class="tab-pane fade, jumbotron" id="Ranking">
 
-<table class="table">
+            <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="rankingTable">
                 <thead>
                     <tr class="table-secondary">
                         <th scope="col">ID</th>

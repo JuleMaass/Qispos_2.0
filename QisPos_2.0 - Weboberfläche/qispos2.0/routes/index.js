@@ -167,21 +167,22 @@ router.post('/login', async (req, res) => {
                     error: errors[0].msg
                 })
             } else {
-
-
+                sess.hash = "Noten";
+                
+               
+                sess.nutzer = result;
+                sess.dozent = false;
+                
                 // // Beispiel für einen Callable
                 // sequelize
                 //     .query(' call all_pruefung_student(:id)', {
                 //         replacements: {
-                //             id: 10001
+                //             id: sess.nutzer.id
                 //         }
                 //     })
                 //     .then(v => console.log(v));
 
-                sess.hash = "Noten";
-
-                sess.nutzer = result;
-                sess.dozent = false;
+                  
                 res.redirect('/users/dashboard#' + sess.hash);
             }
 
