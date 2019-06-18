@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `dozents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `dozents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `benutzername` varchar(45) NOT NULL,
-  `id` int(11) NOT NULL,
   `email` varchar(40) DEFAULT NULL,
   `PW` int(11) NOT NULL,
   `vorname` varchar(30) DEFAULT NULL,
   `nachname` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,33 +39,8 @@ CREATE TABLE `dozents` (
 
 LOCK TABLES `dozents` WRITE;
 /*!40000 ALTER TABLE `dozents` DISABLE KEYS */;
-INSERT INTO `dozents` VALUES ('pkrug',100,'pkrug@hs-bremen.de',100100,'peter','krug'),('oheike',200,'oheike@hs-bremen.de',200200,'otto','heike'),('tbruns',300,'tbruns@hs-bremen.de',300300,'torben','bruns');
+INSERT INTO `dozents` VALUES (100,'pkrug','pkrug@hs-bremen.de',100100,'peter','krug'),(200,'oheike','oheike@hs-bremen.de',200200,'otto','heike'),(300,'tbruns','tbruns@hs-bremen.de',300300,'torben','bruns');
 /*!40000 ALTER TABLE `dozents` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `klausurs`
---
-
-DROP TABLE IF EXISTS `klausurs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `klausurs` (
-  `id` int(11) NOT NULL,
-  `bezeichnung` varchar(30) NOT NULL,
-  `datum` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `klausurs`
---
-
-LOCK TABLES `klausurs` WRITE;
-/*!40000 ALTER TABLE `klausurs` DISABLE KEYS */;
-INSERT INTO `klausurs` VALUES (1,'Matheklausur1',NULL),(2,'Matheklausur2',NULL),(3,'Rechnernetze1',NULL),(4,'Programmieren1',NULL),(5,'Englisch',NULL),(6,'Englisch_Referat',NULL);
-/*!40000 ALTER TABLE `klausurs` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -76,16 +51,15 @@ DROP TABLE IF EXISTS `moduls`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `moduls` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `bezeichnung` varchar(45) NOT NULL,
   `semester` int(11) NOT NULL,
   `position` int(11) NOT NULL,
   `credits` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL,
   `beschreibung` varchar(45) DEFAULT NULL,
   `nummer` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +68,7 @@ CREATE TABLE `moduls` (
 
 LOCK TABLES `moduls` WRITE;
 /*!40000 ALTER TABLE `moduls` DISABLE KEYS */;
+INSERT INTO `moduls` VALUES (1,'Programmieren 1',1,1,6,'',1110);
 /*!40000 ALTER TABLE `moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,20 +80,22 @@ DROP TABLE IF EXISTS `pruefungs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `pruefungs` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `semester` int(11) NOT NULL,
   `bezeichnung` varchar(45) NOT NULL,
   `pruefungsart` varchar(45) NOT NULL,
   `versuch` int(11) NOT NULL,
-  `anmeldedatum` datetime NOT NULL,
-  `pruefungsdatum` datetime NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `anmeldedatum` datetime DEFAULT NULL,
+  `pruefungsdatum` datetime DEFAULT NULL,
   `nummer` int(11) DEFAULT NULL,
-  `note` float NOT NULL,
+  `moduls_id` int(11) NOT NULL,
+  `dozents_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `dozent_id` FOREIGN KEY (`id`) REFERENCES `dozents` (`id`),
-  CONSTRAINT `modul_id` FOREIGN KEY (`id`) REFERENCES `moduls` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `fk_pruefungs_moduls_idx` (`moduls_id`),
+  KEY `fk_pruefungs_dozents1_idx` (`dozents_id`),
+  CONSTRAINT `fk_pruefungs_dozents1` FOREIGN KEY (`dozents_id`) REFERENCES `dozents` (`id`),
+  CONSTRAINT `fk_pruefungs_moduls` FOREIGN KEY (`moduls_id`) REFERENCES `moduls` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,6 +104,7 @@ CREATE TABLE `pruefungs` (
 
 LOCK TABLES `pruefungs` WRITE;
 /*!40000 ALTER TABLE `pruefungs` DISABLE KEYS */;
+INSERT INTO `pruefungs` VALUES (3,1,'Programmieren 1','Klausur',1,'2019-05-14 18:00:00','2019-08-23 12:15:00',1111,1,100);
 /*!40000 ALTER TABLE `pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,8 +116,8 @@ DROP TABLE IF EXISTS `students`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `students` (
-  `benutzername` varchar(255) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `benutzername` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `PW` varchar(255) NOT NULL,
   `vorname` varchar(255) NOT NULL,
@@ -155,8 +133,95 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES ('phans',10000,'phans@hs-bremen.de','111','Peter','Hans',50000),('hschmitz',10001,'hschmitz@hs-bremen.de','555','Heinz','Schmitz',50001),('JMaaß',10002,'JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß',50002),('FBuchholz',10003,'FBuchholz@hs-bremen.de','test','Florian','Buchholz',50003),('HKramer',10004,'HKramer@hs-bremen.de','313111','Hugo','Kramer',50004),('HuKramer',10005,'HuKramer@hs-bremen.de','313111','Hugo','Kramer',50005),('HKrome',10006,'HKrome@hs-bremen.de','tttest','Horst','Krome',50006),('Jörg',10007,'buchholz@hs-bremen.de','zrr','Jörg','Buchholz',50007),('Kreativ',10008,'Werdmal@kreativ.de','000','Horst','Uschibert',50008),('BTannert',10009,'BTannert@hs-bremen.de','999','Benjamin','Tannert',50009),('kkönig',10010,'könig@hs-bremen.de','222','Klaus','König',50010),('hulla',10011,'hulla@hs-bremen.de','333','Horst','Ulla',50011),('FWoichek',10012,'FWoichek@hs-bremen.de','superheld','Fabian','Woichek',50012),('WTjark',10013,'WTjark@hs-bremen.de','232','Wio','Tjark',50013),('pklempner',10016,'pklempner@hs-bremen.de','889','Paolo','Klempner',60016);
+INSERT INTO `students` VALUES (10000,'phans','phans@hs-bremen.de','111','Peter','Hans',50000),(10001,'hschmitz','hschmitz@hs-bremen.de','555','Heinz','Schmitz',50001),(10002,'JMaaß','JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß',50002),(10003,'FBuchholz','FBuchholz@hs-bremen.de','test','Florian','Buchholz',50003),(10004,'HKramer','HKramer@hs-bremen.de','313111','Hugo','Kramer',50004),(10005,'HuKramer','HuKramer@hs-bremen.de','313111','Hugo','Kramer',50005),(10006,'HKrome','HKrome@hs-bremen.de','tttest','Horst','Krome',50006),(10007,'Jörg','buchholz@hs-bremen.de','zrr','Jörg','Buchholz',50007),(10008,'Kreativ','Werdmal@kreativ.de','000','Horst','Uschibert',50008),(10009,'BTannert','BTannert@hs-bremen.de','999','Benjamin','Tannert',50009),(10010,'kkönig','könig@hs-bremen.de','222','Klaus','König',50010),(10011,'hulla','hulla@hs-bremen.de','333','Horst','Ulla',50011),(10012,'FWoichek','FWoichek@hs-bremen.de','superheld','Fabian','Woichek',50012),(10013,'WTjark','WTjark@hs-bremen.de','232','Wio','Tjark',50013),(10016,'pklempner','pklempner@hs-bremen.de','889','Paolo','Klempner',60016);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `students_has_moduls`
+--
+
+DROP TABLE IF EXISTS `students_has_moduls`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `students_has_moduls` (
+  `students_id` int(11) NOT NULL,
+  `moduls_id` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`students_id`,`moduls_id`),
+  KEY `fk_students_has_moduls_moduls1_idx` (`moduls_id`),
+  KEY `fk_students_has_moduls_students1_idx` (`students_id`),
+  CONSTRAINT `fk_students_has_moduls_moduls1` FOREIGN KEY (`moduls_id`) REFERENCES `moduls` (`id`),
+  CONSTRAINT `fk_students_has_moduls_students1` FOREIGN KEY (`students_id`) REFERENCES `students` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `students_has_moduls`
+--
+
+LOCK TABLES `students_has_moduls` WRITE;
+/*!40000 ALTER TABLE `students_has_moduls` DISABLE KEYS */;
+INSERT INTO `students_has_moduls` VALUES (10001,1,0);
+/*!40000 ALTER TABLE `students_has_moduls` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `students_has_pruefungs`
+--
+
+DROP TABLE IF EXISTS `students_has_pruefungs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `students_has_pruefungs` (
+  `students_id` int(11) NOT NULL,
+  `pruefungs_id` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `note` float DEFAULT NULL,
+  PRIMARY KEY (`students_id`,`pruefungs_id`),
+  KEY `fk_students_has_pruefungs_pruefungs1_idx` (`pruefungs_id`),
+  KEY `fk_students_has_pruefungs_students1_idx` (`students_id`),
+  CONSTRAINT `fk_students_has_pruefungs_pruefungs1` FOREIGN KEY (`pruefungs_id`) REFERENCES `pruefungs` (`id`),
+  CONSTRAINT `fk_students_has_pruefungs_students1` FOREIGN KEY (`students_id`) REFERENCES `students` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `students_has_pruefungs`
+--
+
+LOCK TABLES `students_has_pruefungs` WRITE;
+/*!40000 ALTER TABLE `students_has_pruefungs` DISABLE KEYS */;
+INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,NULL);
+/*!40000 ALTER TABLE `students_has_pruefungs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `students_has_studiengangs`
+--
+
+DROP TABLE IF EXISTS `students_has_studiengangs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `students_has_studiengangs` (
+  `students_id` int(11) NOT NULL,
+  `studiengangs_id` int(11) NOT NULL,
+  PRIMARY KEY (`students_id`,`studiengangs_id`),
+  KEY `fk_students_has_studiengangs_studiengangs1_idx` (`studiengangs_id`),
+  KEY `fk_students_has_studiengangs_students1_idx` (`students_id`),
+  CONSTRAINT `fk_students_has_studiengangs_students1` FOREIGN KEY (`students_id`) REFERENCES `students` (`id`),
+  CONSTRAINT `fk_students_has_studiengangs_studiengangs1` FOREIGN KEY (`studiengangs_id`) REFERENCES `studiengangs` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `students_has_studiengangs`
+--
+
+LOCK TABLES `students_has_studiengangs` WRITE;
+/*!40000 ALTER TABLE `students_has_studiengangs` DISABLE KEYS */;
+INSERT INTO `students_has_studiengangs` VALUES (10001,1);
+/*!40000 ALTER TABLE `students_has_studiengangs` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -173,7 +238,7 @@ CREATE TABLE `studiengangs` (
   `abschluss` varchar(45) NOT NULL,
   `creditsmin` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Verschiedene Studiengänge';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Verschiedene Studiengänge';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,7 +247,36 @@ CREATE TABLE `studiengangs` (
 
 LOCK TABLES `studiengangs` WRITE;
 /*!40000 ALTER TABLE `studiengangs` DISABLE KEYS */;
+INSERT INTO `studiengangs` VALUES (1,'Internationaler Studiengang Medieninformatik','','Bachelor of Science',210);
 /*!40000 ALTER TABLE `studiengangs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `studiengangs_has_moduls`
+--
+
+DROP TABLE IF EXISTS `studiengangs_has_moduls`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `studiengangs_has_moduls` (
+  `studiengangs_id` int(11) NOT NULL,
+  `moduls_id` int(11) NOT NULL,
+  PRIMARY KEY (`studiengangs_id`,`moduls_id`),
+  KEY `fk_studiengangs_has_moduls_moduls1_idx` (`moduls_id`),
+  KEY `fk_studiengangs_has_moduls_studiengangs1_idx` (`studiengangs_id`),
+  CONSTRAINT `fk_studiengangs_has_moduls_moduls1` FOREIGN KEY (`moduls_id`) REFERENCES `moduls` (`id`),
+  CONSTRAINT `fk_studiengangs_has_moduls_studiengangs1` FOREIGN KEY (`studiengangs_id`) REFERENCES `studiengangs` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `studiengangs_has_moduls`
+--
+
+LOCK TABLES `studiengangs_has_moduls` WRITE;
+/*!40000 ALTER TABLE `studiengangs_has_moduls` DISABLE KEYS */;
+INSERT INTO `studiengangs_has_moduls` VALUES (1,1);
+/*!40000 ALTER TABLE `studiengangs_has_moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -192,6 +286,30 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'mynewdb'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `all_pruefung_student` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_pruefung_student`(student_id VARCHAR(45))
+BEGIN
+/* Select Prüfungen für Studenten */
+select T1.id, T1.benutzername, T3.bezeichnung
+from students T1, students_has_pruefungs T2, pruefungs T3
+where T2.students_id = student_id
+and T1.id = student_id
+and T3.id = T2.pruefungs_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -202,4 +320,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-17 13:06:06
+-- Dump completed on 2019-06-18 17:02:42
