@@ -38,7 +38,7 @@ app.use('/users', require('./routes/users'));
 
 
 //Set the static files location.
-app.use(express.static(__dirname + '../../public'));
+app.use(express.static('public'))
 
 
 

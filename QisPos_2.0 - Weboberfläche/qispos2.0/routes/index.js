@@ -178,11 +178,11 @@ router.post('/login', async (req, res) => {
                 //     })
                 //     .then(v => console.log(v));
 
-
+                sess.hash = "Noten";
 
                 sess.nutzer = result;
                 sess.dozent = false;
-                res.redirect('/users/dashboard');
+                res.redirect('/users/dashboard#' + sess.hash);
             }
 
 
