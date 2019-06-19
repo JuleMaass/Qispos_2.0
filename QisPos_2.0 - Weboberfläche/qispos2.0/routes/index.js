@@ -63,7 +63,7 @@ router.post('/register', (req, res) => {
 
         var email = benutzername.toLowerCase() + '@hs-bremen.de'
 
-        Student.create({
+            Student.create({
             benutzername: benutzername.toLowerCase(),
             email: email,
             PW: PW,
@@ -164,7 +164,7 @@ router.post('/login', async (req, res) => {
                 error: errors[0].msg
             })
         } else {
-            sess.hash = "Noten";
+            sess.hash = "Index";
 
 
             sess.nutzer = result;

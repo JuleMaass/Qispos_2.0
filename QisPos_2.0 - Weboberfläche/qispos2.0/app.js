@@ -42,23 +42,6 @@ app.use(express.static('public'))
 
 
 
-// // Find all users
-// User.findAll().then(users => {
-//   console.log("All users:", JSON.stringify(users, null, 4));
-// });
-
-// // Change everyone without a last name to "Doe"
-// User.update({ benutzername: "kkönig" }, {
-//   where: {
-//     nachname: 'König'
-//   }
-// }).then(() => {
-//   console.log("Done");
-// });
-
-
-
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
 

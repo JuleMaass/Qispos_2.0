@@ -21,11 +21,13 @@
                 value="<%= typeof nachname != 'undefined' ? nachname : '' %>" />
             </div>
 
+
             <div class="form-group">
               <label for="PW">Password</label>
-              <input type="PW" id="PW" name="PW" class="form-control" placeholder="Enter Passwort"
-                value="<%= typeof PW != 'undefined' ? PW : '' %>" />
+              <input type="password" class="form-control" name = "PW" id="PW" placeholder="password"
+              value="<%= typeof PW != 'undefined' ? PW : '' %>">
             </div>
+
         <button type="submit" class="btn btn-primary btn-block">
           Register
         </button>

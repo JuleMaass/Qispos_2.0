@@ -123,13 +123,31 @@ select * from termins;
 
 /* Insert Termine */
 INSERT into termins
-values (NULL,'Hausaufgaben',20190202,0,10002);
+values (NULL,'Motorrad FAAAAAAAHN',20190202,0,10002);
+/* Insert Termine */
+INSERT into termins
+values (NULL,'Datenbank abgeben',20190202,0,10002);
+/* Insert Termine */
+INSERT into termins
+values (NULL,'Buchi Boxen',20190202,0,10002);
+/* Insert Termine */
+INSERT into termins
+values (NULL,'Tutorenlehrgang',20190202,0,10002);
+
+
+DELETE FROM termins WHERE id = 2;
+
+
+
 
 INSERT into termins
 select T1.bezeichnung 
 from pruefungs T1, students_has_pruefungs T2
 where T2.students_id = 10002
 and T1.id = T2.pruefungs_id;
+
+
+call delete_termin(5);
 
 
 UPDATE termins

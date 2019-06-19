@@ -1,35 +1,33 @@
-
-<script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
 
 <script>
-    
     $(document).ready(function () {
-$('#notenTable').DataTable({"paging": false});
-$('#uebersichtTable').DataTable({"paging": false});
-$('#rankingTable').DataTable();
-$('.dataTables_length').addClass('bs-select');
+        $('#notenTable').DataTable({
+            "paging": false
+        });
+        $('#uebersichtTable').DataTable({
+            "paging": false
+        });
+        $('#rankingTable').DataTable();
+        // $('.dataTables_length').addClass('bs-select');
 
-});
-
-
-
-$(function () {
-     var hash = window.location.hash;
-  hash && $('ul.nav.nav-pills a[href="' + hash + '"]').tab('show'); 
-  $('ul.nav.nav-pills a').click(function (e) {
-     $(this).tab('show');
-     var scrollmem = $('body').scrollTop();
-     window.location.hash = this.hash;
-  });
-
-});
+    });
 
 
-    </script>
+
+    $(function () {
+        var hash = window.location.hash;
+        hash && $('ul.nav.nav-pills a[href="' + hash + '"]').tab('show');
+        $('ul.nav.nav-pills a').click(function (e) {
+            $(this).tab('show');
+            var scrollmem = $('body').scrollTop();
+            window.location.hash = this.hash;
+        });
+
+    });
+</script>
 
 <p class="lead mb-3"> </p>
 <div class="lead mb-4, jumbotron jumbotron-fluid">
@@ -38,7 +36,7 @@ $(function () {
     <p class="lead mb-3, text-center">Willkommen <%= student.vorname %></p>
     <div class="text-right">
 
-        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        <a href="/users/logout" class="btn btn-primary">Logout</a>
     </div>
 
 
@@ -49,35 +47,35 @@ $(function () {
             <span class="navbar-toggler-icon"></span>
         </button>
 
-      
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <!-- <ul class="navbar-nav mr-auto"> -->
-                <ul class="nav nav-pills flex-column flex-sm-row">
 
-                    <li class="nav-item "><a class="nav-link" data-toggle="tab" href="#Termine">Termine </a>
-                    </li>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <!-- <ul class="navbar-nav mr-auto"> -->
+            <ul class="nav nav-pills flex-column flex-sm-row">
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#Noten">Noten</a></a>
-                    </li>
+                <li class="nav-item "><a class="nav-link" data-toggle="tab" href="#Termine">Termine </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#Modul">Module</a></a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Noten">Noten</a></a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#Ranking">Ranking</a></a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Modul">Module</a></a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#Evaluation">Evaluation</a><span
-                            class="sr-only">(current)</span></a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Ranking">Ranking</a></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Evaluation">Evaluation</a><span
+                        class="sr-only">(current)</span></a>
+                </li>
 
 
-                </ul>
-                </ul>
-            </div>
+            </ul>
+            </ul>
+        </div>
     </nav>
 
 
@@ -86,7 +84,7 @@ $(function () {
     <p class="lead mb-3"> </p>
     <div class="container container-small">
         <p class="lead mb-3"> </p>
-        <table class="table" style="margin: auto; font-size:80%; width: 50%">
+        <table class="table " style="margin: auto; font-size:80%; width: 80%">
             <thead>
                 <tr>
                     <th scope="col">Name des Studierenden</th>
@@ -112,15 +110,15 @@ $(function () {
         </table>
     </div>
 
-     <form action="/users/dashboard/" method="POST">
-    <div id="myTabContent" class="tab-content">
+    <form action="/users/dashboard/" method="POST">
+        <div id="myTabContent" class="tab-content">
 
 
 
-        <div class="tab-pane fade, jumbotron, active " id="Termine">
-           
-            <p class="lead mb-3"> </p>
-            <div class="list-group">
+            <div class="tab-pane fade, jumbotron, active " id="Termine">
+
+                <p class="lead mb-3"> </p>
+                <div class="list-group">
                     <% for (var i = 0; i < termine.length; i++) {
 
                         // Datum umstellen
@@ -136,128 +134,162 @@ $(function () {
                             termine[i].datum[2] +
                             termine[i].datum[3];
 
-
-
                         %>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <%= neuesDatum %>
-                        <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <%= neuesDatum %>
+                            <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
 
-                        <% var id = "termine_cb_id_" + i%>
-                        
-                       
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" 
-                                    name = "<%= id %>"
-                                    type="checkbox"  
-                                    checked> Erledigt
-                            </label>
+                            <% var id = "termine_cb_id_" + termine[i].id%>
+
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="<%= id %>" type="checkbox" unchecked> Erledigt
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <% } %>
-               
-            </div>
+                    </a>
+                    <% } %>
+                  
+                    <p class="lead mb-3"> </p>
 
-            <button type="submit" class="btn btn-info float-right">Bestätigen</button>
+                </div>
+                <button type="submit" class="btn btn-primary float-right">Bestätigen</button>
+            <br>
+            <br>
+                <div class="card text-white bg-success mb-3 mx-auto" style="max-width: 40rem;">
+                    <div class="card-header">Termin hinzufügen</div>
+                    <div class="card-body">
+                      <input type="text" class="form-control" name = "termin_name" placeholder="Wat haste vor?" id="inputDefault">
+                      <p class="lead mb-3"> </p>
+                      <input type="text" class="form-control" name = "termin_datum" placeholder="Wann gehts ab?" id="inputDefault">
+                      <p class="lead mb-3"> </p>
+                      <button type="submit" class="btn btn-primary ">Hinzufügen</button>
+                    
+                    </div>
+               
+       
 
         </div>
 
-       
+        <!-- <div class="list-group">
+
+
+                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault">
 
 
 
-        <div class="tab-pane fade, jumbotron" id="Noten">
 
-            
+                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault">
 
 
-            <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="notenTable">
+
+
+                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault">
+                
+                </div> -->
+
+
+
+
+
+</div>
+
+
+
+
+
+<div class="tab-pane fade, jumbotron" id="Noten">
+
+
+
+
+    <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="notenTable">
+        <thead>
+            <tr class="table-secondary">
+                <th class="th-sm">Prüfungsnr.</th>
+                <th class="th-sm">Bezeichnung der Leistung</th>
+                <th class="th-sm">Semester</th>
+                <th class="th-sm">Note</th>
+                <th class="th-sm">Credits</th>
+                <th class="th-sm">Versuch</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <% for (var i = 0; i < noten.length; i++) {
+                            %>
+            <tr class="table-light">
+
+                <td><%= noten[i].nummer %></td>
+                <td><%= noten[i].bezeichnung %> </td>
+                <td><%= noten[i].semester %> </td>
+                <td><%= noten[i].note %> </td>
+                <td><%= noten[i].credits %> </td>
+                <td><%= noten[i].versuch %> </td>
+            </tr>
+            <% } %>
+
+
+
+
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary">als PDF downloaden</button>
+</div>
+
+
+<div class="tab-pane fade, jumbotron" id="Modul">
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <!-- <ul class="navbar-nav mr-auto"> -->
+            <ul class="nav nav-pills flex-column flex-sm-row">
+
+                <li class="nav-item show active "><a class="nav-link" data-toggle="tab" href="#Uebersicht">Übersicht
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a class="nav-link" data-toggle="tab" href="#Anmelden">Anmelden</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+    <p class="lead mb-3"> </p>
+    <div id="mySecTabContent" class="tab-content">
+        <div class="tab-pane fade, active" id="Uebersicht">
+
+            <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%"
+                id="uebersichtTable">
                 <thead>
                     <tr class="table-secondary">
-                        <th class="th-sm" >Prüfungsnr.</th>
-                        <th class="th-sm" >Bezeichnung der Leistung</th>
-                        <th class="th-sm" >Semester</th>
-                        <th class="th-sm" >Note</th>
-                        <th class="th-sm" >Credits</th>
-                        <th class="th-sm" >Versuch</th>
+                        <th scope="col">Prüfungsnr.</th>
+                        <th scope="col">Modul</th>
+                        <th scope="col">Prüfer</th>
+                        <th scope="col">Semester</th>
+                        <th scope="col">Termin</th>
+                        <th scope="col">Anmeldedatum</th>
+                        <th scope="col">Prüfungsdatum</th>
 
                     </tr>
                 </thead>
                 <tbody>
 
-                        <% for (var i = 0; i < noten.length; i++) {
-                            %>
-                     <tr class="table-light">
-
-                        <td><%= noten[i].nummer %></td>
-                        <td><%= noten[i].bezeichnung %> </td>
-                        <td><%= noten[i].semester %> </td>
-                        <td><%= noten[i].note %> </td>
-                        <td><%= noten[i].credits %> </td>
-                        <td><%= noten[i].versuch %> </td>
-                    </tr>
-                    <% } %>
-                    
-              
-
-
-                </tbody>
-            </table>
-            <button type="button" class="btn btn-secondary">als PDF downloaden</button>
-        </div>
-
-
-        <div class="tab-pane fade, jumbotron" id="Modul">
-
-
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-                    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-               
-                    <div class="collapse navbar-collapse" id="navbarColor01">
-                        <!-- <ul class="navbar-nav mr-auto"> -->
-                        <ul class="nav nav-pills flex-column flex-sm-row">
-
-                            <li class="nav-item show active "><a class="nav-link" data-toggle="tab" href="#Uebersicht">Übersicht </a>
-                            </li>
-
-                            <li class="nav-item ">
-                                <a class="nav-link" data-toggle="tab" href="#Anmelden">Anmelden</a>
-                            </li>
-
-                        </ul>
-                    </div>
-  
-            </nav>
-            
-            <div id="mySecTabContent" class="tab-content">
-                <div class="tab-pane fade, active" id="Uebersicht">
-                    
-            <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="uebersichtTable">
-                        <thead>
-                            <tr class="table-secondary">
-                                <th scope="col">Prüfungsnr.</th>
-                                <th scope="col">Modul</th>
-                                <th scope="col">Prüfer</th>
-                                <th scope="col">Semester</th>
-                                <th scope="col">Termin</th>
-                                <th scope="col">Anmeldedatum</th>
-                                <th scope="col">Prüfungsdatum</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
 
 
 
-           
-                  
+
                     <% for (var i = 0; i < moduls.length; i++) {
 
             // Datum umstellen
@@ -289,243 +321,270 @@ $(function () {
 
                         %>
 
-                            <tr class="table-light">
-                                <td><%= moduls[i].nummer %></td>
-                                <td><%= moduls[i].bezeichnung %> </td>
-                                <td><%= moduls[i].benutzername %>  </td>
-                                <td><%= moduls[i].semester %> </td>
-                                <td><%= moduls[i].versuch %> </td>
-                                <td><%= neuesAnmeldeDatum %> </td>
-                                <td><%= neuesPruefungsDatum %> </td>
-                            </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                    <button type="button" class="btn btn-secondary">als PDF downloaden</button>
+                    <tr class="table-light">
+                        <td><%= moduls[i].nummer %></td>
+                        <td><%= moduls[i].bezeichnung %> </td>
+                        <td><%= moduls[i].benutzername %> </td>
+                        <td><%= moduls[i].semester %> </td>
+                        <td><%= moduls[i].versuch %> </td>
+                        <td><%= neuesAnmeldeDatum %> </td>
+                        <td><%= neuesPruefungsDatum %> </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-primary">als PDF downloaden</button>
 
-                </div>
+        </div>
 
-                <div class="tab-pane fade" id="Anmelden">
+        <div class="tab-pane fade" id="Anmelden">
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Modulan- und abmeldung</h4>
+                    <h6 class="card-subtitle mb-2  text-danger">Wichtige Informationen zur Anmeldung.
+                        Bitte
+                        sorgfältig lesen!</h6>
+                    <p class="card-text">Die Reihenfolge der Module in der Liste, die erscheint, wenn
+                        Sie
+                        nachfolgend "Ich akzeptiere" anklicken, stimmt nicht notwendigerweise mit der
+                        Abfolge
+                        der Module überein, die die Fakultäten in ihrer Studienverlaufsplanung angeben.
+                        Wählen
+                        Sie also aus den Modulen, die die Fakultäten im laufenden Semester anbieten,
+                        diejenigen
+                        aus, an denen Sie teilnehmen wollen, suchen Sie die anschließend in der
+                        nachfolgenden
+                        Liste und unternehmen Sie die zum Anmelden erforderliche Schritte.
+                    </p>
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" unchecked="">
+                        <label class="custom-control-label" for="customCheck1">Check this custom
+                            checkbox</label>
+                    </div>
+
+                    <!-- Wenn checkbox nicht angeklickt, Card unten ist disabled -->
 
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Modulan- und abmeldung</h4>
-                            <h6 class="card-subtitle mb-2  text-danger">Wichtige Informationen zur Anmeldung. Bitte
-                                sorgfältig lesen!</h6>
-                            <p class="card-text">Die Reihenfolge der Module in der Liste, die erscheint, wenn Sie
-                                nachfolgend "Ich akzeptiere" anklicken, stimmt nicht notwendigerweise mit der Abfolge
-                                der Module überein, die die Fakultäten in ihrer Studienverlaufsplanung angeben. Wählen
-                                Sie also aus den Modulen, die die Fakultäten im laufenden Semester anbieten, diejenigen
-                                aus, an denen Sie teilnehmen wollen, suchen Sie die anschließend in der nachfolgenden
-                                Liste und unternehmen Sie die zum Anmelden erforderliche Schritte.
-                            </p>
+                            <h4 class="card-title">Bachelor of Science IS Medieninformatik BSc 2012</h4>
 
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" unchecked="">
-                                    <label class="custom-control-label" for="customCheck1">Check this custom
-                                        checkbox</label>
-                                </div>
-                 
-                            <!-- Wenn checkbox nicht angeklickt, Card unten ist disabled -->
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Bachelor of Science IS Medieninformatik BSc 2012</h4>
-
-                                    <p class="card-text">9900 ECTS-Gesamtpunktekonto</p><br>
+                            <p class="card-text">9900 ECTS-Gesamtpunktekonto</p><br>
 
 
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                                            role="button" aria-haspopup="true" aria-expanded="false">1100
-                                            Semestergesamtkonto (Modul
-                                            1.1 - 1.5)
-                                            [Status:
-                                            BE; Note: ,; Credit Points: 30; Malus: 0; Versuch: 1]</a>
-                                        <div class="dropdown-menu" x-placement="bottom-start"
-                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                            <a class="dropdown-item" href="#">1510 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 1</a>
-                                            <a class="dropdown-item" href="#">1520 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 2</a>
-                                            <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
-                                                (Ausland)</a>
-                                            <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
-                                                (HSB)</a>
-                                            <a class="dropdown-item" href="#"> 1550 Auslandssemester-Begleitung</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">1100
+                                    Semestergesamtkonto (Modul
+                                    1.1 - 1.5)
+                                    [Status:
+                                    BE; Note: ,; Credit Points: 30; Malus: 0; Versuch: 1]</a>
+                                <div class="dropdown-menu" x-placement="bottom-start"
+                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                    <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 1</a>
+                                    <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 2</a>
+                                    <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                        (Ausland)</a>
+                                    <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                        (HSB)</a>
+                                    <a class="dropdown-item" href="#"> 1550
+                                        Auslandssemester-Begleitung</a>
 
-                                    </li>
+                            </li>
 
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                                            role="button" aria-haspopup="true" aria-expanded="false">1200
-                                            Semestergesamtkonto (Modul
-                                            2.1 - 2.5)
-                                            [Status:
-                                            BE; Note: ,; Credit Points: 30; Malus: 0; Versuch: 1]</a>
-                                        <div class="dropdown-menu" x-placement="bottom-start"
-                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                            <a class="dropdown-item" href="#">1510 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 1</a>
-                                            <a class="dropdown-item" href="#">1520 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 2</a>
-                                            <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
-                                                (Ausland)</a>
-                                            <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
-                                                (HSB)</a>
-                                            <a class="dropdown-item" href="#"> 1550 Auslandssemester-Begleitung</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">1200
+                                    Semestergesamtkonto (Modul
+                                    2.1 - 2.5)
+                                    [Status:
+                                    BE; Note: ,; Credit Points: 30; Malus: 0; Versuch: 1]</a>
+                                <div class="dropdown-menu" x-placement="bottom-start"
+                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                    <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 1</a>
+                                    <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 2</a>
+                                    <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                        (Ausland)</a>
+                                    <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                        (HSB)</a>
+                                    <a class="dropdown-item" href="#"> 1550
+                                        Auslandssemester-Begleitung</a>
 
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                                            role="button" aria-haspopup="true" aria-expanded="false">1300
-                                            Semestergesamtkonto (Modul
-                                            3.1 - 3.5)
-                                            [Status:
-                                            BE; Note: ,; Credit Points: 30; Malus: 0; Versuch: 1]</a>
-                                        <div class="dropdown-menu" x-placement="bottom-start"
-                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                            <a class="dropdown-item" href="#">1510 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 1</a>
-                                            <a class="dropdown-item" href="#">1520 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 2</a>
-                                            <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
-                                                (Ausland)</a>
-                                            <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
-                                                (HSB)</a>
-                                            <a class="dropdown-item" href="#"> 1550 Auslandssemester-Begleitung</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">1300
+                                    Semestergesamtkonto (Modul
+                                    3.1 - 3.5)
+                                    [Status:
+                                    BE; Note: ,; Credit Points: 30; Malus: 0; Versuch: 1]</a>
+                                <div class="dropdown-menu" x-placement="bottom-start"
+                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                    <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 1</a>
+                                    <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 2</a>
+                                    <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                        (Ausland)</a>
+                                    <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                        (HSB)</a>
+                                    <a class="dropdown-item" href="#"> 1550
+                                        Auslandssemester-Begleitung</a>
 
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                                            role="button" aria-haspopup="true" aria-expanded="false">1400
-                                            Semestergesamtkonto (Modul 4.1 - 4.5)</a>
-                                        <div class="dropdown-menu" x-placement="bottom-start"
-                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                            <a class="dropdown-item" href="#">1510 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 1</a>
-                                            <a class="dropdown-item" href="#">1520 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 2</a>
-                                            <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
-                                                (Ausland)</a>
-                                            <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
-                                                (HSB)</a>
-                                            <a class="dropdown-item" href="#"> 1550 Auslandssemester-Begleitung</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">1400
+                                    Semestergesamtkonto (Modul 4.1 - 4.5)</a>
+                                <div class="dropdown-menu" x-placement="bottom-start"
+                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                    <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 1</a>
+                                    <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 2</a>
+                                    <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                        (Ausland)</a>
+                                    <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                        (HSB)</a>
+                                    <a class="dropdown-item" href="#"> 1550
+                                        Auslandssemester-Begleitung</a>
 
-                                    </li>
+                            </li>
 
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                                            role="button" aria-haspopup="true" aria-expanded="false">1500
-                                            Semestergesamtkonto (Modul 5.1 -
-                                            5.5)</a>
-                                        <div class="dropdown-menu" x-placement="bottom-start"
-                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                            <a class="dropdown-item" href="#">1510 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 1</a>
-                                            <a class="dropdown-item" href="#">1520 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 2</a>
-                                            <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
-                                                (Ausland)</a>
-                                            <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
-                                                (HSB)</a>
-                                            <a class="dropdown-item" href="#"> 1550 Auslandssemester-Begleitung</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">1500
+                                    Semestergesamtkonto (Modul 5.1 -
+                                    5.5)</a>
+                                <div class="dropdown-menu" x-placement="bottom-start"
+                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                    <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 1</a>
+                                    <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 2</a>
+                                    <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                        (Ausland)</a>
+                                    <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                        (HSB)</a>
+                                    <a class="dropdown-item" href="#"> 1550
+                                        Auslandssemester-Begleitung</a>
 
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                                            role="button" aria-haspopup="true" aria-expanded="false">1600
-                                            Semestergesamtkonto (Modul 6.1 - 6.5)</a>
-                                        <div class="dropdown-menu" x-placement="bottom-start"
-                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                            <a class="dropdown-item" href="#">1510 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 1</a>
-                                            <a class="dropdown-item" href="#">1520 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 2</a>
-                                            <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
-                                                (Ausland)</a>
-                                            <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
-                                                (HSB)</a>
-                                            <a class="dropdown-item" href="#"> 1550 Auslandssemester-Begleitung</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">1600
+                                    Semestergesamtkonto (Modul 6.1 - 6.5)</a>
+                                <div class="dropdown-menu" x-placement="bottom-start"
+                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                    <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 1</a>
+                                    <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 2</a>
+                                    <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                        (Ausland)</a>
+                                    <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                        (HSB)</a>
+                                    <a class="dropdown-item" href="#"> 1550
+                                        Auslandssemester-Begleitung</a>
 
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                                            role="button" aria-haspopup="true" aria-expanded="false">1700
-                                            Semestergesamtkonto (Modul 7.1 - 7.5)</a>
-                                        <div class="dropdown-menu" x-placement="bottom-start"
-                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                            <a class="dropdown-item" href="#">1510 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 1</a>
-                                            <a class="dropdown-item" href="#">1520 Wahlpflichtmodul Medieninformatik
-                                                (Ausland) 2</a>
-                                            <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
-                                                (Ausland)</a>
-                                            <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
-                                                (HSB)</a>
-                                            <a class="dropdown-item" href="#"> 1550 Auslandssemester-Begleitung</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">1700
+                                    Semestergesamtkonto (Modul 7.1 - 7.5)</a>
+                                <div class="dropdown-menu" x-placement="bottom-start"
+                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                    <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 1</a>
+                                    <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                        Medieninformatik
+                                        (Ausland) 2</a>
+                                    <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                        (Ausland)</a>
+                                    <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                        (HSB)</a>
+                                    <a class="dropdown-item" href="#"> 1550
+                                        Auslandssemester-Begleitung</a>
 
-                                    </li>
-
-
+                            </li>
 
 
 
 
-                                </div>
 
-                            </div>
+
                         </div>
-                    </div>
 
-                    <button type="button" class="btn btn-secondary">Anmelden</button>
+                    </div>
                 </div>
             </div>
 
-
-
-        </div>
-
-
-        <div class="tab-pane fade, jumbotron" id="Ranking">
-
-            <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="rankingTable">
-                <thead>
-                    <tr class="table-secondary">
-                        <th scope="col">ID</th>
-                        <th scope="col">Benutzername</th>
-                        <th scope="col">Vorname</th>
-                        <th scope="col">Nachname</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Matrikelnummer</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-          <% for (var i = 0; i < students.length; i++) {
-                %>
-             <tr class="table-light">
-
-                        <td><%= students[i].id %></td>
-                        <td><%= students[i].benutzername %></td>
-                        <td><%= students[i].vorname %> </td>
-                        <td><%= students[i].nachname %></td>
-                        <td><%= students[i].email %> </td>
-                        <td><%= students[i].matrikelnummer %> </td>
-                    </tr>
-    
-                  
-
-            
-        <% } %>
-
-                </tbody>
-            </table>
-            <p>Durchschnitt</p>
-        </div>
-        <div class="tab-pane fade, jumbotron" id="Evaluation">
-            <input type="text" placeholder="Dozent">
+            <button type="button" class="btn btn-secondary">Anmelden</button>
         </div>
     </div>
-    </form>
+
+
+
+</div>
+
+
+<div class="tab-pane fade, jumbotron" id="Ranking">
+
+    <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="rankingTable">
+        <thead>
+            <tr class="table-secondary">
+                <th scope="col">ID</th>
+                <th scope="col">Benutzername</th>
+                <th scope="col">Vorname</th>
+                <th scope="col">Nachname</th>
+                <th scope="col">Email</th>
+                <th scope="col">Matrikelnummer</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <% for (var i = 0; i < students.length; i++) {
+                %>
+            <tr class="table-light">
+
+                <td><%= students[i].id %></td>
+                <td><%= students[i].benutzername %></td>
+                <td><%= students[i].vorname %> </td>
+                <td><%= students[i].nachname %></td>
+                <td><%= students[i].email %> </td>
+                <td><%= students[i].matrikelnummer %> </td>
+            </tr>
+
+
+
+
+            <% } %>
+
+        </tbody>
+    </table>
+    <p>Durchschnitt</p>
+</div>
+<div class="tab-pane fade, jumbotron" id="Evaluation">
+    <input type="text" placeholder="Dozent">
+</div>
+</div>
+</form>
 </div>

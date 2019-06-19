@@ -124,7 +124,7 @@ CREATE TABLE `students` (
   `nachname` varchar(255) NOT NULL,
   `matrikelnummer` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10018 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10020 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (10000,'phans','phans@hs-bremen.de','111','Peter','Hans',50000),(10001,'hschmitz','hschmitz@hs-bremen.de','555','Heinz','Schmitz',50001),(10002,'JMaaß','JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß',50002),(10003,'FBuchholz','FBuchholz@hs-bremen.de','test','Florian','Buchholz',50003),(10004,'HKramer','HKramer@hs-bremen.de','313111','Hugo','Kramer',50004),(10005,'HuKramer','HuKramer@hs-bremen.de','313111','Hugo','Kramer',50005),(10006,'HKrome','HKrome@hs-bremen.de','tttest','Horst','Krome',50006),(10007,'Jörg','buchholz@hs-bremen.de','zrr','Jörg','Buchholz',50007),(10008,'Kreativ','Werdmal@kreativ.de','000','Horst','Uschibert',50008),(10009,'BTannert','BTannert@hs-bremen.de','999','Benjamin','Tannert',50009),(10010,'kkönig','könig@hs-bremen.de','222','Klaus','König',50010),(10011,'hulla','hulla@hs-bremen.de','333','Horst','Ulla',50011),(10012,'FWoichek','FWoichek@hs-bremen.de','superheld','Fabian','Woichek',50012),(10013,'WTjark','WTjark@hs-bremen.de','232','Wio','Tjark',50013),(10016,'pklempner','pklempner@hs-bremen.de','889','Paolo','Klempner',60016),(10017,'srath','srath@hs-bremen.de','123','Sven','Rath',50017);
+INSERT INTO `students` VALUES (10000,'phans','phans@hs-bremen.de','111','Peter','Hans',50000),(10001,'hschmitz','hschmitz@hs-bremen.de','555','Heinz','Schmitz',50001),(10002,'JMaaß','JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß',50002),(10003,'FBuchholz','FBuchholz@hs-bremen.de','test','Florian','Buchholz',50003),(10004,'HKramer','HKramer@hs-bremen.de','313111','Hugo','Kramer',50004),(10005,'HuKramer','HuKramer@hs-bremen.de','313111','Hugo','Kramer',50005),(10006,'HKrome','HKrome@hs-bremen.de','tttest','Horst','Krome',50006),(10007,'Jörg','buchholz@hs-bremen.de','zrr','Jörg','Buchholz',50007),(10008,'Kreativ','Werdmal@kreativ.de','000','Horst','Uschibert',50008),(10009,'BTannert','BTannert@hs-bremen.de','999','Benjamin','Tannert',50009),(10010,'kkönig','könig@hs-bremen.de','222','Klaus','König',50010),(10011,'hulla','hulla@hs-bremen.de','333','Horst','Ulla',50011),(10012,'FWoichek','FWoichek@hs-bremen.de','superheld','Fabian','Woichek',50012),(10013,'WTjark','WTjark@hs-bremen.de','232','Wio','Tjark',50013),(10016,'pklempner','pklempner@hs-bremen.de','889','Paolo','Klempner',60016),(10017,'srath','srath@hs-bremen.de','123','Sven','Rath',50017),(10018,'jhorstmeister','jhorstmeister@hs-bremen.de','1233','Jan','Horstmeister',50018),(10019,'jhorstick','jhorstick@hs-bremen.de','test','Jannik','Horstick',50019);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,7 +295,7 @@ CREATE TABLE `termins` (
   PRIMARY KEY (`id`,`students_id`),
   KEY `fk_termins_students1_idx` (`students_id`),
   CONSTRAINT `fk_termins_students1` FOREIGN KEY (`students_id`) REFERENCES `students` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,7 +304,6 @@ CREATE TABLE `termins` (
 
 LOCK TABLES `termins` WRITE;
 /*!40000 ALTER TABLE `termins` DISABLE KEYS */;
-INSERT INTO `termins` VALUES (1,'Hausaufgaben','2019-02-02',1,10002);
 /*!40000 ALTER TABLE `termins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -406,9 +405,28 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `all_termins_student`(stud_id VARCHAR(45))
 BEGIN
-select  T2.termin_bezeichnung, T2.datum, T2.erledigt
+select  T2.id, T2.termin_bezeichnung, T2.datum, T2.erledigt
 from  termins T2
 where T2.students_id = stud_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `delete_termin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_termin`(termin_id VARCHAR(45))
+BEGIN
+DELETE FROM termins WHERE id = termin_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -490,4 +508,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-19 13:55:40
+-- Dump completed on 2019-06-19 17:21:36
