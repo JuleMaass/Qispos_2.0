@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: mynewdb
+-- Host: localhost    Database: mynewdb
 -- ------------------------------------------------------
--- Server version	8.0.16
+-- Server version	8.0.15
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -85,8 +85,8 @@ CREATE TABLE `pruefungs` (
   `bezeichnung` varchar(45) NOT NULL,
   `pruefungsart` varchar(45) NOT NULL,
   `versuch` int(11) NOT NULL,
-  `anmeldedatum` datetime DEFAULT NULL,
-  `pruefungsdatum` datetime DEFAULT NULL,
+  `anmeldedatum` date DEFAULT NULL,
+  `pruefungsdatum` date DEFAULT NULL,
   `nummer` int(11) DEFAULT NULL,
   `moduls_id` int(11) NOT NULL,
   `dozents_id` int(11) NOT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE `pruefungs` (
 
 LOCK TABLES `pruefungs` WRITE;
 /*!40000 ALTER TABLE `pruefungs` DISABLE KEYS */;
-INSERT INTO `pruefungs` VALUES (3,1,'Programmieren 1','Klausur',1,'2019-05-14 18:00:00','2019-08-23 12:15:00',1111,1,100),(4,1,'Mathe 1 KL','Klasur',1,'2019-02-20 18:00:00','2019-07-20 18:00:00',1112,2,200);
+INSERT INTO `pruefungs` VALUES (3,1,'Programmieren 1','Klausur',1,'2019-05-14','2019-08-23',1111,1,100),(4,1,'Mathe 1 KL','Klasur',1,'2019-02-20','2019-07-20',1112,2,200);
 /*!40000 ALTER TABLE `pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +124,7 @@ CREATE TABLE `students` (
   `nachname` varchar(255) NOT NULL,
   `matrikelnummer` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10017 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10018 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (10000,'phans','phans@hs-bremen.de','111','Peter','Hans',50000),(10001,'hschmitz','hschmitz@hs-bremen.de','555','Heinz','Schmitz',50001),(10002,'JMaaß','JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß',50002),(10003,'FBuchholz','FBuchholz@hs-bremen.de','test','Florian','Buchholz',50003),(10004,'HKramer','HKramer@hs-bremen.de','313111','Hugo','Kramer',50004),(10005,'HuKramer','HuKramer@hs-bremen.de','313111','Hugo','Kramer',50005),(10006,'HKrome','HKrome@hs-bremen.de','tttest','Horst','Krome',50006),(10007,'Jörg','buchholz@hs-bremen.de','zrr','Jörg','Buchholz',50007),(10008,'Kreativ','Werdmal@kreativ.de','000','Horst','Uschibert',50008),(10009,'BTannert','BTannert@hs-bremen.de','999','Benjamin','Tannert',50009),(10010,'kkönig','könig@hs-bremen.de','222','Klaus','König',50010),(10011,'hulla','hulla@hs-bremen.de','333','Horst','Ulla',50011),(10012,'FWoichek','FWoichek@hs-bremen.de','superheld','Fabian','Woichek',50012),(10013,'WTjark','WTjark@hs-bremen.de','232','Wio','Tjark',50013),(10016,'pklempner','pklempner@hs-bremen.de','889','Paolo','Klempner',60016);
+INSERT INTO `students` VALUES (10000,'phans','phans@hs-bremen.de','111','Peter','Hans',50000),(10001,'hschmitz','hschmitz@hs-bremen.de','555','Heinz','Schmitz',50001),(10002,'JMaaß','JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß',50002),(10003,'FBuchholz','FBuchholz@hs-bremen.de','test','Florian','Buchholz',50003),(10004,'HKramer','HKramer@hs-bremen.de','313111','Hugo','Kramer',50004),(10005,'HuKramer','HuKramer@hs-bremen.de','313111','Hugo','Kramer',50005),(10006,'HKrome','HKrome@hs-bremen.de','tttest','Horst','Krome',50006),(10007,'Jörg','buchholz@hs-bremen.de','zrr','Jörg','Buchholz',50007),(10008,'Kreativ','Werdmal@kreativ.de','000','Horst','Uschibert',50008),(10009,'BTannert','BTannert@hs-bremen.de','999','Benjamin','Tannert',50009),(10010,'kkönig','könig@hs-bremen.de','222','Klaus','König',50010),(10011,'hulla','hulla@hs-bremen.de','333','Horst','Ulla',50011),(10012,'FWoichek','FWoichek@hs-bremen.de','superheld','Fabian','Woichek',50012),(10013,'WTjark','WTjark@hs-bremen.de','232','Wio','Tjark',50013),(10016,'pklempner','pklempner@hs-bremen.de','889','Paolo','Klempner',60016),(10017,'srath','srath@hs-bremen.de','123','Sven','Rath',50017);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,6 +280,35 @@ INSERT INTO `studiengangs_has_moduls` VALUES (1,1);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `termins`
+--
+
+DROP TABLE IF EXISTS `termins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `termins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `termin_bezeichnung` varchar(45) NOT NULL,
+  `datum` date NOT NULL,
+  `erledigt` tinyint(4) NOT NULL,
+  `students_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`students_id`),
+  KEY `fk_termins_students1_idx` (`students_id`),
+  CONSTRAINT `fk_termins_students1` FOREIGN KEY (`students_id`) REFERENCES `students` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `termins`
+--
+
+LOCK TABLES `termins` WRITE;
+/*!40000 ALTER TABLE `termins` DISABLE KEYS */;
+INSERT INTO `termins` VALUES (1,'Hausaufgaben','2019-02-02',1,10002);
+/*!40000 ALTER TABLE `termins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping events for database 'mynewdb'
 --
 
@@ -365,6 +394,47 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_termins_student` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_termins_student`(stud_id VARCHAR(45))
+BEGIN
+select  T2.termin_bezeichnung, T2.datum, T2.erledigt
+from  termins T2
+where T2.students_id = stud_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `new_termin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `new_termin`(bezeichnung VARCHAR(45), datum DATE, stud_id VARCHAR(45))
+BEGIN
+INSERT into termins
+values (NULL,bezeichnung,datum,0,stud_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `student_studies` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -389,6 +459,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_termin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_termin`(termin_id INT)
+BEGIN
+UPDATE termins
+SET erledigt = 1
+WHERE id = termin_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -399,4 +490,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-18 23:53:25
+-- Dump completed on 2019-06-19 13:55:40

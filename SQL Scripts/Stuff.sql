@@ -8,6 +8,7 @@ Select * FROM students_has_pruefungs;
 Select * FROM students_has_studiengangs;
 Select * FROM studiengangs;
 Select * FROM studiengangs_has_moduls;
+Select * FROM termins;
 
 
 
@@ -113,5 +114,25 @@ and T2.id = T4.moduls_id
 and T5.students_id = 10002
 and T3.moduls_id = T4.moduls_id;
 
+/* Select Termine für Studenten */
+select  T2.termin_bezeichnung, T2.datum, T2.erledigt
+from  termins T2
+where T2.students_id = 10002;
 
+select * from termins;
+
+/* Insert Termine */
+INSERT into termins
+values (NULL,'Hausaufgaben',20190202,0,10002);
+
+INSERT into termins
+select T1.bezeichnung 
+from pruefungs T1, students_has_pruefungs T2
+where T2.students_id = 10002
+and T1.id = T2.pruefungs_id;
+
+
+UPDATE termins
+SET erledigt = 1
+WHERE id = 1;
       

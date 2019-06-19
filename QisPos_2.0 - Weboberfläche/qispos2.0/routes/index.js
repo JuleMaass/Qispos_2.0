@@ -113,122 +113,82 @@ router.post('/login', async (req, res) => {
     }
 
 
-
-
     if (dozent) {
-        Dozent.findOne({
+        var result = await Dozent.findOne({
             where: {
                 benutzername: benutzername,
                 PW: password
             }
-        }).then(result => {
-
-            if (result == null) {
-                errors.push({
-                    msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
-                });
-            }
-
-            if (errors.length > 0) {
-
-
-
-                console.log(errors[0].msg)
-                res.render('login', {
-                    error: errors[0].msg
-                })
-            } else {
-
-
-                sess.nutzer = result;
-                sess.dozent = true;
-                res.redirect('/users/dashboard_dozent');
-            }
-
-
         });
+
+        if (result == null) {
+            errors.push({
+                msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
+            });
+        }
+
+        if (errors.length > 0) {
+
+
+
+            console.log(errors[0].msg)
+            res.render('login', {
+                error: errors[0].msg
+            })
+        } else {
+
+
+            sess.nutzer = result;
+            sess.dozent = true;
+            res.redirect('/users/dashboard_dozent');
+        }
+
+
     } else {
-        Student.findOne({
+        var result = await Student.findOne({
             where: {
                 benutzername: benutzername,
                 PW: password
             }
-        }).then(result => {
-
-            if (result == null) {
-                errors.push({
-                    msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
-                });
-            }
-
-            if (errors.length > 0) {
-                console.log(errors[0].msg)
-                res.render('login', {
-                    error: errors[0].msg
-                })
-            } else {
-                sess.hash = "Noten";
-                
-               
-                sess.nutzer = result;
-                sess.dozent = false;
-                
-                // // Beispiel für einen Callable
-                // sequelize
-                //     .query(' call all_pruefung_student(:id)', {
-                //         replacements: {
-                //             id: sess.nutzer.id
-                //         }
-                //     })
-                //     .then(v => console.log(v));
-
-                  
-                res.redirect('/users/dashboard#' + sess.hash);
-            }
-
-
         });
+
+        if (result == null) {
+            errors.push({
+                msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
+            });
+        }
+
+        if (errors.length > 0) {
+            console.log(errors[0].msg)
+            res.render('login', {
+                error: errors[0].msg
+            })
+        } else {
+            sess.hash = "Noten";
+
+
+            sess.nutzer = result;
+            sess.dozent = false;
+   
+
+            sess.studiengang = await sequelize
+                .query(' call student_studies(:id)', {
+                    replacements: {
+                        id: sess.nutzer.id
+                    }
+                });
+
+
+            res.redirect('/users/dashboard#' + sess.hash);
+
+
+        }
+
+
+
+
+
     }
-
-
-
-
-
-
-
-
-    // db.query(sqlabfrage, [benutzername, password], (err, result) => {
-    //     if (result[0] == null) {
-    //         errors.push({
-    //             msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
-    //         });
-    //     }
-
-    //     if (errors.length > 0) {
-
-    //         // console.log(errors.length)
-
-    //         console.log(errors[0].msg)
-    //         res.render('login', {
-    //             error: errors[0].msg
-    //         })
-    //     } else {
-    //         var nutzername = result[0].benutzername;
-    //         var nutzerid = result[0].id;
-
-
-    //         sess.nutzername = nutzername; // equivalent to $_SESSION['email'] in PHP.
-    //         sess.nutzerid = nutzerid;
-
-    //         if (dozent) {
-    //             sess.dozent = true;
-    //             res.redirect('/users/dashboard_dozent');
-    //         } else {
-    //             sess.dozent = false;
-    //             res.redirect('/users/dashboard');
-    //         }
-    //     }
-    // });
 
 });
 
