@@ -32,11 +32,51 @@ router.get('/dashboard', async (req, res) => {
 
     var students = await Student.findAll();
 
+<<<<<<< Updated upstream
+=======
+    var termine = await sequelize
+      .query(' call all_termins_student(:id)', {
+        replacements: {
+          id: sess.nutzer.id
+        }
+      });
+      var ges_note = await sequelize
+      .query(' call ges_note_student(:id)', {
+        replacements: {
+          id: sess.nutzer.id
+        }
+      });
+
+    var noten = await sequelize
+      .query(' call all_grades_student(:id)', {
+        replacements: {
+          id: sess.nutzer.id
+
+        }
+      });
+    var moduls = await sequelize
+      .query(' call all_moduls_student(:id)', {
+        replacements: {
+          id: sess.nutzer.id
+
+        }
+      });
+
+>>>>>>> Stashed changes
     res.render('dashboard', {
       nutzername: sess.nutzer.benutzername,
       nutzerid: sess.nutzer.id,
       students: students,
+<<<<<<< Updated upstream
       student: sess.nutzer
+=======
+      student: sess.nutzer,
+      termine: termine,
+      studiengang: sess.studiengang,
+      noten: noten,
+      moduls: moduls,
+      ges_note: ges_note
+>>>>>>> Stashed changes
     });
 
     // });
