@@ -38,8 +38,6 @@ values (1,1);
 INSERT into students_has_pruefungs
 values (10001,3,default, NULL);
 
-<<<<<<< Updated upstream
-=======
 INSERT into students_has_pruefungs
 values (10002,3,default, NULL);
 
@@ -47,7 +45,6 @@ INSERT into students_has_pruefungs
 values (10002,4,default, 1.7);
 
 
->>>>>>> Stashed changes
 INSERT into students_has_moduls
 values (10001,1);
 
