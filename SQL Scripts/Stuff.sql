@@ -11,9 +11,6 @@ Select * FROM studiengangs_has_moduls;
 Select * FROM termins;
 
 
-
-
-
 call insert_matrikelnummer();
 
 
@@ -136,6 +133,14 @@ values (NULL,'Tutorenlehrgang',20190202,0,10002);
 
 
 DELETE FROM termins WHERE id = 2;
+
+select T1.bezeichnung, T2.pruefungs_id, T2.students_id
+from pruefungs T1, students_has_pruefungs T2
+where T2.students_id = 10002
+and T1.id = T2.pruefungs_id;
+
+Insert into termins
+values("neue Pruefung", 20190303, 0, 1);
 
 
 

@@ -42,21 +42,29 @@ router.post('/dashboard', async (req, res) => {
 
 
   if (req.body.termin_name != '' && req.body.termin_datum != '') {
+    
 
-    console.log(parseInt(req.body.termin_datum));
+    var neuesDatum =
+    req.body.termin_datum[6] +
+    req.body.termin_datum[7] +
+    req.body.termin_datum[8] +
+    req.body.termin_datum[9] +
+    req.body.termin_datum[3] +
+    req.body.termin_datum[4] +
+    req.body.termin_datum[0] +
+    req.body.termin_datum[1];
+
+console.log(neuesDatum);
+ 
     await sequelize
     .query(' call new_termin(:bezeichnung, :datum, :id)', {
       replacements: {
         id: sess.nutzer.id,
         bezeichnung: req.body.termin_name,
-        datum: parseInt(req.body.termin_datum)
+        datum: parseInt(neuesDatum)
       }
     });
   }
-
-
-
-
 
   res.redirect('/users/dashboard');
 

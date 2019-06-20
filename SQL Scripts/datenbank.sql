@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
--- Host: localhost    Database: mynewdb
+-- Host: 127.0.0.1    Database: mynewdb
 -- ------------------------------------------------------
--- Server version	8.0.15
+-- Server version	8.0.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -295,7 +295,7 @@ CREATE TABLE `termins` (
   PRIMARY KEY (`id`,`students_id`),
   KEY `fk_termins_students1_idx` (`students_id`),
   CONSTRAINT `fk_termins_students1` FOREIGN KEY (`students_id`) REFERENCES `students` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,6 +304,7 @@ CREATE TABLE `termins` (
 
 LOCK TABLES `termins` WRITE;
 /*!40000 ALTER TABLE `termins` DISABLE KEYS */;
+INSERT INTO `termins` VALUES (9,'Datenbanken Abgabe','2019-06-26',0,10002),(10,'Gespräch Teufel','2019-06-20',0,10002),(11,'Gespräch Averbeck','2019-06-26',0,10002),(12,'Hausaufgaben','2019-09-13',0,10002);
 /*!40000 ALTER TABLE `termins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -382,7 +383,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `all_pruefung_student`(student_id VARCHAR(45))
 BEGIN
 /* Select Prüfungen für Studenten */
-select DISTINCT T1.id, T1.benutzername, T3.bezeichnung, T3.pruefungsdatum
+select DISTINCT T1.id, T2.ppruefungs_id, T1.benutzername, T3.bezeichnung, T3.pruefungsdatum
 from students T1, students_has_pruefungs T2, pruefungs T3
 where T2.students_id = student_id
 and T1.id = student_id
@@ -508,4 +509,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-19 17:21:36
+-- Dump completed on 2019-06-20 10:45:30
