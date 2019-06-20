@@ -2,9 +2,8 @@
 var sequelize = require('../services/sequelize');
 const express = require('express');
 const router = express.Router();
-var db = require('../services/connection');
 var Student = require('../models/Student');
-
+var url = require('url');
 var sess;
 
 
@@ -17,10 +16,16 @@ router.get('/', (req, res) => res.redirect('../login'));
 router.get('/logout', (req, res) => res.redirect('../welcome'));
 
 
+
 router.post('/dashboard', async (req, res) => {
   sess = req.session;
 
+
   console.log(req.body);
+  
+
+  sess.hash = req.body.hash;
+
 
    for (var termin in req.body) {
     if (termin.split('_')[0] == "termine") {
@@ -66,7 +71,7 @@ console.log(neuesDatum);
     });
   }
 
-  res.redirect('/users/dashboard');
+  res.redirect('/users/dashboard#' + sess.hash);
 
 });
 //Dashboard

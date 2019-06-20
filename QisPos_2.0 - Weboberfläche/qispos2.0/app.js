@@ -28,8 +28,25 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 //Bodyparser
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+get_breadcrumbs = function(url) {
+  var rtn = [{name: "HOME", url: "/"}],
+      acc = "", // accumulative url
+      arr = url.substring(1).split("/");
+
+  for (i=0; i<arr.length; i++) {
+      acc = i != arr.length-1 ? acc+"/"+arr[i] : null;
+      rtn[i+1] = {name: arr[i].toUpperCase(), url: acc};
+  }
+    return rtn;
+};
+
+app.use(function(req, res, next) {
+  req.breadcrumbs = get_breadcrumbs(req.originalUrl);
+  next();
+});
 
 
 //Routes

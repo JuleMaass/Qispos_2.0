@@ -164,7 +164,7 @@ router.post('/login', async (req, res) => {
                 error: errors[0].msg
             })
         } else {
-            sess.hash = "Index";
+            sess.hash = "Termine";
 
 
             sess.nutzer = result;
