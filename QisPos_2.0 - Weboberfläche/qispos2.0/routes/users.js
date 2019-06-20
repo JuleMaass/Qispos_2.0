@@ -99,6 +99,15 @@ router.get('/dashboard', async (req, res) => {
 
         }
       });
+
+      var ges_note = await sequelize
+      .query(' call ges_note_student(:id)', {
+        replacements: {
+          id: sess.nutzer.id
+        }
+      });
+
+
     var moduls = await sequelize
       .query(' call all_moduls_student(:id)', {
         replacements: {
@@ -113,7 +122,8 @@ router.get('/dashboard', async (req, res) => {
       termine: termine,
       studiengang: sess.studiengang,
       noten: noten,
-      moduls: moduls
+      moduls: moduls,
+      ges_note: ges_note
     });
 
 

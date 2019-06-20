@@ -10,7 +10,7 @@
         $('#uebersichtTable').DataTable({
             "paging": false
         });
-        
+
         $('#rankingTable').DataTable();
 
 
@@ -142,6 +142,28 @@
 
             <div class="tab-pane fade, jumbotron, active " id="Termine">
 
+
+                    <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item active">Home</li>
+                            </ol>
+                          </nav>
+                          
+                          <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="#">Home</a></li>
+                              <li class="breadcrumb-item active">Library</li>
+                            </ol>
+                          </nav>
+                          
+                          <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="#">Home</a></li>
+                              <li class="breadcrumb-item"><a href="#">Library</a></li>
+                              <li class="breadcrumb-item active">Data</li>
+                            </ol>
+                          </nav>
+
                 <p class="lead mb-3"> </p>
                 <div class="list-group">
                     <% for (var i = 0; i < termine.length; i++) {
@@ -263,6 +285,15 @@
                         </tr>
                         <% } %>
 
+                        <tr class="table-light">
+
+                                <th > </th>
+                                <th > </th>
+                                <th > </th>
+                                <td><%= ges_note[0].gesamtNote /  ges_note[0].count %> </td>
+                                <th > </th>
+                                <th > </th>
+                            </tr>
 
 
 
