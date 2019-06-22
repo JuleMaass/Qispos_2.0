@@ -59,7 +59,7 @@ CREATE TABLE `moduls` (
   `beschreibung` varchar(45) DEFAULT NULL,
   `nummer` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `moduls` (
 
 LOCK TABLES `moduls` WRITE;
 /*!40000 ALTER TABLE `moduls` DISABLE KEYS */;
-INSERT INTO `moduls` VALUES (1,'Programmieren 1',1,1,6,'',1110),(2,'Mathe 1',1,2,6,'',1120);
+INSERT INTO `moduls` VALUES (1,'Programmieren 1',1,1,6,'',1110),(2,'Mathe 1',1,2,6,'',1120),(3,'Gestaltung 1 EA',1,3,6,'',1130),(4,'Medieninformatik 1 EA',1,4,6,NULL,1140),(5,'Informatik 1 EA',1,5,6,NULL,1150),(6,'Programmieren 2 EA',2,1,6,NULL,1210),(7,'Mathe 2 EA',2,2,6,NULL,1220),(8,'Gestaltung 2 EA',2,3,6,NULL,1230),(9,'Medieninformatik 2 EA',2,4,6,NULL,1240),(10,'Informatik 2 EA',2,5,6,NULL,1250),(11,'Rechnernetze EA',3,1,6,NULL,1310);
 /*!40000 ALTER TABLE `moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +95,7 @@ CREATE TABLE `pruefungs` (
   KEY `fk_pruefungs_dozents1_idx` (`dozents_id`),
   CONSTRAINT `fk_pruefungs_dozents1` FOREIGN KEY (`dozents_id`) REFERENCES `dozents` (`id`),
   CONSTRAINT `fk_pruefungs_moduls` FOREIGN KEY (`moduls_id`) REFERENCES `moduls` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `pruefungs` (
 
 LOCK TABLES `pruefungs` WRITE;
 /*!40000 ALTER TABLE `pruefungs` DISABLE KEYS */;
-INSERT INTO `pruefungs` VALUES (3,1,'Programmieren 1','Klausur',1,'2019-05-14','2019-08-23',1111,1,100),(4,1,'Mathe 1 KL','Klasur',1,'2019-02-20','2019-07-20',1112,2,200);
+INSERT INTO `pruefungs` VALUES (3,1,'Programmieren 1','Klausur',1,'2019-05-14','2019-08-23',1111,1,100),(4,1,'Mathe 1 KL','Klasur',1,'2019-02-20','2019-07-20',1112,2,200),(5,1,'Gestaltung 1','Klasur',1,'2019-02-22','2019-07-22',1113,3,200);
 /*!40000 ALTER TABLE `pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +162,7 @@ CREATE TABLE `students_has_moduls` (
 
 LOCK TABLES `students_has_moduls` WRITE;
 /*!40000 ALTER TABLE `students_has_moduls` DISABLE KEYS */;
-INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10002,1,0),(10002,2,0);
+INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10002,1,0),(10002,2,0),(10002,3,0);
 /*!40000 ALTER TABLE `students_has_moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +192,7 @@ CREATE TABLE `students_has_pruefungs` (
 
 LOCK TABLES `students_has_pruefungs` WRITE;
 /*!40000 ALTER TABLE `students_has_pruefungs` DISABLE KEYS */;
-INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,NULL),(10002,3,0,NULL),(10002,4,0,1.7);
+INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,3.3),(10002,3,0,3.3),(10002,4,0,1.7),(10002,5,0,2.3);
 /*!40000 ALTER TABLE `students_has_pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +275,7 @@ CREATE TABLE `studiengangs_has_moduls` (
 
 LOCK TABLES `studiengangs_has_moduls` WRITE;
 /*!40000 ALTER TABLE `studiengangs_has_moduls` DISABLE KEYS */;
-INSERT INTO `studiengangs_has_moduls` VALUES (1,1);
+INSERT INTO `studiengangs_has_moduls` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11);
 /*!40000 ALTER TABLE `studiengangs_has_moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -415,6 +415,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `count_students` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `count_students`()
+BEGIN
+/*anzahl der studeierenden die noten haben*/
+select count(DISTINCT students_id) as summe_studs 
+from students_has_pruefungs;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `delete_termin` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -428,6 +449,28 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_termin`(termin_id VARCHAR(45))
 BEGIN
 DELETE FROM termins WHERE id = termin_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ges_note_student` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ges_note_student`(stud_id VARCHAR(45))
+BEGIN
+select T1.students_id, sum(T1.note) as gesamtNote, count(*) as count, T2.matrikelnummer
+from students_has_pruefungs T1, students T2
+where students_id = stud_id and note is not null
+and T2.id = stud_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -478,6 +521,36 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `studiengang_with_moduls` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `studiengang_with_moduls`()
+BEGIN
+/*alle module mit semestern eines studiengangs, */
+select T1.bezeichnung as studBezeichnung, T2.bezeichnung as modBezeichnung, T2.semester
+from studiengangs T1, moduls T2, studiengangs_has_moduls T3
+where T1.id = T3.studiengangs_id
+and T2.id = T3.moduls_id;
+
+/*anzahl der semester eines studiengangs zählen das ist möglicherweise auch im code direkt zu berechnen
+select T1.bezeichnung as stud_ezeichnung, count(distinct T2.semester) as semester_anzahl
+from studiengangs T1, moduls T2, studiengangs_has_moduls T3
+where T1.id = T3.studiengangs_id
+and T2.id = T3.moduls_id;*/
+      
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `update_termin` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -509,4 +582,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-20 10:45:30
+-- Dump completed on 2019-06-22  9:28:53
