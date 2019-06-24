@@ -11,16 +11,28 @@ router.get('/', (req, res) => res.redirect('welcome'));
 router.get('/welcome', (req, res) => res.render('welcome'));
 
 //Register Page/view
-router.get('/register', (req, res) => res.render('register'));
+router.get('/register', async (req, res) => {
+
+    var studiengangs = await Studiengang.findAll();
+
+
+    res.render('register', {
+        studiengangs
+    });
+
+});
 
 //Register handle
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
     const {
         vorname,
         nachname,
+        studiengang,
         PW
     } = req.body;
     let errors = [];
+
+    console.log(req.body);
 
     //check requires fields
     if (!PW || !vorname || !nachname) {
@@ -44,43 +56,58 @@ router.post('/register', (req, res) => {
         var test;
         do {
 
+            console.log(benutzername);
             // search for attributes
-            Student.findOne({
+            var test = await Student.findOne({
                 where: {
                     benutzername: benutzername.toLowerCase()
                 }
-            }).then(user => {
-
-                test = user
-                if (test != null) {
-                    buchstabenanzahl++;
-                    benutzername = (vorname.substring(0, buchstabenanzahl) + nachname).toLowerCase();
-                }
             });
+
+            if (test != null) {
+                buchstabenanzahl++;
+                benutzername = (vorname.substring(0, buchstabenanzahl) + nachname).toLowerCase();
+                console.log(benutzername);
+            }
         } while (test != null);
 
+
+        var studiengang_id = await Studiengang.findOne({
+            where: {
+                bezeichnung: studiengang
+            }
+        })
 
 
         var email = benutzername.toLowerCase() + '@hs-bremen.de'
 
-            Student.create({
+        var result = await Student.create({
             benutzername: benutzername.toLowerCase(),
             email: email,
             PW: PW,
             vorname: jsUcfirst(vorname.toLowerCase()),
             nachname: jsUcfirst(nachname.toLowerCase()),
-        }).then((result) => {
-
-            Student.update({
-                matrikelnummer: result.id + 40000
-            }, {
-                where: {
-                    id: result.id
-                }
-            })
-
-            res.redirect('/login')
         });
+
+        Student.update({
+            matrikelnummer: result.id + 40000
+        }, {
+            where: {
+                id: result.id
+            }
+        });
+
+        await sequelize
+            .query(' call new_student_has_studiengangs(:student_id, :studiengangs_id)', {
+                replacements: {
+                    student_id: result.id,
+                    studiengangs_id: studiengang_id.id,
+                }
+            });
+
+
+        res.redirect('/login')
+
 
 
     }
