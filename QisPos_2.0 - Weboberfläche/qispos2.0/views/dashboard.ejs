@@ -16,16 +16,21 @@
 
         $('.dataTables_length').addClass('bs-select');
 
-
-        // if (window.location.hash) {
-        //     var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-        //     alert(hash);
-        //     // hash found
-        // } else {
-        //     // No hash found
-        // }
-
     });
+
+    // function addClass() {
+    //     var v = document.getElementById("p");
+    //     v.className += "addCSS";
+
+
+    //     var backOfferButton = document.getElementById('back_offer_button');
+
+    //     console.log(backOfferButton.dataset.target);
+
+    //     backOfferButton.dataset.target = "#addDifferentOffer";
+
+    //     console.log(backOfferButton.dataset.target);
+    // }
 
 
     $(function () {
@@ -55,7 +60,7 @@
 </script>
 
 <p class="lead mb-3"> </p>
-<div class="lead mb-4, jumbotron jumbotron-fluid">
+<div style="overflow: auto;" class="lead mb-4, jumbotron jumbotron-fluid">
     <h1 class="display-3, text-center">QisPos 2.0</h1>
 
     <p class="lead mb-3, text-center">Willkommen <%= student.vorname %></p>
@@ -143,28 +148,7 @@
             <div class="tab-pane fade, jumbotron, active " id="Termine">
 
 
-                    <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                              <li class="breadcrumb-item active">Home</li>
-                            </ol>
-                          </nav>
-                          
-                          <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Home</a></li>
-                              <li class="breadcrumb-item active">Library</li>
-                            </ol>
-                          </nav>
-                          
-                          <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="#">Home</a></li>
-                              <li class="breadcrumb-item"><a href="#">Library</a></li>
-                              <li class="breadcrumb-item active">Data</li>
-                            </ol>
-                          </nav>
 
-                <p class="lead mb-3"> </p>
                 <div class="list-group">
                     <% for (var i = 0; i < termine.length; i++) {
 
@@ -188,6 +172,26 @@
                             <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
 
                             <% var id = "termine_cb_id_" + termine[i].id%>
+                            <div class="modal">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="false">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Modal body text goes here.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -225,26 +229,6 @@
 
 
                 </div>
-
-                <!-- <div class="list-group">
-
-
-                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault">
-
-
-
-
-                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault">
-
-
-
-
-                        <input type="text" class="form-control" placeholder="Default input" id="inputDefault">
-                
-                </div> -->
-
-
-
 
 
             </div>
@@ -287,13 +271,13 @@
 
                         <tr class="table-light">
 
-                                <th > </th>
-                                <th > </th>
-                                <th > </th>
-                                <td><%= ges_note[0].gesamtNote /  ges_note[0].count %> </td>
-                                <th > </th>
-                                <th > </th>
-                            </tr>
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
+                            <td><%= ges_note[0].gesamtNote /  ges_note[0].count %> </td>
+                            <th> </th>
+                            <th> </th>
+                        </tr>
 
 
 
@@ -309,27 +293,27 @@
                 <p class="lead mb-3"> </p>
 
 
-                        <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%"
-                            id="uebersichtTable">
-                            <thead>
-                                <tr class="table-secondary">
-                                    <th scope="col">Prüfungsnr.</th>
-                                    <th scope="col">Modul</th>
-                                    <th scope="col">Prüfer</th>
-                                    <th scope="col">Semester</th>
-                                    <th scope="col">Termin</th>
-                                    <th scope="col">Anmeldedatum</th>
-                                    <th scope="col">Prüfungsdatum</th>
+                <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%"
+                    id="uebersichtTable">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col">Prüfungsnr.</th>
+                            <th scope="col">Modul</th>
+                            <th scope="col">Prüfer</th>
+                            <th scope="col">Semester</th>
+                            <th scope="col">Termin</th>
+                            <th scope="col">Anmeldedatum</th>
+                            <th scope="col">Prüfungsdatum</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-
-
+                        </tr>
+                    </thead>
+                    <tbody>
 
 
 
-                                <% for (var i = 0; i < moduls.length; i++) {
+
+
+                        <% for (var i = 0; i < moduls.length; i++) {
 
                             // Datum umstellen
 
@@ -344,7 +328,7 @@
                             moduls[i].anmeldedatum[2] +
                             moduls[i].anmeldedatum[3];
 
-                             var neuesPruefungsDatum = moduls[i].pruefungsdatum[8] +
+                            var neuesPruefungsDatum = moduls[i].pruefungsdatum[8] +
                             moduls[i].pruefungsdatum[9] +
                             "." +
                             moduls[i].pruefungsdatum[5] +
@@ -358,26 +342,194 @@
 
 
 
-                        %>
+                            %>
 
-                                <tr class="table-light">
-                                    <td><%= moduls[i].nummer %></td>
-                                    <td><%= moduls[i].bezeichnung %> </td>
-                                    <td><%= moduls[i].benutzername %> </td>
-                                    <td><%= moduls[i].semester %> </td>
-                                    <td><%= moduls[i].versuch %> </td>
-                                    <td><%= neuesAnmeldeDatum %> </td>
-                                    <td><%= neuesPruefungsDatum %> </td>
-                                </tr>
+                        <tr class="table-light">
+                            <td><%= moduls[i].nummer %></td>
+                            <td><%= moduls[i].bezeichnung %> </td>
+                            <td><%= moduls[i].benutzername %> </td>
+                            <td><%= moduls[i].semester %> </td>
+                            <td><%= moduls[i].versuch %> </td>
+                            <td><%= neuesAnmeldeDatum %> </td>
+                            <td><%= neuesPruefungsDatum %> </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+
+
+
+                <div class="grid-container" style="display: grid; grid-template-columns: auto auto;  grid-gap: 50px;">
+
+                    <% for (var i = 0; i < semesters_studiengang.length; i++) {   %>
+                    <div class="card mb-3">
+                        <h3 class="card-header">Semester <%= semesters_studiengang[i].semester %></h3>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+
+                                <% for (var j = 0; j < moduls_studiengang.length; j++) {   
+                                        
+                                        if (moduls_studiengang[j].semester == semesters_studiengang[i].semester) {
+                                           
+                                         
+                                                   
+                                           
+                                           
+                                            %>
+
+                                <li class="list-group-item">
+                                    <a href="#modul" data-toggle="modal" data-target="#modal1"
+                                        class="card-link"><%= moduls_studiengang[j].bezeichnung %></a>
+                                </li>
+                                <% } } %>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <% } %>
+
+
+                </div>
+            </div>
+
+            <% for (var i = 0; i < termine.length; i++) {  %>
+
+            <div id="modal1" class="modal fade">
+                <div class="modal-dialog modal-lg" role="document">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modul 1</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="false">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Hier könnte ihr Modultext stehen (wenn ihr Dozent nicht so faul wäre).</p>
+                            <div class="list-group">
+
+
+                                <a href="#"
+                                    class="list-group-item list-group-item-action flex-column align-items-start active">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
+                                        <%= neuesDatum %>
+                                        <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
+
+                                        <% var id = "termine_cb_id_" + termine[i].id%>
+                                        <div class="modal">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="false">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Modal body text goes here.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary">Save
+                                                            changes</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" name="<%= id %>" type="checkbox"
+                                                    unchecked>
+                                                Erledigt
+                                            </label>
+                                        </div>
+                                    </div>
+                                </a>
+
+
+                                <% for (var i = 0; i < termine.length; i++) {
+                
+                                        // Datum umstellen
+                
+                                        var neuesDatum = termine[i].datum[8] +
+                                            termine[i].datum[9] +
+                                            "." +
+                                            termine[i].datum[5] +
+                                            termine[i].datum[6] +
+                                            "." +
+                                            termine[i].datum[0] +
+                                            termine[i].datum[1] +
+                                            termine[i].datum[2] +
+                                            termine[i].datum[3];
+                
+                                        %>
+
+                                <a href="#"
+                                    class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
+                                        <%= neuesDatum %>
+                                        <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
+
+                                        <% var id = "termine_cb_id_" + termine[i].id%>
+                                        <div class="modal">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="false">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Modal body text goes here.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary">Save
+                                                            changes</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" name="<%= id %>" type="checkbox"
+                                                    unchecked>
+                                                Erledigt
+                                            </label>
+                                        </div>
+                                    </div>
+                                </a>
                                 <% } %>
-                            </tbody>
-                        </table>
 
-                        <button type="submit" id="Bestaetigen" class="btn btn-primary float-right">Bestätigen</button>
-                        <button type="button" class="btn btn-primary">als PDF downloaden</button>
+                                <p class="lead mb-3"> </p>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Für ausgewählte Prüfungen anmelden</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
 
 
-
+            <!-- 
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Modulan- und abmeldung</h4>
@@ -402,7 +554,7 @@
                                     <label class="custom-control-label" for="customCheck1">Ich akzeptiere</label>
                                 </div>
 
-                                <!-- Wenn checkbox nicht angeklickt, Card unten ist disabled -->
+                               
 
                                 <div class="card">
                                     <div class="card-body">
@@ -411,8 +563,8 @@
                                         <p class="card-text">9900 ECTS-Gesamtpunktekonto</p><br>
 
 
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                        <li class=" dropdown">
+                                            <a class=" dropdown-toggle" data-toggle="dropdown" href="#"
                                                 role="button" aria-haspopup="true" aria-expanded="false">1100
                                                 Semestergesamtkonto (Modul
                                                 1.1 - 1.5)
@@ -573,14 +725,13 @@
 
                                 </div>
                             </div>
-                        </div>
-
-                        <button type="button" class="btn btn-secondary">Anmelden</button>
+                        </div> -->
 
 
 
 
-            </div>
+
+
 
 
             <div class="tab-pane fade, jumbotron" id="Ranking">

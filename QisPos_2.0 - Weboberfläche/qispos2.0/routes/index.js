@@ -205,7 +205,6 @@ router.post('/login', async (req, res) => {
                     }
                 });
 
-
             res.redirect('/users/dashboard#' + sess.hash);
 
 
