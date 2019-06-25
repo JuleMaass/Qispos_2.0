@@ -2,6 +2,9 @@
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 </script>
 
+<!-- CSS Bootstrap Datepicker -->
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css'>
+
 <script>
     $(document).ready(function () {
         $('#notenTable').DataTable({
@@ -204,8 +207,9 @@
                         <input type="text" class="form-control" name="termin_name" placeholder="Termin"
                             id="inputDefault">
                         <p class="lead mb-3"> </p>
+                        <!--Hier wird der DatePicker hinzugefügt-->
                         <input type="text" class="form-control" name="termin_datum" placeholder="TT.MM.YYYY"
-                            id="inputDefault">
+                            id="datepicker">
                         <p class="lead mb-3"> </p>
                         <button type="submit" class="btn btn-primary ">Hinzufügen</button>
 
@@ -761,3 +765,23 @@
         </div>
     </form>
 </div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js'></script>
+<!-- JS Datei Bootstrap Sprache Deutsch, muss als zweites JS stehen -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.de.min.js'></script>
+
+<!-- Datepicker Aufruf als letztes, bei Bedarf anpassen -->
+<script>
+$('#datepicker').datepicker({
+    // Datums-Format, optional DD schreibt Wochentag aus
+    format: 'dd.mm.yyyy',
+    // Start-Datum aktiv ab -3 Tage vom Tagesdatum
+    startDate: '-3d',
+    // Tagesdatum hervorheben
+    todayHighlight: true,
+    // automatisch nach Datumswahl schließen 
+    autoclose: true, 
+    // Sprache Deutsch setzen 
+    language: 'de' 
+}); 
+</script>
