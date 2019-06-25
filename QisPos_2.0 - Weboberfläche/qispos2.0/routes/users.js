@@ -143,6 +143,9 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
+      console.log(pruefungs_studiengang)
+      console.log(moduls_studiengang)
+
     res.render('dashboard', {
       students: students,
       student: sess.nutzer,

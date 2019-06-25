@@ -140,6 +140,10 @@
         </table>
     </div>
 
+
+
+
+
     <form action="/users/dashboard/" method="POST">
         <div id="myTabContent" class="tab-content">
 
@@ -171,27 +175,8 @@
                             <%= neuesDatum %>
                             <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
 
+                            <!-- WICHTIG! -->
                             <% var id = "termine_cb_id_" + termine[i].id%>
-                            <div class="modal">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Modal title</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="false">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Modal body text goes here.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -368,12 +353,12 @@
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
 
-                                <% for (var j = 0; j < moduls_studiengang.length; j++) {   
+                                <%
+                                
+                                                                
+                                for (var j = 0; j < moduls_studiengang.length; j++) {   
                                         
                                         if (moduls_studiengang[j].semester == semesters_studiengang[i].semester) {
-                                           
-                                         
-                                                   
                                            
                                            
                                             %>
@@ -397,127 +382,110 @@
                 </div>
             </div>
 
-            <% for (var i = 0; i < termine.length; i++) {  %>
+            <script>
+                var cardlinks = document.querySelectorAll('.card-link');
 
-            <div id="modal1" class="modal fade">
+                // Set their ids
+                for (var i = 0; i < cardlinks.length; i++) {
+                    cardlinks[i].dataset.target = ("#" + cardlinks[i].innerHTML).replace(/ /g, "_");
+                    cardlinks[i].id = cardlinks[i].innerHTML;
+                }
+            </script>
+
+            <% for (var i = 0; i < semesters_studiengang.length; i++) { 
+
+                    for (var j = 0; j < moduls_studiengang.length; j++) {     
+
+
+
+                        if (moduls_studiengang[j].semester == semesters_studiengang[i].semester) {
+                
+
+                %>
+
+            <div class="modal fade">
                 <div class="modal-dialog modal-lg" role="document">
 
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Modul 1</h5>
+                            <h5 class="modal-title"><%= moduls_studiengang[j].bezeichnung %></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="false">&times;</span>
                             </button>
                         </div>
+
+
+
                         <div class="modal-body">
-                            <p>Hier könnte ihr Modultext stehen (wenn ihr Dozent nicht so faul wäre).</p>
-                            <div class="list-group">
-
-
-                                <a href="#"
-                                    class="list-group-item list-group-item-action flex-column align-items-start active">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
-                                        <%= neuesDatum %>
-                                        <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
-
-                                        <% var id = "termine_cb_id_" + termine[i].id%>
-                                        <div class="modal">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Modal title</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="false">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Modal body text goes here.</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary">Save
-                                                            changes</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
+                                <p>
+                                        <%= moduls_studiengang[j].beschreibung %>
+                                </p>
+                                <div class="list-group">
+    
+                                    
+                                    <a href=""
+                                        class="list-group-item list-group-item-action flex-column align-items-start active">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Datum</h5>
+                                            <h5 class="mb-1">Prüfung</h5>
+                                            <h5 class="mb-1">Prüfer</h5>
+                                         
+                                        
+    
+                                            <div class="form-check" disabled>
+                                                <label class="form-check-label">
+                                                    
+                                                    Anmelden
+                                                </label>
                                             </div>
                                         </div>
+                                    </a>
+    
+    
+                                    <% for (var k = 0; k < pruefungs_studiengang.length; k++) {
 
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" name="<%= id %>" type="checkbox"
-                                                    unchecked>
-                                                Erledigt
-                                            </label>
-                                        </div>
-                                    </div>
-                                </a>
-
-
-                                <% for (var i = 0; i < termine.length; i++) {
+                    
+                                        if (pruefungs_studiengang[k].moduls_id == moduls_studiengang[j].id) {
+                                            // Datum umstellen
+                    
+                                            var neuesDatum = pruefungs_studiengang[k].pruefungsdatum[8] +
+                                            pruefungs_studiengang[k].pruefungsdatum[9] +
+                                                "." +
+                                                pruefungs_studiengang[k].pruefungsdatum[5] +
+                                                pruefungs_studiengang[k].pruefungsdatum[6] +
+                                                "." +
+                                                pruefungs_studiengang[k].pruefungsdatum[0] +
+                                                pruefungs_studiengang[k].pruefungsdatum[1] +
+                                                pruefungs_studiengang[k].pruefungsdatum[2] +
+                                                pruefungs_studiengang[k].pruefungsdatum[3];
+                    
+                                            %>
+    
+                                    <a
+                                        class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="d-flex w-100 justify-content-between" >
                 
-                                        // Datum umstellen
-                
-                                        var neuesDatum = termine[i].datum[8] +
-                                            termine[i].datum[9] +
-                                            "." +
-                                            termine[i].datum[5] +
-                                            termine[i].datum[6] +
-                                            "." +
-                                            termine[i].datum[0] +
-                                            termine[i].datum[1] +
-                                            termine[i].datum[2] +
-                                            termine[i].datum[3];
-                
-                                        %>
+                                            <h5 class="mb-1"></h5><%= neuesDatum %></h5>
+                                            <h5 class="mb-1"></h5><%= pruefungs_studiengang[k].pruefungs_bez  %></h5>
+    
+                                            <h5 class="mb-1"></h5><%= pruefungs_studiengang[k].nachname %></h5>
 
-                                <a href="#"
-                                    class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
-                                        <%= neuesDatum %>
-                                        <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
-
-                                        <% var id = "termine_cb_id_" + termine[i].id%>
-                                        <div class="modal">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Modal title</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="false">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Modal body text goes here.</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary">Save
-                                                            changes</button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
+    
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" name="<%= id %>" type="checkbox"
+                                                        unchecked>
+                                                    Anmelden
+                                                </label>
                                             </div>
                                         </div>
-
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" name="<%= id %>" type="checkbox"
-                                                    unchecked>
-                                                Erledigt
-                                            </label>
-                                        </div>
-                                    </div>
-                                </a>
-                                <% } %>
-
-                                <p class="lead mb-3"> </p>
+                                    </a>
+                                    <% } } %>
+    
+                                    <p class="lead mb-3"> </p>
+                                </div>
                             </div>
-                        </div>
+
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Für ausgewählte Prüfungen anmelden</button>
@@ -526,7 +494,22 @@
                     </div>
                 </div>
             </div>
-            <% } %>
+            <%                  } 
+                       
+                    } }
+                    %>
+
+
+            <script>
+                var modals = document.querySelectorAll('.modal');
+                var cardlinks = document.querySelectorAll('.card-link');
+
+
+                // Set their ids
+                for (var i = 0; i < modals.length; i++) {
+                    modals[i].id = (cardlinks[i].innerHTML).replace(/ /g, "_");
+                }
+            </script>
 
 
             <!-- 
