@@ -3,6 +3,7 @@ const router = express.Router();
 var sequelize = require('../services/sequelize');
 
 var Student = require('../models/Student');
+var Studiengang = require('../models/Studiengang');
 
 // Welcome Page
 router.get('/', (req, res) => res.redirect('welcome'));
