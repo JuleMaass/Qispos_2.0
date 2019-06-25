@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mynewdb
 -- ------------------------------------------------------
--- Server version	8.0.16
+-- Server version	8.0.15
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -124,7 +124,7 @@ CREATE TABLE `students` (
   `nachname` varchar(255) NOT NULL,
   `matrikelnummer` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10026 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10035 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (10000,'phans','phans@hs-bremen.de','111','Peter','Hans',50000),(10001,'hschmitz','hschmitz@hs-bremen.de','555','Heinz','Schmitz',50001),(10002,'JMaaß','JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß',50002),(10003,'FBuchholz','FBuchholz@hs-bremen.de','test','Florian','Buchholz',50003),(10004,'HKramer','HKramer@hs-bremen.de','313111','Hugo','Kramer',50004),(10005,'HuKramer','HuKramer@hs-bremen.de','313111','Hugo','Kramer',50005),(10006,'HKrome','HKrome@hs-bremen.de','tttest','Horst','Krome',50006),(10007,'Jörg','buchholz@hs-bremen.de','zrr','Jörg','Buchholz',50007),(10008,'Kreativ','Werdmal@kreativ.de','000','Horst','Uschibert',50008),(10009,'BTannert','BTannert@hs-bremen.de','999','Benjamin','Tannert',50009),(10010,'kkönig','könig@hs-bremen.de','222','Klaus','König',50010),(10011,'hulla','hulla@hs-bremen.de','333','Horst','Ulla',50011),(10012,'FWoichek','FWoichek@hs-bremen.de','superheld','Fabian','Woichek',50012),(10013,'WTjark','WTjark@hs-bremen.de','232','Wio','Tjark',50013),(10016,'pklempner','pklempner@hs-bremen.de','889','Paolo','Klempner',60016),(10017,'srath','srath@hs-bremen.de','123','Sven','Rath',50017),(10018,'jhorstmeister','jhorstmeister@hs-bremen.de','1233','Jan','Horstmeister',50018),(10019,'jhorstick','jhorstick@hs-bremen.de','test','Jannik','Horstick',50019),(10020,'jvon_nazareth','jvon_nazareth@hs-bremen.de','god','Jesus','Von_nazareth',50020),(10021,'jvon_nazareth','jvon_nazareth@hs-bremen.de','god','Jesus','Von_nazareth',50021),(10022,'jvon_nazareth','jvon_nazareth@hs-bremen.de','god2','Jesus','Von_nazareth',50022),(10023,'jevon_nazareth','jevon_nazareth@hs-bremen.de','god2','Jesus','Von_nazareth',50023),(10024,'jesvon_nazareth','jesvon_nazareth@hs-bremen.de','god2','Jesus','Von_nazareth',50024),(10025,'jwayne','jwayne@hs-bremen.de','wayne','John','Wayne',50025);
+INSERT INTO `students` VALUES (10000,'phans','phans@hs-bremen.de','111','Peter','Hans',50000),(10001,'hschmitz','hschmitz@hs-bremen.de','555','Heinz','Schmitz',50001),(10002,'JMaaß','JMaaß@hs-bremen.de','Purzelbärchen','Jule','Maaß',50002),(10003,'FBuchholz','FBuchholz@hs-bremen.de','test','Florian','Buchholz',50003),(10004,'HKramer','HKramer@hs-bremen.de','313111','Hugo','Kramer',50004),(10005,'HuKramer','HuKramer@hs-bremen.de','313111','Hugo','Kramer',50005),(10006,'HKrome','HKrome@hs-bremen.de','tttest','Horst','Krome',50006),(10007,'Jörg','buchholz@hs-bremen.de','zrr','Jörg','Buchholz',50007),(10008,'Kreativ','Werdmal@kreativ.de','000','Horst','Uschibert',50008),(10009,'BTannert','BTannert@hs-bremen.de','999','Benjamin','Tannert',50009),(10010,'kkönig','könig@hs-bremen.de','222','Klaus','König',50010),(10011,'hulla','hulla@hs-bremen.de','333','Horst','Ulla',50011),(10012,'FWoichek','FWoichek@hs-bremen.de','superheld','Fabian','Woichek',50012),(10013,'WTjark','WTjark@hs-bremen.de','232','Wio','Tjark',50013),(10016,'pklempner','pklempner@hs-bremen.de','889','Paolo','Klempner',60016),(10017,'srath','srath@hs-bremen.de','123','Sven','Rath',50017),(10018,'jhorstmeister','jhorstmeister@hs-bremen.de','1233','Jan','Horstmeister',50018),(10019,'jhorstick','jhorstick@hs-bremen.de','test','Jannik','Horstick',50019),(10020,'jvon_nazareth','jvon_nazareth@hs-bremen.de','god','Jesus','Von_nazareth',50020),(10021,'jvon_nazareth','jvon_nazareth@hs-bremen.de','god','Jesus','Von_nazareth',50021),(10022,'jvon_nazareth','jvon_nazareth@hs-bremen.de','god2','Jesus','Von_nazareth',50022),(10023,'jevon_nazareth','jevon_nazareth@hs-bremen.de','god2','Jesus','Von_nazareth',50023),(10024,'jesvon_nazareth','jesvon_nazareth@hs-bremen.de','god2','Jesus','Von_nazareth',50024),(10025,'jwayne','jwayne@hs-bremen.de','wayne','John','Wayne',50025),(10026,'lwerdermann','lwerdermann@hs-bremen.de','Lulu','Lukas','Werdermann',50026),(10027,'ll','ll@hs-bremen.de','Blah','Lukas','L',50027),(10028,'llll','llll@hs-bremen.de','blah','Lukas','Lll',50028),(10029,'ttali','ttali@hs-bremen.de','sha1$87beeb62$1$63f3a23ec54a09589cc3813e45e2257f6d48fc71','Timo','Tali',50029),(10030,'ttoll','ttoll@hs-bremen.de','sha1$72eb646a$1$0e53161e1e357350f4bb8c096414de49e7f60571','Theo','Toll',50030),(10031,'hhaar','hhaar@hs-bremen.de','sha1$b377f915$1$0b14dd61e0fca0db178c31ea0c08c1ce91d4904c','Harry','Haar',50031),(10032,'ttaub','ttaub@hs-bremen.de','sha1$6677b51e$1$7d0aa4706819c060e71a0ccc575c4c1d7b889740','Tina','Taub',50032),(10033,'kkarlsen','kkarlsen@hs-bremen.de','sha1$165eba5e$1$bf4c0fae5d01529264baf0133ea93cdd60ecb337','Karl','Karlsen',50033),(10034,'kkalle','kkalle@hs-bremen.de','3','Kali','Kalle',50034);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +220,7 @@ CREATE TABLE `students_has_studiengangs` (
 
 LOCK TABLES `students_has_studiengangs` WRITE;
 /*!40000 ALTER TABLE `students_has_studiengangs` DISABLE KEYS */;
-INSERT INTO `students_has_studiengangs` VALUES (10001,1),(10002,1),(10025,2);
+INSERT INTO `students_has_studiengangs` VALUES (10001,1),(10002,1),(10026,1),(10027,1),(10028,1),(10029,1),(10030,1),(10031,1),(10032,1),(10033,1),(10034,1),(10025,2);
 /*!40000 ALTER TABLE `students_has_studiengangs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +304,7 @@ CREATE TABLE `termins` (
 
 LOCK TABLES `termins` WRITE;
 /*!40000 ALTER TABLE `termins` DISABLE KEYS */;
-INSERT INTO `termins` VALUES (9,'Datenbanken Abgabe','2019-06-26',0,10002),(10,'Gespräch Teufel','2019-06-20',0,10002),(11,'Gespräch Averbeck','2019-06-26',0,10002),(12,'Hausaufgaben','2019-09-13',0,10002),(18,'Hallo Wayne','2018-03-12',0,10025);
+INSERT INTO `termins` VALUES (10,'Gespräch Teufel','2019-06-20',0,10002),(11,'Gespräch Averbeck','2019-06-26',0,10002),(12,'Hausaufgaben','2019-09-13',0,10002),(18,'Hallo Wayne','2018-03-12',0,10025);
 /*!40000 ALTER TABLE `termins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -501,7 +501,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `all_termins_student`(stud_id VARCHA
 BEGIN
 select  T2.id, T2.termin_bezeichnung, T2.datum, T2.erledigt
 from  termins T2
-where T2.students_id = stud_id;
+where T2.students_id = stud_id ORDER BY T2.datum ASC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -694,4 +694,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-24 20:34:19
+-- Dump completed on 2019-06-25 16:04:44
