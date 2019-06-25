@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 var Student = require('../models/Student');
 var Modul = require('../models/Modul');
+var Pruefung = require('../models/Pruefung');
 var url = require('url');
 var sess;
 
@@ -24,6 +25,7 @@ router.post('/dashboard', async (req, res) => {
 
   sess.hash = req.body.hash;
 
+  console.log(req.body)
 
   for (var termin in req.body) {
     if (termin.split('_')[0] == "termine") {
@@ -39,6 +41,42 @@ router.post('/dashboard', async (req, res) => {
         });
 
       sess.hash = "Termine";
+
+    }
+  }
+
+  for (var pruefung in req.body) {
+    if (pruefung.split('_')[0] == "pruefung") {
+      var id = pruefung.split('_')[2];
+      
+
+      var pruefung = await Pruefung.findOne({
+        where: {
+            id: id
+        }
+    });
+
+    console.log(pruefung.moduls_id);
+     
+
+      await sequelize
+      .query(' call new_student_has_moduls(:student_id, :modul_id)', {
+        replacements: {
+          student_id: sess.nutzer.id,
+          modul_id: pruefung.moduls_id,
+        }
+      });
+
+      await sequelize
+      .query(' call new_student_has_pruefungs(:student_id, :pruefungs_id)', {
+        replacements: {
+          student_id: sess.nutzer.id,
+          pruefungs_id: id,
+        }
+      });
+
+
+       sess.hash = "Module";
 
     }
   }
@@ -143,8 +181,6 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
-      console.log(pruefungs_studiengang)
-      console.log(moduls_studiengang)
 
     res.render('dashboard', {
       students: students,

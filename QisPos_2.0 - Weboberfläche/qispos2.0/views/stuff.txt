@@ -1,0 +1,201 @@
+ 
+  <% var id = "pruefung_cb_" + pruefungs_studiengang[k].pruefungs_bez.replace(/ /g, "_")%>
+
+
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Modulan- und abmeldung</h4>
+                                <h6 class="card-subtitle mb-2  text-danger">Wichtige Informationen zur Anmeldung.
+                                    Bitte
+                                    sorgfältig lesen!</h6>
+                                <p class="card-text">Die Reihenfolge der Module in der Liste, die erscheint, wenn
+                                    Sie
+                                    nachfolgend "Ich akzeptiere" anklicken, stimmt nicht notwendigerweise mit der
+                                    Abfolge
+                                    der Module überein, die die Fakultäten in ihrer Studienverlaufsplanung angeben.
+                                    Wählen
+                                    Sie also aus den Modulen, die die Fakultäten im laufenden Semester anbieten,
+                                    diejenigen
+                                    aus, an denen Sie teilnehmen wollen, suchen Sie die anschließend in der
+                                    nachfolgenden
+                                    Liste und unternehmen Sie die zum Anmelden erforderliche Schritte.
+                                </p>
+
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1" unchecked="">
+                                    <label class="custom-control-label" for="customCheck1">Ich akzeptiere</label>
+                                </div>
+
+                               
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Bachelor of Science IS Medieninformatik BSc 2012</h4>
+
+                                        <p class="card-text">9900 ECTS-Gesamtpunktekonto</p><br>
+
+
+                                        <li class=" dropdown">
+                                            <a class=" dropdown-toggle" data-toggle="dropdown" href="#"
+                                                role="button" aria-haspopup="true" aria-expanded="false">1100
+                                                Semestergesamtkonto (Modul
+                                                1.1 - 1.5)
+                                                [Status:
+                                                BE; Note: ,; Credit Points: 30; Malus: 0; Versuch: 1]</a>
+                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 1</a>
+                                                <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 2</a>
+                                                <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                                    (Ausland)</a>
+                                                <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                                    (HSB)</a>
+                                                <a class="dropdown-item" href="#"> 1550
+                                                    Auslandssemester-Begleitung</a>
+
+                                        </li>
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                                role="button" aria-haspopup="true" aria-expanded="false">1200
+                                                Semestergesamtkonto (Modul
+                                                2.1 - 2.5)
+                                                [Status:
+                                                BE; Note: ,; Credit Points: 30; Malus: 0; Versuch: 1]</a>
+                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 1</a>
+                                                <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 2</a>
+                                                <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                                    (Ausland)</a>
+                                                <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                                    (HSB)</a>
+                                                <a class="dropdown-item" href="#"> 1550
+                                                    Auslandssemester-Begleitung</a>
+
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                                role="button" aria-haspopup="true" aria-expanded="false">1300
+                                                Semestergesamtkonto (Modul
+                                                3.1 - 3.5)
+                                                [Status:
+                                                BE; Note: ,; Credit Points: 30; Malus: 0; Versuch: 1]</a>
+                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 1</a>
+                                                <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 2</a>
+                                                <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                                    (Ausland)</a>
+                                                <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                                    (HSB)</a>
+                                                <a class="dropdown-item" href="#"> 1550
+                                                    Auslandssemester-Begleitung</a>
+
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                                role="button" aria-haspopup="true" aria-expanded="false">1400
+                                                Semestergesamtkonto (Modul 4.1 - 4.5)</a>
+                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 1</a>
+                                                <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 2</a>
+                                                <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                                    (Ausland)</a>
+                                                <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                                    (HSB)</a>
+                                                <a class="dropdown-item" href="#"> 1550
+                                                    Auslandssemester-Begleitung</a>
+
+                                        </li>
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                                role="button" aria-haspopup="true" aria-expanded="false">1500
+                                                Semestergesamtkonto (Modul 5.1 -
+                                                5.5)</a>
+                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 1</a>
+                                                <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 2</a>
+                                                <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                                    (Ausland)</a>
+                                                <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                                    (HSB)</a>
+                                                <a class="dropdown-item" href="#"> 1550
+                                                    Auslandssemester-Begleitung</a>
+
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                                role="button" aria-haspopup="true" aria-expanded="false">1600
+                                                Semestergesamtkonto (Modul 6.1 - 6.5)</a>
+                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 1</a>
+                                                <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 2</a>
+                                                <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                                    (Ausland)</a>
+                                                <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                                    (HSB)</a>
+                                                <a class="dropdown-item" href="#"> 1550
+                                                    Auslandssemester-Begleitung</a>
+
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                                                role="button" aria-haspopup="true" aria-expanded="false">1700
+                                                Semestergesamtkonto (Modul 7.1 - 7.5)</a>
+                                            <div class="dropdown-menu" x-placement="bottom-start"
+                                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                <a class="dropdown-item" href="#">1510 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 1</a>
+                                                <a class="dropdown-item" href="#">1520 Wahlpflichtmodul
+                                                    Medieninformatik
+                                                    (Ausland) 2</a>
+                                                <a class="dropdown-item" href="#"> 1530 Wahlmodul Medieninformatik 1
+                                                    (Ausland)</a>
+                                                <a class="dropdown-item" href="#"> 1540 Wahlmodul Medieninformatik 1
+                                                    (HSB)</a>
+                                                <a class="dropdown-item" href="#"> 1550
+                                                    Auslandssemester-Begleitung</a>
+
+                                        </li>
+
+
+
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> 

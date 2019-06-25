@@ -76,6 +76,8 @@ UPDATE students
 SET matrikelnummer = 10001
 WHERE id >= 0;
 
+INSERT into pruefungs
+values (NULL,2, "Programmieren 2", "Projekt", 1, 20190614, 20190907, 1211, 6 ,100);
 
 INSERT into students_has_studiengangs
 values (10001,1);

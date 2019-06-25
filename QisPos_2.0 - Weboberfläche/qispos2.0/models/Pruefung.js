@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../services/sequelize');
-
+var Modul = require('../models/Modul');
+var Dozent = require('../models/Dozent');
 const Model = Sequelize.Model;
 
 
@@ -41,7 +42,22 @@ Pruefung.init({
     nummer: {
         type: Sequelize.INTEGER,
         allowNull: true
+    },
+    moduls_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: Modul, // Can be both a string representing the table name or a Sequelize model
+          key: 'id'
+        }
+    },
+    dozents_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: Dozent, // Can be both a string representing the table name or a Sequelize model
+          key: 'id'
+        }
     }
+
 }, {
   sequelize,
   timestamps: false,
@@ -49,5 +65,6 @@ Pruefung.init({
  
 
 });
+
 
 module.exports = Pruefung;
