@@ -89,6 +89,8 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
+    console.log("Deine Termine: " + termine);
+
     var noten = await sequelize
       .query(' call all_grades_student(:id)', {
         replacements: {
@@ -111,7 +113,7 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
-    
+
 
     var moduls_studiengang = await sequelize
       .query(' call all_moduls_studiengang(:studiengangs_id)', {
@@ -122,17 +124,12 @@ router.get('/dashboard', async (req, res) => {
 
 
 
-      var pruefungs_studiengang = await sequelize
+    var pruefungs_studiengang = await sequelize
       .query(' call all_pruefungsinformationen_studiengang(:studiengangs_id)', {
         replacements: {
           studiengangs_id: sess.studiengang[0].id
         }
       });
-
- 
-
-
-
 
 
     var moduls = await sequelize
@@ -143,8 +140,8 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
-      console.log(pruefungs_studiengang)
-      console.log(moduls_studiengang)
+    console.log(pruefungs_studiengang)
+    console.log(moduls_studiengang)
 
     res.render('dashboard', {
       students: students,
