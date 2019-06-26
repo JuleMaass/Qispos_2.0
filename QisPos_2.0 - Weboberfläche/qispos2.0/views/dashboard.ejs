@@ -43,7 +43,6 @@
         $("#Bestaetigen").click(function () {
 
 
-            // document.forms[0].hash.value = window.location.hash;
         });
     });
 
@@ -52,21 +51,22 @@
     $(function () {
 
 
-        window.location.hash && $('ul.nav.nav-pills a[href="' + window.location.hash + '"]').tab('show');
+         window.location.hash && $('ul.nav.nav-pills a[href="' + window.location.hash + '"]').tab('show');
 
-      
+
         document.forms[0].hash.value = window.location.hash;
 
 
 
         $('ul.nav.nav-pills a').click(function (e) {
-
-            window.location.hash = this.hash;
-            
-            document.forms[0].hash.value = this.hash;
-
             $(this).tab('show');
             var scrollmem = $('body').scrollTop();
+
+            window.location.hash = this.hash;
+
+            document.forms[0].hash.value = this.hash;
+
+
 
 
         });
@@ -170,12 +170,14 @@
 
                 <div class="tab-pane fade, jumbotron">
 
-                    <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Termine </p>
+                    <p
+                        style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;">
+                        Termine </p>
 
                 </div>
 
                 <div style="margin-top: -50px;" class="list-group">
-                
+
                     <% for (var i = 0; i < termine.length; i++) {
 
                         // Datum umstellen
@@ -243,10 +245,13 @@
 
             <div class="tab-pane fade, jumbotron" id="Noten">
 
-                <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Noten </p>
-                
-                <p style="font-size:150%; color: white; font-weight: bold; text-align: center;"><span style="background-color: rgb(44, 62, 80); padding: 5px;"> Durchschnitt: 
-                <%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %> </span> </p>
+                <p
+                    style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;">
+                    Noten </p>
+
+                <p style="font-size:150%; color: white; font-weight: bold; text-align: center;"><span
+                        style="background-color: rgb(44, 62, 80); padding: 5px;"> Durchschnitt:
+                        <%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %> </span> </p>
 
                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="notenTable">
                     <thead>
@@ -287,7 +292,9 @@
 
             <div class="tab-pane fade, jumbotron" id="Modul">
 
-                <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Module </p>
+                <p
+                    style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;">
+                    Module </p>
 
 
                 <p class="lead mb-3"> </p>
@@ -544,7 +551,9 @@
 
             <div class="tab-pane fade, jumbotron" id="Ranking">
 
-                <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Ranking </p>
+                <p
+                    style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;">
+                    Ranking </p>
 
                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%"
                     id="rankingTable">
@@ -582,7 +591,9 @@
             </div>
             <div class="tab-pane fade, jumbotron" id="Evaluation">
 
-                <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Evaluation </p>
+                <p
+                    style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;">
+                    Evaluation </p>
 
                 <input type="text" placeholder="Dozent">
             </div>
