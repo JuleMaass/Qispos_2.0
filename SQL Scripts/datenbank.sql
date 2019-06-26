@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: localhost    Database: mynewdb
+-- Host: 127.0.0.1    Database: mynewdb
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -478,7 +478,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `all_pruefung_student`(student_id VARCHAR(45))
 BEGIN
 /* Select Prüfungen für Studenten */
-select DISTINCT T1.id, T2.ppruefungs_id, T1.benutzername, T3.bezeichnung, T3.pruefungsdatum
+select DISTINCT T1.id, T2.pruefungs_id, T1.benutzername, T3.bezeichnung, T3.pruefungsdatum
 from students T1, students_has_pruefungs T2, pruefungs T3
 where T2.students_id = student_id
 and T1.id = student_id
@@ -587,7 +587,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ges_note_student`(stud_id VARCHAR(4
 BEGIN
 select T1.students_id, sum(T1.note) as gesamtNote, count(*) as count, T2.matrikelnummer
 from students_has_pruefungs T1, students T2
-where students_id = stud_id and note is not null
+where students_id = stud_id 
+and note is not null 
+and note != 0 and note > 4
 and T2.id = stud_id;
 END ;;
 DELIMITER ;
@@ -757,4 +759,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-26 11:50:24
+-- Dump completed on 2019-06-26 12:58:37
