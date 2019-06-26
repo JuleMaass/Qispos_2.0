@@ -25,7 +25,6 @@ router.post('/dashboard', async (req, res) => {
 
   sess.hash = req.body.hash;
 
-  console.log(req.body)
 
   for (var termin in req.body) {
     if (termin.split('_')[0] == "termine") {
@@ -56,7 +55,6 @@ router.post('/dashboard', async (req, res) => {
         }
     });
 
-    console.log(pruefung.moduls_id);
      
 
       await sequelize
@@ -74,6 +72,8 @@ router.post('/dashboard', async (req, res) => {
           pruefungs_id: id,
         }
       });
+
+
 
 
        sess.hash = "Module";
@@ -106,6 +106,7 @@ router.post('/dashboard', async (req, res) => {
       });
   }
 
+  console.log(sess.hash);
   res.redirect('/users/dashboard#' + sess.hash);
 
 });
@@ -119,6 +120,8 @@ router.get('/dashboard', async (req, res) => {
 
 
     var students = await Student.findAll();
+
+    
 
     var termine = await sequelize
       .query(' call all_termins_student(:id)', {
@@ -160,6 +163,13 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
+      var pruefungs_student = await sequelize
+      .query(' call all_pruefung_student(:student_id)', {
+        replacements: {
+          student_id: sess.nutzer.id
+        }
+      });
+
 
 
     var pruefungs_studiengang = await sequelize
@@ -179,6 +189,8 @@ router.get('/dashboard', async (req, res) => {
       });
 
 
+
+
     res.render('dashboard', {
       students: students,
       student: sess.nutzer,
@@ -189,7 +201,8 @@ router.get('/dashboard', async (req, res) => {
       ges_note: ges_note,
       semesters_studiengang: semesters_studiengang,
       moduls_studiengang: moduls_studiengang,
-      pruefungs_studiengang: pruefungs_studiengang
+      pruefungs_studiengang: pruefungs_studiengang,
+      pruefungs_student: pruefungs_student
     });
 
 

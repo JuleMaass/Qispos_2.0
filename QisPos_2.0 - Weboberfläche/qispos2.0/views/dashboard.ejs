@@ -3,7 +3,8 @@
 </script>
 
 <!-- CSS Bootstrap Datepicker -->
-<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css'>
+<link rel='stylesheet prefetch'
+    href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css'>
 
 <script>
     $(document).ready(function () {
@@ -183,7 +184,7 @@
 
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" name="<%= id %>" type="checkbox" unchecked>  ‏‏‎ 
+                                    <input class="form-check-input" name="<%= id %>" type="checkbox" unchecked> ‏‏‎
                                 </label>
                             </div>
                         </div>
@@ -455,13 +456,33 @@
                                         <td>
 
                                             <% var id = "pruefung_cb_" + pruefungs_studiengang[k].id%>
+
+                                            <% 
+                                            var angemeldet = false;
+                                            for ( l = 0; l < pruefungs_student.length; l++ ) {
+                                            
+                                            if (pruefungs_student[l].id == student.id &&  pruefungs_student[l].pruefungs_id == pruefungs_studiengang[k].id)   {
+                                                angemeldet = true;
+                                                %>
+
+                                            Angemeldet
+
+                                            <%      } 
+                                                }
+                                            
+                                            if (angemeldet == false) { 
+                                                %>
+
                                             <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input" name="<%= id %>" type="checkbox"
-                                                        unchecked>
-                                                    Anmelden
-                                                </label>
+                                                <input class="form-check-input" name="<%= id %>" type="checkbox"
+                                                    unchecked>
+                                                </input>
                                             </div>
+
+
+
+                                            <% } %>
+
                                         </td>
                                     </tr>
 
@@ -477,7 +498,8 @@
 
 
                         <div class="modal-footer">
-                            <button type="submit" id="Bestaetigen" class="btn btn-primary">Für ausgewählte Prüfungen anmelden</button>
+                            <button type="submit" id="Bestaetigen" class="btn btn-primary">Für ausgewählte Prüfungen
+                                anmelden</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
                         </div>
                     </div>
@@ -548,20 +570,21 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js'></script>
 <!-- JS Datei Bootstrap Sprache Deutsch, muss als zweites JS stehen -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.de.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.de.min.js'>
+</script>
 
 <!-- Datepicker Aufruf als letztes, bei Bedarf anpassen -->
 <script>
-$('#datepicker').datepicker({
-    // Datums-Format, optional DD schreibt Wochentag aus
-    format: 'dd.mm.yyyy',
-    // Start-Datum aktiv ab -3 Tage vom Tagesdatum
-    startDate: '-3d',
-    // Tagesdatum hervorheben
-    todayHighlight: true,
-    // automatisch nach Datumswahl schließen 
-    autoclose: true, 
-    // Sprache Deutsch setzen 
-    language: 'de' 
-}); 
+    $('#datepicker').datepicker({
+        // Datums-Format, optional DD schreibt Wochentag aus
+        format: 'dd.mm.yyyy',
+        // Start-Datum aktiv ab -3 Tage vom Tagesdatum
+        startDate: '-3d',
+        // Tagesdatum hervorheben
+        todayHighlight: true,
+        // automatisch nach Datumswahl schließen 
+        autoclose: true,
+        // Sprache Deutsch setzen 
+        language: 'de'
+    });
 </script>
