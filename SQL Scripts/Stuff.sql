@@ -12,6 +12,11 @@ Select * FROM studiengangs_has_moduls;
 Select * FROM moduls;
 select * from studiengangs;
 
+
+
+DELETE FROM students_has_moduls WHERE moduls_id = 6;
+
+
 /* Semester eines Studiengangs*/
 select distinct T1.semester  
 from moduls T1, studiengangs_has_moduls T2

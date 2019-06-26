@@ -25,6 +25,9 @@ router.post('/dashboard', async (req, res) => {
 
   sess.hash = req.body.hash;
 
+  sess.hash = "Ranking";
+
+
 
   for (var termin in req.body) {
     if (termin.split('_')[0] == "termine") {
@@ -120,8 +123,6 @@ router.get('/dashboard', async (req, res) => {
 
 
     var students = await Student.findAll();
-
-    
 
     var termine = await sequelize
       .query(' call all_termins_student(:id)', {
