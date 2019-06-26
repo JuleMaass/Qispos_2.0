@@ -22,11 +22,10 @@ router.get('/logout', (req, res) => res.redirect('../welcome'));
 router.post('/dashboard', async (req, res) => {
   sess = req.session;
 
+console.log(req.body.hash);
+
 
   sess.hash = req.body.hash;
-
-  sess.hash = "Ranking";
-
 
 
   for (var termin in req.body) {
@@ -42,7 +41,7 @@ router.post('/dashboard', async (req, res) => {
           }
         });
 
-      sess.hash = "Termine";
+      sess.hash = "#Termine";
 
     }
   }
@@ -79,7 +78,7 @@ router.post('/dashboard', async (req, res) => {
 
 
 
-       sess.hash = "Module";
+       sess.hash = "#Module";
 
     }
   }
@@ -109,8 +108,7 @@ router.post('/dashboard', async (req, res) => {
       });
   }
 
-  console.log(sess.hash);
-  res.redirect('/users/dashboard#' + sess.hash);
+  res.redirect('/users/dashboard' + sess.hash);
 
 });
 //Dashboard
@@ -131,7 +129,6 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
-    console.log("Deine Termine: " + termine);
 
     var noten = await sequelize
       .query(' call all_grades_student(:id)', {
