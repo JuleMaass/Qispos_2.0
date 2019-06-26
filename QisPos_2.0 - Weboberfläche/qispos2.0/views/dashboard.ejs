@@ -83,11 +83,38 @@
     <h1 class="display-3, text-center">QisPos 2.0</h1>
 
     <p class="lead mb-3, text-center">Willkommen <%= student.vorname %></p>
-    <div class="text-right">
 
-        <a href="/users/logout" class="btn btn-primary">Logout</a>
+    <br>
+
+    <var table-size></var>
+    <p class="lead mb-3"> </p>
+    <div class="container container-small">
+        <p class="lead mb-3"> </p>
+        <table class="table " style="margin: auto; font-size:80%; width: 80%">
+            <thead>
+                <tr>
+                    <th scope="col">Name des Studierenden</th>
+                    <th scope="col">Studiengang</th>
+                    <th scope="col">Angestrebter Abschluss</th>
+                    <th scope="col">Matrikelnummer</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr class="table">
+
+                    <td><%= student.benutzername %></td>
+                    <td><%= studiengang[0].bezeichnung %></td>
+                    <td><%= studiengang[0].abschluss %></td>
+                    <td><%= student.matrikelnummer %></td>
+
+                </tr>
+
+
+            </tbody>
+        </table>
     </div>
-
 
     <p class="lead mb-3"> </p>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -125,42 +152,12 @@
             </ul>
             </ul>
         </div>
+
+        <div class="text-right">
+            <a href="/users/logout" class="btn btn-primary">Logout</a>
+        </div>
+
     </nav>
-
-
-    <var table-size></var>
-    <p class="lead mb-3"> </p>
-    <div class="container container-small">
-        <p class="lead mb-3"> </p>
-        <table class="table " style="margin: auto; font-size:80%; width: 80%">
-            <thead>
-                <tr>
-                    <th scope="col">Name des Studierenden</th>
-                    <th scope="col">Studiengang</th>
-                    <th scope="col">Angestrebter Abschluss</th>
-                    <th scope="col">Matrikelnummer</th>
-
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr class="table">
-
-                    <td><%= student.benutzername %></td>
-                    <td><%= studiengang[0].bezeichnung %></td>
-                    <td><%= studiengang[0].abschluss %></td>
-                    <td><%= student.matrikelnummer %></td>
-
-                </tr>
-
-
-            </tbody>
-        </table>
-    </div>
-
-
-
-
 
     <form action="/users/dashboard/" method="POST">
 
@@ -169,13 +166,16 @@
 
         <div id="myTabContent" class="tab-content">
 
-
-
             <div class="tab-pane fade, jumbotron, active " id="Termine">
 
+                <div class="tab-pane fade, jumbotron">
 
+                    <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Termine </p>
 
-                <div class="list-group">
+                </div>
+
+                <div style="margin-top: -50px;" class="list-group">
+                
                     <% for (var i = 0; i < termine.length; i++) {
 
                         // Datum umstellen
@@ -215,10 +215,6 @@
                 <button type="submit" id="Bestaetigen" class="btn btn-primary float-right">Abschließen</button>
                 <br>
 
-
-
-
-                <br />
                 <br>
                 <div class="card text-white bg-success mb-3 mx-auto" style="max-width: 40rem;">
                     <div class="card-header">Termin hinzufügen</div>
@@ -247,20 +243,20 @@
 
             <div class="tab-pane fade, jumbotron" id="Noten">
 
-
-                <p style="font-size:150%; color: rgb(24, 188, 156); text-align: center;"><span
-                        style="background-color: rgb(44, 62, 80); padding: 5px;"> Durchschnitt:
-                        <%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %> </span> </p>
+                <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Noten </p>
+                
+                <p style="font-size:150%; color: white; font-weight: bold; text-align: center;"><span style="background-color: rgb(44, 62, 80); padding: 5px;"> Durchschnitt: 
+                <%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %> </span> </p>
 
                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="notenTable">
                     <thead>
                         <tr class="table-secondary">
-                            <th class="th-sm">Prüfungsnr.</th>
-                            <th class="th-sm">Bezeichnung der Leistung</th>
-                            <th class="th-sm">Semester</th>
-                            <th class="th-sm">Note</th>
-                            <th class="th-sm">Credits</th>
-                            <th class="th-sm">Versuch</th>
+                            <th style="background-color:rgb(44, 62, 80);" class="th-sm">Prüfungsnr.</th>
+                            <th style="background-color:rgb(44, 62, 80);" class="th-sm">Bezeichnung der Leistung</th>
+                            <th style="background-color:rgb(44, 62, 80);" class="th-sm">Semester</th>
+                            <th style="background-color:rgb(44, 62, 80);" class="th-sm">Note</th>
+                            <th style="background-color:rgb(44, 62, 80);" class="th-sm">Credits</th>
+                            <th style="background-color:rgb(44, 62, 80);" class="th-sm">Versuch</th>
 
                         </tr>
                     </thead>
@@ -291,6 +287,8 @@
 
             <div class="tab-pane fade, jumbotron" id="Modul">
 
+                <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Module </p>
+
 
                 <p class="lead mb-3"> </p>
 
@@ -299,13 +297,13 @@
                     id="uebersichtTable">
                     <thead>
                         <tr class="table-secondary">
-                            <th scope="col">Prüfungsnr.</th>
-                            <th scope="col">Modul</th>
-                            <th scope="col">Prüfer</th>
-                            <th scope="col">Semester</th>
-                            <th scope="col">Termin</th>
-                            <th scope="col">Anmeldedatum</th>
-                            <th scope="col">Prüfungsdatum</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfungsnr.</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Modul</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfer</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Semester</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Termin</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Anmeldedatum</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfungsdatum</th>
 
                         </tr>
                     </thead>
@@ -546,16 +544,18 @@
 
             <div class="tab-pane fade, jumbotron" id="Ranking">
 
+                <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Ranking </p>
+
                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%"
                     id="rankingTable">
                     <thead>
                         <tr class="table-secondary">
-                            <th scope="col">ID</th>
-                            <th scope="col">Benutzername</th>
-                            <th scope="col">Vorname</th>
-                            <th scope="col">Nachname</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Matrikelnummer</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">ID</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Benutzername</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Vorname</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Nachname</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Email</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Matrikelnummer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -581,6 +581,9 @@
                 </table>
             </div>
             <div class="tab-pane fade, jumbotron" id="Evaluation">
+
+                <p style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;"> Evaluation </p>
+
                 <input type="text" placeholder="Dozent">
             </div>
         </div>
