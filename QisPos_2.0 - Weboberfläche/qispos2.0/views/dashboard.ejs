@@ -304,10 +304,9 @@
                     id="uebersichtTable">
                     <thead>
                         <tr class="table-secondary">
-                            <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfungsnr.</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Semester</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Modul</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfer</th>
-                            <th style="background-color:rgb(44, 62, 80);" scope="col">Semester</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Termin</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Anmeldedatum</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfungsdatum</th>
@@ -342,17 +341,12 @@
                             moduls[i].pruefungsdatum[1] +
                             moduls[i].pruefungsdatum[2] +
                             moduls[i].pruefungsdatum[3];
-
-
-
-
                             %>
 
                         <tr class="table-light">
-                            <td><%= moduls[i].nummer %></td>
+                            <td><%= moduls[i].semester %> </td>
                             <td><%= moduls[i].bezeichnung %> </td>
                             <td><%= moduls[i].benutzername %> </td>
-                            <td><%= moduls[i].semester %> </td>
                             <td><%= moduls[i].versuch %> </td>
                             <td><%= neuesAnmeldeDatum %> </td>
                             <td><%= neuesPruefungsDatum %> </td>

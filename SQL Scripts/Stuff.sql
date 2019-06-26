@@ -1,6 +1,12 @@
 
 Select * FROM dozents;
 
+update students_has_pruefungs 
+set note = 1.0
+where students_id = (select id from students where matrikelnummer = 50002)
+and pruefungs_id = 3 ;
+
+
 Select * FROM students;
 
 Select * FROM pruefungs;
@@ -11,6 +17,33 @@ Select * FROM students_has_moduls;
 Select * FROM studiengangs_has_moduls;
 Select * FROM moduls;
 select * from studiengangs;
+
+select bezeichnung as pruefungs_bez, pruefungsart, pruefungsdatum
+from pruefungs 
+where dozents_id = 100;
+
+select T1.nummer, T1.bezeichnung as pruefungs_bez, T1.pruefungsart, T1. pruefungsdatum, T2.matrikelnummer, T3.note
+from pruefungs T1, students T2, students_has_pruefungs T3
+where T1.dozents_id = 100
+and T3.pruefungs_id = T1.id
+and T3.students_id = T2.id; 
+
+
+select note from students_has_pruefungs
+where students_id = (select id from students where matrikelnummer = 50001)
+and pruefungs_id = 3 ;
+
+
+call update_note(3,50001,'1.3');
+
+select DISTINCT T1.id, T3.bezeichnung, T3.nummer, T3.versuch, T3.dozents_id, T2.semester, T3.anmeldedatum, T3.pruefungsdatum, T4.status, T6.benutzername, T3.id as pruef_id
+from students T1, moduls T2, pruefungs T3, students_has_moduls T4, students_has_pruefungs T5, dozents T6
+where T1.id = 10002
+and T4.students_id = 10002
+and T2.id = T4.moduls_id
+and T5.students_id = 10002
+and T3.moduls_id = T4.moduls_id
+and T6.id = T3.dozents_id;
 
 
 
