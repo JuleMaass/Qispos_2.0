@@ -1,3 +1,21 @@
+<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("user_SpSLbCCrYO4XtBnoWBtAX");
+   })();
+
+  var service_id = 'gmail';
+  var template_id = 'template_1Ei5Rdut';
+  var template_params = {
+	  name: 'John',
+	  reply_email: 'werdermann.lukas@gmail.com',
+	  message: 'This is awesome!'
+};
+
+// emailjs.send(service_id,template_id,template_params);
+
+</script>
+
 <div class="row mt-5">
   <div class="col-md-6 m-auto">
     <div class="card card-body">
@@ -43,7 +61,7 @@
           Register
         </button>
       </form>
-      <p class="lead mt-4">Breits registriert? <a href="/login">Login</a></p>
+      <p class="lead mt-4">Bereits registriert? <a href="/login">Login</a></p>
     </div>
   </div>
 </div>

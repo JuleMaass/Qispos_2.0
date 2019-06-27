@@ -8,13 +8,11 @@ var Pruefung = require('../models/Pruefung');
 var Students_has_modul = require('../models/Students_has_modul');
 var Students_has_pruefung = require('../models/Students_has_pruefung');
 var url = require('url');
-var sess;
 
+var sess;
 
 // Welcome Page für nicht eingeloggte
 router.get('/', (req, res) => res.redirect('../login'));
-
-
 
 //Logout Page/view
 router.get('/logout', (req, res) => res.redirect('../welcome'));
