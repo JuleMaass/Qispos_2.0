@@ -2,9 +2,13 @@
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 </script>
 
-<!-- CSS Bootstrap Datepicker -->
+<!-- CSS Bootstrap Datepicker Library -->
 <link rel='stylesheet prefetch'
     href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css'>
+
+<!-- PDF Library -->
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js">
+</script>
 
 <script>
     $(document).ready(function () {
@@ -76,7 +80,132 @@
 
 
     });
+
+    function createPDF() {
+
+        var pdfVorname = document.getElementById("pdf.vorname").innerHTML;
+        var pdfNachname = document.getElementById("pdf.nachname").innerHTML;
+        var pdfMatrnr = document.getElementById("pdf.matrikelnummer").innerHTML;
+        var pdfAlleNoten = document.getElementById("pdf.noten").innerHTML;
+        var pdfStudiengang = document.getElementById("pdf.studiengang").innerHTML;
+        var pdfAbschluss = document.getElementById("pdf.abschluss").innerHTML;
+
+        var pdfDatum = new Date();
+
+        console.log("Alle Noten: " + pdfAlleNoten);
+
+        var doc = new jsPDF();
+
+        doc.setFontSize(12);
+
+        // Hochschule Bremen
+        doc.setFontStyle("bold");
+        doc.text("Hochschule Bremen",20, 20);
+        doc.text("City University of Applied Sciences", 20, 25);
+
+        // Leistungsübersicht
+        doc.setFontStyle("bold");
+        doc.text('Leistungsübersicht', 20, 80);
+
+        // Datum
+        doc.text(pdfDatum.getDate() +"." + pdfDatum.getMonth() + "." + pdfDatum.getFullYear(), 170, 80);
+
+        doc.setFontStyle("normal");
+
+        // Name
+        doc.setTextColor(24, 188, 156);
+        doc.text("Name: ", 20, 95);
+        doc.setTextColor(0,0,0);
+        doc.text(pdfVorname + " " + pdfNachname, 60, 95);
+
+        // Matrikelnummer
+        doc.setTextColor(24, 188, 156);
+        doc.text("Matrikelnummer: ", 20, 100);
+        doc.setTextColor(0,0,0);
+        doc.text(pdfMatrnr, 60, 100);
+
+        // Abschluss
+        doc.setTextColor(24, 188, 156);
+        doc.text("Abschluss: ", 20, 105);
+        doc.setTextColor(0,0,0);
+        doc.text(pdfAbschluss, 60, 105);
+
+        // Studiengang
+        doc.setFontStyle("bold");
+        doc.setTextColor(24, 188, 156);
+        doc.text(pdfStudiengang, 20, 130);     
+        
+        doc.setFontStyle("normal");
+        doc.setTextColor(0,0,0);
+
+        // Tabellen Erstellung
+
+        var zeile = 0;
+        var spalte = 0;
+
+        var wort = "";
+
+        var abstand;
+
+        var ueberschrift = false;
+
+        doc.setFontSize(10);
+
+        for(var i = 0; i < pdfAlleNoten.length; i++){
+
+            if(ueberschrift == false) {
+
+                doc.setTextColor(24, 188, 156);
+
+                doc.text("Prüfungsnr.",20, 140);
+                doc.text("Modul",50,140);
+                doc.text("Semester",80,140);
+                doc.text("Note",110,140);
+                doc.text("Credits", 140, 140);
+                doc.text("Versuch", 170, 140);
+
+                ueberschrift = true;
+                doc.setTextColor(0,0,0);
+
+            }
+
+            if(pdfAlleNoten[i] != "€") {
+
+                wort += pdfAlleNoten[i];
+                
+
+            } else {
+
+                doc.text(wort, 30 * spalte + 20 ,10 * (zeile + 1) + 145);
+
+                if(spalte == 5) {
+
+                    zeile++;
+                    spalte = 0;
+
+                } else {
+
+                    spalte++;
+
+                }
+
+                console.log(wort);
+
+                wort = "";
+
+            }
+
+            
+
+        }
+
+        doc.save('leistungsuebersicht.pdf')
+
+    }
+
+
 </script>
+
 
 <p class="lead mb-3"> </p>
 <div style="overflow: auto;" class="lead mb-4, jumbotron jumbotron-fluid">
@@ -164,6 +293,13 @@
 
         <input type="hidden" name="hash" id="hash">
 
+        <!-- Studentendaten für die PDF verfügbar machen -->
+        <label style="visibility:hidden" id="pdf.vorname"> <%= student.vorname%></label>
+        <label style="visibility:hidden" id="pdf.nachname"> <%= student.nachname%></label>
+        <label style="visibility:hidden" id="pdf.matrikelnummer"> <%= student.matrikelnummer%></label>
+        <label style="visibility:hidden" id="pdf.studiengang"> <%= studiengang[0].bezeichnung%></label>
+        <label style="visibility:hidden" id="pdf.abschluss"> <%= studiengang[0].abschluss%></label>
+
         <div id="myTabContent" class="tab-content">
 
             <div class="tab-pane fade, jumbotron, active " id="Termine">
@@ -232,10 +368,7 @@
 
                     </div>
 
-
-
                 </div>
-
 
             </div>
 
@@ -266,9 +399,15 @@
                     </thead>
                     <tbody>
 
-                        <% for (var i = 0; i < noten.length; i++) { 
+                        <% 
+                        var alleNotenAlsString = "";
+                        
+                        for (var i = 0; i < noten.length; i++) { 
 
                             if(noten[i].note != 0) {
+                                
+                                alleNotenAlsString += noten[i].nummer + "€" + noten[i].bezeichnung + "€" + noten[i].semester+ "€" + noten[i].note + "€" + noten[i].credits +"€" + noten[i].versuch + "€"; 
+                                console.log(alleNotenAlsString);
 
                             %>
                         <tr class="table-light">
@@ -279,11 +418,15 @@
                             <td><%= noten[i].versuch %> </td>
                         </tr>
                         <% }
-                         } %>
+                         } 
+                         
+                         %>
+
+                        <label style="visibility:hidden" id="pdf.noten"><%= alleNotenAlsString%> </label>
 
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-primary">als PDF downloaden</button>
+                <button type="button" class="btn btn-primary" onclick="createPDF()">Als PDF downloaden</button>
             </div>
 
 
