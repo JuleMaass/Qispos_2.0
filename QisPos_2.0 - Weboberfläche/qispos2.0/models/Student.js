@@ -40,6 +40,7 @@ Student.init({
     matrikelnummer: {
         type: Sequelize.STRING,
         allowNull: true,
+        unique: true
     }
 }, {
   sequelize,

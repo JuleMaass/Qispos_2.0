@@ -17,12 +17,52 @@ router.get('/', (req, res) => res.redirect('../login'));
 //Logout Page/view
 router.get('/logout', (req, res) => res.redirect('../welcome'));
 
+router.post('/dashboard_dozent', async (req, res) => {
+  sess = req.session;
 
+  sess.hash = req.body.hash;
+  console.log(req.body);
+
+
+  for (var note in req.body) {
+    if (note.split('_')[0] == "note") {
+
+      var stud_id = parseInt(note.split('_')[2])
+
+      var pruef_id = parseInt(note.split('_')[3])
+
+
+      await sequelize
+        .query(' call update_note(:pruef_id, :stud_id, :note)', {
+          replacements: {
+            pruef_id: pruef_id,
+            stud_id: stud_id,
+            note: req.body.update_note
+          }
+        });
+
+      sess.hash = "#Noteneintragung";
+
+    }
+  }
+
+
+
+
+  var pruefungs = await sequelize
+    .query(' call all_pruefungs_dozent(:doz_id)', {
+      replacements: {
+        doz_id: sess.nutzer.id
+
+      }
+    });
+
+  res.redirect('/users/dashboard_dozent' + sess.hash);
+
+});
 
 router.post('/dashboard', async (req, res) => {
   sess = req.session;
-
-console.log(req.body.hash);
 
 
   sess.hash = req.body.hash;
@@ -41,6 +81,7 @@ console.log(req.body.hash);
           }
         });
 
+      // eventuell unnötig
       sess.hash = "#Termine";
 
     }
@@ -49,36 +90,36 @@ console.log(req.body.hash);
   for (var pruefung in req.body) {
     if (pruefung.split('_')[0] == "pruefung") {
       var id = pruefung.split('_')[2];
-      
+
 
       var pruefung = await Pruefung.findOne({
         where: {
-            id: id
-        }
-    });
-
-     
-
-      await sequelize
-      .query(' call new_student_has_moduls(:student_id, :modul_id)', {
-        replacements: {
-          student_id: sess.nutzer.id,
-          modul_id: pruefung.moduls_id,
-        }
-      });
-
-      await sequelize
-      .query(' call new_student_has_pruefungs(:student_id, :pruefungs_id)', {
-        replacements: {
-          student_id: sess.nutzer.id,
-          pruefungs_id: id,
+          id: id
         }
       });
 
 
 
+      await sequelize
+        .query(' call new_student_has_moduls(:student_id, :modul_id)', {
+          replacements: {
+            student_id: sess.nutzer.id,
+            modul_id: pruefung.moduls_id,
+          }
+        });
 
-       sess.hash = "#Module";
+      await sequelize
+        .query(' call new_student_has_pruefungs(:student_id, :pruefungs_id)', {
+          replacements: {
+            student_id: sess.nutzer.id,
+            pruefungs_id: id,
+          }
+        });
+
+
+
+
+      sess.hash = "#Module";
 
     }
   }
@@ -138,6 +179,8 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
+      console.log(noten);
+
     var ges_note = await sequelize
       .query(' call ges_note_student(:id)', {
         replacements: {
@@ -161,7 +204,7 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
-      var pruefungs_student = await sequelize
+    var pruefungs_student = await sequelize
       .query(' call all_pruefung_student(:student_id)', {
         replacements: {
           student_id: sess.nutzer.id
@@ -210,19 +253,27 @@ router.get('/dashboard', async (req, res) => {
 
 
 //Dashboard Dozent
-router.get('/dashboard_dozent', (req, res) => {
+router.get('/dashboard_dozent', async (req, res) => {
   let sess = req.session;
+  var students = await Student.findAll();
+  var pruefungs = await sequelize
+    .query(' call all_pruefungs_dozent(:doz_id)', {
+      replacements: {
+        doz_id: sess.nutzer.id
+
+      }
+    });
+
+
 
   if (sess.nutzer.benutzername == null) {
     res.redirect('../../login')
   } else {
 
     res.render('dashboard_dozent', {
-      nutzername: sess.nutzer.benutzername,
-      nutzerid: sess.nutzer.id,
       students: students,
-      student: sess.nutzer
-
+      dozent: sess.nutzer,
+      pruefungs: pruefungs
     });
 
   }

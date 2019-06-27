@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: mynewdb
+-- Host: localhost    Database: mynewdb
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -148,7 +148,8 @@ CREATE TABLE `students` (
   `vorname` varchar(255) NOT NULL,
   `nachname` varchar(255) NOT NULL,
   `matrikelnummer` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `matrikelnummer_UNIQUE` (`matrikelnummer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10026 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -217,7 +218,7 @@ CREATE TABLE `students_has_pruefungs` (
 
 LOCK TABLES `students_has_pruefungs` WRITE;
 /*!40000 ALTER TABLE `students_has_pruefungs` DISABLE KEYS */;
-INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,3.3),(10002,3,0,3.3),(10002,4,0,1.7),(10002,5,0,2.3),(10002,6,0,0);
+INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10002,3,0,3),(10002,4,0,1.7),(10002,5,0,2.3),(10002,6,0,3);
 /*!40000 ALTER TABLE `students_has_pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,13 +355,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `all_grades_student`(stud_id VARCHAR
 BEGIN
 
 /*Select alle Prüfungen mit Modul mit noten für einen Studenten*/
-select DISTINCT  T1.id,  T1.benutzername, T4.nummer, T4.bezeichnung, T2.semester, T5.note, T2.credits, T4.versuch
-from students T1, moduls T2, students_has_moduls T3, pruefungs T4, students_has_pruefungs T5
-where T1.id = stud_id 
-and T3.students_id = stud_id 
-and T2.id = T3.moduls_id
-and T4.moduls_id = T3.moduls_id
-and T5.pruefungs_id = T4.id;
+Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note, T4.credits  
+from students T1, pruefungs T2, students_has_pruefungs T3, moduls T4, students_has_moduls T5
+where T1.id = stud_id
+and T3.students_id = stud_id
+and T2.id = T3.pruefungs_id
+and T5.students_id = stud_id
+and T4.id = T5.moduls_id
+and T2.moduls_id = T4.id;
 
 END ;;
 DELIMITER ;
@@ -403,7 +405,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `all_moduls_student`(stud_id VARCHAR(45))
 BEGIN
 /* select module für student*/
-select DISTINCT T1.id, T2.bezeichnung, T3.nummer, T3.versuch, T3.dozents_id, T2.semester, T3.anmeldedatum, T3.pruefungsdatum, T4.status, T6.benutzername
+select DISTINCT T1.id, T3.bezeichnung, T3.nummer, T3.versuch, T3.dozents_id, T2.semester, T3.anmeldedatum, T3.pruefungsdatum, T4.status, T6.benutzername
 from students T1, moduls T2, pruefungs T3, students_has_moduls T4, students_has_pruefungs T5, dozents T6
 where T1.id = stud_id
 and T4.students_id = stud_id
@@ -459,6 +461,29 @@ BEGIN
  and moduls.id = studiengangs_has_moduls.moduls_id
  and pruefungs.moduls_id = moduls.id
  and dozents.id = pruefungs.dozents_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_pruefungs_dozent` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_pruefungs_dozent`(doz_id VARCHAR(45))
+BEGIN
+select T1.nummer, T1.bezeichnung as pruefungs_bez, T1.pruefungsart, T1. pruefungsdatum, T2.id as stud_id, T2.matrikelnummer, T3.note, T3.pruefungs_id as pruef_id
+from pruefungs T1, students T2, students_has_pruefungs T3
+where T1.dozents_id = doz_id
+and T3.pruefungs_id = T1.id
+and T3.students_id = T2.id; 
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -589,7 +614,7 @@ select T1.students_id, sum(T1.note) as gesamtNote, count(*) as count, T2.matrike
 from students_has_pruefungs T1, students T2
 where students_id = stud_id 
 and note is not null 
-and note != 0 and note > 4
+and note != 0 and note < 4.0
 and T2.id = stud_id;
 END ;;
 DELIMITER ;
@@ -728,6 +753,29 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_note` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_note`(pruef VARCHAR(45), stud_id VARCHAR(45), note_neu VARCHAR(45))
+BEGIN
+update students_has_pruefungs 
+set note = note_neu
+where students_id = stud_id
+and pruefungs_id = pruef ;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `update_termin` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -759,4 +807,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-26 12:58:37
+-- Dump completed on 2019-06-27 10:00:18

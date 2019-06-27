@@ -3,6 +3,7 @@ const router = express.Router();
 var sequelize = require('../services/sequelize');
 
 var Student = require('../models/Student');
+var Dozent = require('../models/Dozent');
 var Studiengang = require('../models/Studiengang');
 
 
@@ -107,10 +108,7 @@ router.post('/register', async (req, res) => {
                 }
             });
 
-
         res.redirect('/login')
-
-
 
     }
 
@@ -198,7 +196,7 @@ router.post('/login', async (req, res) => {
 
             sess.nutzer = result;
             sess.dozent = false;
-   
+
 
             sess.studiengang = await sequelize
                 .query(' call student_studies(:id)', {
