@@ -108,10 +108,7 @@ router.post('/register', async (req, res) => {
                 }
             });
 
-
         res.redirect('/login')
-
-
 
     }
 
@@ -199,7 +196,7 @@ router.post('/login', async (req, res) => {
 
             sess.nutzer = result;
             sess.dozent = false;
-   
+
 
             sess.studiengang = await sequelize
                 .query(' call student_studies(:id)', {

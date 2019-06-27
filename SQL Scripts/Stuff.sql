@@ -1,26 +1,40 @@
 
 Select * FROM dozents;
-
-update students_has_pruefungs 
-set note = 1.0
-where students_id = (select id from students where matrikelnummer = 50002)
-and pruefungs_id = 3 ;
-
-
 Select * FROM students;
-
 Select * FROM pruefungs;
-
 Select * FROM students_has_studiengangs;
 Select * FROM students_has_pruefungs;
 Select * FROM students_has_moduls;
 Select * FROM studiengangs_has_moduls;
 Select * FROM moduls;
-select * from studiengangs;
+Select * from studiengangs;
+
+
+Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note  
+from students T1, pruefungs T2, students_has_pruefungs T3
+where T1.id = 10002
+and T3.students_id = 10002
+and T2.id = T3.pruefungs_id;
+
+
+
+
+update students_has_pruefungs 
+set note = 1.0
+where students_id = (select id from students where matrikelnummer = 50002)
+and pruefungs_id = 3;
+
+
+
+
 
 select bezeichnung as pruefungs_bez, pruefungsart, pruefungsdatum
 from pruefungs 
 where dozents_id = 100;
+
+
+
+
 
 select T1.nummer, T1.bezeichnung as pruefungs_bez, T1.pruefungsart, T1. pruefungsdatum, T2.matrikelnummer, T3.note
 from pruefungs T1, students T2, students_has_pruefungs T3

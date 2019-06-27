@@ -51,7 +51,7 @@
     $(function () {
 
 
-         window.location.hash && $('ul.nav.nav-pills a[href="' + window.location.hash + '"]').tab('show');
+        window.location.hash && $('ul.nav.nav-pills a[href="' + window.location.hash + '"]').tab('show');
 
 
         document.forms[0].hash.value = window.location.hash;
@@ -256,9 +256,8 @@
                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="notenTable">
                     <thead>
                         <tr class="table-secondary">
-                            <th style="background-color:rgb(44, 62, 80);" class="th-sm">Prüfungsnr.</th>
-                            <th style="background-color:rgb(44, 62, 80);" class="th-sm">Bezeichnung der Leistung</th>
                             <th style="background-color:rgb(44, 62, 80);" class="th-sm">Semester</th>
+                            <th style="background-color:rgb(44, 62, 80);" class="th-sm">Bezeichnung der Leistung</th>
                             <th style="background-color:rgb(44, 62, 80);" class="th-sm">Note</th>
                             <th style="background-color:rgb(44, 62, 80);" class="th-sm">Credits</th>
                             <th style="background-color:rgb(44, 62, 80);" class="th-sm">Versuch</th>
@@ -273,10 +272,8 @@
 
                             %>
                         <tr class="table-light">
-
-                            <td><%= noten[i].nummer %></td>
-                            <td><%= noten[i].bezeichnung %> </td>
                             <td><%= noten[i].semester %> </td>
+                            <td><%= noten[i].bezeichnung %> </td>
                             <td><%= noten[i].note %> </td>
                             <td><%= noten[i].credits %> </td>
                             <td><%= noten[i].versuch %> </td>
