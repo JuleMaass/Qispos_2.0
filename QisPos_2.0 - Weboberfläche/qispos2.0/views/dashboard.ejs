@@ -100,7 +100,7 @@
 
         // Hochschule Bremen
         doc.setFontStyle("bold");
-        doc.text("Hochschule Bremen",20, 20);
+        doc.text("Hochschule Bremen", 20, 20);
         doc.text("City University of Applied Sciences", 20, 25);
 
         // Leistungsübersicht
@@ -108,35 +108,35 @@
         doc.text('Leistungsübersicht', 20, 80);
 
         // Datum
-        doc.text(pdfDatum.getDate() +"." + pdfDatum.getMonth() + "." + pdfDatum.getFullYear(), 170, 80);
+        doc.text(pdfDatum.getDate() + "." + pdfDatum.getMonth() + "." + pdfDatum.getFullYear(), 170, 80);
 
         doc.setFontStyle("normal");
 
         // Name
         doc.setTextColor(24, 188, 156);
         doc.text("Name: ", 20, 95);
-        doc.setTextColor(0,0,0);
+        doc.setTextColor(0, 0, 0);
         doc.text(pdfVorname + " " + pdfNachname, 60, 95);
 
         // Matrikelnummer
         doc.setTextColor(24, 188, 156);
         doc.text("Matrikelnummer: ", 20, 100);
-        doc.setTextColor(0,0,0);
+        doc.setTextColor(0, 0, 0);
         doc.text(pdfMatrnr, 60, 100);
 
         // Abschluss
         doc.setTextColor(24, 188, 156);
         doc.text("Abschluss: ", 20, 105);
-        doc.setTextColor(0,0,0);
+        doc.setTextColor(0, 0, 0);
         doc.text(pdfAbschluss, 60, 105);
 
         // Studiengang
         doc.setFontStyle("bold");
         doc.setTextColor(24, 188, 156);
-        doc.text(pdfStudiengang, 20, 130);     
-        
+        doc.text(pdfStudiengang, 20, 130);
+
         doc.setFontStyle("normal");
-        doc.setTextColor(0,0,0);
+        doc.setTextColor(0, 0, 0);
 
         // Tabellen Erstellung
 
@@ -151,34 +151,34 @@
 
         doc.setFontSize(10);
 
-        for(var i = 0; i < pdfAlleNoten.length; i++){
+        for (var i = 0; i < pdfAlleNoten.length; i++) {
 
-            if(ueberschrift == false) {
+            if (ueberschrift == false) {
 
                 doc.setTextColor(24, 188, 156);
 
-                doc.text("Prüfungsnr.",20, 140);
-                doc.text("Modul",50,140);
-                doc.text("Semester",80,140);
-                doc.text("Note",110,140);
+                doc.text("Prüfungsnr.", 20, 140);
+                doc.text("Modul", 50, 140);
+                doc.text("Semester", 80, 140);
+                doc.text("Note", 110, 140);
                 doc.text("Credits", 140, 140);
                 doc.text("Versuch", 170, 140);
 
                 ueberschrift = true;
-                doc.setTextColor(0,0,0);
+                doc.setTextColor(0, 0, 0);
 
             }
 
-            if(pdfAlleNoten[i] != "€") {
+            if (pdfAlleNoten[i] != "€") {
 
                 wort += pdfAlleNoten[i];
-                
+
 
             } else {
 
-                doc.text(wort, 30 * spalte + 20 ,10 * (zeile + 1) + 145);
+                doc.text(wort, 30 * spalte + 20, 10 * (zeile + 1) + 145);
 
-                if(spalte == 5) {
+                if (spalte == 5) {
 
                     zeile++;
                     spalte = 0;
@@ -195,15 +195,13 @@
 
             }
 
-            
+
 
         }
 
         doc.save('leistungsuebersicht.pdf')
 
     }
-
-
 </script>
 
 
@@ -623,12 +621,19 @@
                                             
                                             if (pruefungs_student[l].id == student.id &&  pruefungs_student[l].pruefungs_id == pruefungs_studiengang[k].id)   {
                                                 angemeldet = true;
-                                                %>
+                                                
+                                                if (pruefungs_student[i].note > 0){ %>
+                                            <button type="submit" id="Bestaetigen" name="<%= abmelden_id %>"
+                                                class="btn btn-primary disabled">Abmelden</button>
+                                            <% }else {%>
 
-                                                <button type="submit" id="Bestaetigen" name = "<%= abmelden_id %>" class="btn btn-primary">Abmelden</button>
+                                            <button type="submit" id="Bestaetigen" name="<%= abmelden_id %>"
+                                                class="btn btn-primary">Abmelden</button>
 
-                                            <%      } 
-                                                }
+
+                                            <% }    
+                                            }
+                                            }
                                             
                                             if (angemeldet == false) { 
                                                 %>

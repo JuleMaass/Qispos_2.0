@@ -6,7 +6,10 @@ var Student = require('../models/Student');
 var Dozent = require('../models/Dozent');
 var Studiengang = require('../models/Studiengang');
 
-var hash = require('password-hash');
+const bcrypt = require('bcrypt');
+
+
+
 
 // Welcome Page
 router.get('/', (req, res) => res.redirect('welcome'));
@@ -22,13 +25,21 @@ router.get('/register', async (req, res) => {
     var students = await Student.findAll();
 
 
-    // for (i = 0; i < students.length; i++) {
+    for (i = 0; i < students.length; i++) {
 
-    //     students[i].update({
-    //         PW: hash.generate(students[i].PW)
-    //     });
+        var password = await  bcrypt.hash(students[i].PW, 10);
 
-    // }
+
+        console.log(password)
+
+        // students[i].update({
+        //     PW: password
+        // });
+
+
+        
+
+    }
 
 
     res.render('register', {
@@ -92,8 +103,8 @@ router.post('/register', async (req, res) => {
                 bezeichnung: studiengang
             }
         })
-
-        var hashedPassword = hash.generate(PW);
+       
+        var hashedPassword =  await  bcrypt.hash(students[i].PW, 10);
 
         console.log("This is your password" + PW);
         console.log("This is the hashed password: " + hashedPassword);
@@ -166,10 +177,11 @@ router.post('/login', async (req, res) => {
             }
         });
 
-  
+        
+  var answer = await bcrypt.compare(password, result.PW);
 
 
-        if (result == null || await hash.verify(password, result.PW)) {
+        if (result == null || !answer) {
             errors.push({
                 msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
             });
@@ -202,8 +214,9 @@ router.post('/login', async (req, res) => {
         console.log(result.PW)
         console.log(result.benutzername)
 
-        
-        if (result == null || await hash.verify(password, result.PW)) {
+        var answer = await bcrypt.compare(password, result.PW);
+
+        if (result == null || !answer) {
             errors.push({
                 msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
             });

@@ -49,13 +49,21 @@ app.use(function(req, res, next) {
 });
 
 
+//Set the static files location.
+app.use(express.static('public'))
+
+
+
+// app.get('/logo.jpeg/', function(req,res) {
+//   res.sendFile("https://drive.google.com/open?id=1mq0IgXmAzUw0Nnjcca4bMYkP6cfbsFAp");
+// });
+
 //Routes
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 
 
-//Set the static files location.
-app.use(express.static('public'))
+
 
 
 
