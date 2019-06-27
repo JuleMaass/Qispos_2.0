@@ -150,7 +150,7 @@ CREATE TABLE `students` (
   `matrikelnummer` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `matrikelnummer_UNIQUE` (`matrikelnummer`)
-) ENGINE=InnoDB AUTO_INCREMENT=10026 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10027 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +188,7 @@ CREATE TABLE `students_has_moduls` (
 
 LOCK TABLES `students_has_moduls` WRITE;
 /*!40000 ALTER TABLE `students_has_moduls` DISABLE KEYS */;
-INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10002,1,0),(10002,2,0),(10002,3,0);
+INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10002,1,0),(10002,2,0),(10002,3,0),(10002,6,0);
 /*!40000 ALTER TABLE `students_has_moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +218,7 @@ CREATE TABLE `students_has_pruefungs` (
 
 LOCK TABLES `students_has_pruefungs` WRITE;
 /*!40000 ALTER TABLE `students_has_pruefungs` DISABLE KEYS */;
-INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10002,3,0,3),(10002,4,0,1.7),(10002,5,0,2.3);
+INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10002,3,0,1.7),(10002,4,0,0),(10002,5,0,2.3),(10002,6,0,1.7);
 /*!40000 ALTER TABLE `students_has_pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -849,4 +849,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-27 11:55:48
+-- Dump completed on 2019-06-27 12:26:42

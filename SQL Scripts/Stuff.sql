@@ -9,8 +9,9 @@ Select * FROM studiengangs_has_moduls;
 Select * FROM moduls;
 Select * from studiengangs;
 
+DELETE FROM students_has_studiengangs WHERE students_id = 10026;
+DELETE FROM students WHERE id = 10026;
 
-DELETE FROM students_has_moduls WHERE moduls_id = 6;
 
 
 Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note  
