@@ -203,7 +203,7 @@
 
                 wort = "";
 
-            }            
+            }        
 
         }
 
@@ -396,8 +396,15 @@
                     Noten </p>
 
                 <p style="font-size:150%; color: rgb(44, 62, 80); font-weight: bold; text-align: center;"><span
-                        style="padding: 5px;"> Durchschnitt:
-                        <%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %> </span> </p>
+                        style="padding: 5px;"> Durchschnitt: 
+                        <%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %> 
+                </span> </p>
+
+                <p style="font-size:150%; color: rgb(44, 62, 80); font-weight: bold; text-align: center;" id="alleCreditsElement"><span
+                        style="padding: 5px;"> Gesamtzahl Credits:
+                        
+                </span> </p>
+
 
                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="notenTable">
                     <thead>
@@ -414,6 +421,7 @@
 
                         <% 
                         var alleNotenAlsString = "";
+                        var gesamtzahlCredits = 0;
                         
                         for (var i = 0; i < noten.length; i++) { 
 
@@ -421,6 +429,9 @@
                                 
                                 alleNotenAlsString += noten[i].nummer + "€" + noten[i].bezeichnung + "€" + noten[i].semester+ "€" + noten[i].note + "€" + noten[i].credits +"€" + noten[i].versuch + "€"; 
                                 console.log(alleNotenAlsString);
+                                console.log("Credits: " + noten[i].credits);
+
+                                gesamtzahlCredits += noten[i].credits;
 
                             %>
                         <tr class="table-light">
@@ -432,10 +443,23 @@
                         </tr>
                         <% }
                          } 
+
+                         var alleCredits = gesamtzahlCredits;
+
+                         console.log("Alle Credits: " + alleCredits);
                          
                          %>
 
+                        <label style="visibility:hidden" id="alleCredits"><%= alleCredits%> </label>
                         <label style="visibility:hidden" id="pdf.noten"><%= alleNotenAlsString%> </label>
+
+                        <script>
+
+                            var creditsText = document.getElementById("alleCredits").innerHTML;
+
+                            document.getElementById("alleCreditsElement").innerHTML += creditsText;
+
+                        </script>
 
                     </tbody>
                 </table>
