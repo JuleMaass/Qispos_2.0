@@ -125,6 +125,8 @@ router.post('/register', async (req, res) => {
                 }
             });
 
+        
+
         res.redirect('/login')
 
     }
