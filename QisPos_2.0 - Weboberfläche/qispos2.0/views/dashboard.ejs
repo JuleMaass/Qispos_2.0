@@ -636,10 +636,12 @@
                                             
                                             if (pruefungs_student[l].id == student.id &&  pruefungs_student[l].pruefungs_id == pruefungs_studiengang[k].id)   {
                                                 angemeldet = true;
-                                                
-                                                if (pruefungs_student[i].note > 0){ %>
+                                                if (pruefungs_student[l].note > 0){ 
+                                                    
+                                                    
+                                                    %>
                                             <button type="submit" id="Bestaetigen" name="<%= abmelden_id %>"
-                                                class="btn btn-primary disabled">Abmelden</button>
+                                                class="btn btn-primary " disabled>Abmelden</button>
                                             <% }else {%>
 
                                             <button type="submit" id="Bestaetigen" name="<%= abmelden_id %>"
@@ -678,9 +680,9 @@
 
 
                         <div class="modal-footer">
-                            <button type="submit" id="Bestaetigen" class="btn btn-primary">Für ausgewählte Prüfungen
+                            <button type="submit" id="Bestaetigen" class="btn btn-success">Für ausgewählte Prüfungen
                                 anmelden</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,11 @@ Select * from studiengangs;
 DELETE FROM students_has_studiengangs WHERE students_id = 10026;
 DELETE FROM students WHERE id = 10026;
 
+select DISTINCT T1.id, T1.benutzername, T2.pruefungs_id, T3.bezeichnung, T3.pruefungsdatum
+from students T1, students_has_pruefungs T2, pruefungs T3
+where T1.id = 10002
+and T2.students_id = 10002
+and T3.id = T2.pruefungs_id;
 
 
 Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note  

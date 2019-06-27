@@ -22,24 +22,24 @@ router.get('/register', async (req, res) => {
 
     var studiengangs = await Studiengang.findAll();
 
-    var students = await Student.findAll();
+    // var students = await Student.findAll();
 
 
-    for (i = 0; i < students.length; i++) {
+    // for (i = 0; i < students.length; i++) {
 
-        var password = await  bcrypt.hash(students[i].PW, 10);
+    //     var password = await  bcrypt.hash(students[i].PW, 10);
 
 
-        console.log(password)
+    //     console.log(password)
 
-        // students[i].update({
-        //     PW: password
-        // });
+    //     students[i].update({
+    //         PW: password
+    //     });
 
 
         
 
-    }
+    // }
 
 
     res.render('register', {
@@ -104,7 +104,7 @@ router.post('/register', async (req, res) => {
             }
         })
        
-        var hashedPassword =  await  bcrypt.hash(students[i].PW, 10);
+        var hashedPassword =  await  bcrypt.hash(PW, 10);
 
         console.log("This is your password" + PW);
         console.log("This is the hashed password: " + hashedPassword);
@@ -177,8 +177,7 @@ router.post('/login', async (req, res) => {
             }
         });
 
-        
-  var answer = await bcrypt.compare(password, result.PW);
+        if (result != null) var answer = await bcrypt.compare(password, result.PW);
 
 
         if (result == null || !answer) {
@@ -211,10 +210,9 @@ router.post('/login', async (req, res) => {
             }
         });
 
-        console.log(result.PW)
-        console.log(result.benutzername)
+        
 
-        var answer = await bcrypt.compare(password, result.PW);
+        if (result != null) var answer = await bcrypt.compare(password, result.PW);
 
         if (result == null || !answer) {
             errors.push({
