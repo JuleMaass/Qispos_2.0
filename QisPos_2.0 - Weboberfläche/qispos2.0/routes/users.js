@@ -6,13 +6,11 @@ var Student = require('../models/Student');
 var Modul = require('../models/Modul');
 var Pruefung = require('../models/Pruefung');
 var url = require('url');
-var sess;
 
+var sess;
 
 // Welcome Page für nicht eingeloggte
 router.get('/', (req, res) => res.redirect('../login'));
-
-
 
 //Logout Page/view
 router.get('/logout', (req, res) => res.redirect('../welcome'));

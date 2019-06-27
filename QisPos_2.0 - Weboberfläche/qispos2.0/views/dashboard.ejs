@@ -89,6 +89,7 @@
         var pdfAlleNoten = document.getElementById("pdf.noten").innerHTML;
         var pdfStudiengang = document.getElementById("pdf.studiengang").innerHTML;
         var pdfAbschluss = document.getElementById("pdf.abschluss").innerHTML;
+        var pdfNotenDurchschnitt = document.getElementById("pdf.durchschnitt").innerHTML;
 
         var pdfDatum = new Date();
 
@@ -145,7 +146,7 @@
 
         var wort = "";
 
-        var abstand;
+        var wertAllerCredits = 0;
 
         var ueberschrift = false;
 
@@ -157,12 +158,12 @@
 
                 doc.setTextColor(24, 188, 156);
 
-                doc.text("Prüfungsnr.",20, 140);
-                doc.text("Modul",50,140);
-                doc.text("Semester",80,140);
-                doc.text("Note",110,140);
-                doc.text("Credits", 140, 140);
-                doc.text("Versuch", 170, 140);
+                doc.text("Prüfungsnr.",20, 150);
+                doc.text("Modul",50,150);
+                doc.text("Semester",80,150);
+                doc.text("Note",110,150);
+                doc.text("Credits", 140, 150);
+                doc.text("Versuch", 170, 150);
 
                 ueberschrift = true;
                 doc.setTextColor(0,0,0);
@@ -176,7 +177,16 @@
 
             } else {
 
-                doc.text(wort, 30 * spalte + 20 ,10 * (zeile + 1) + 145);
+                doc.text(wort, 30 * spalte + 20 ,10 * (zeile + 1) + 155);
+
+                // Zusammenrechnung der Credits
+                if(spalte == 3 && pdfAlleNoten[i] != null) {
+
+                    wertAllerCredits += Number(pdfAlleNoten[i+1]);
+
+                    console.log("Alle Credits: " + wertAllerCredits);
+
+                }
 
                 if(spalte == 5) {
 
@@ -193,13 +203,17 @@
 
                 wort = "";
 
-            }
-
-            
+            }            
 
         }
 
-        doc.save('leistungsuebersicht.pdf')
+        // Alle Credits
+        doc.text("Gesamtzahl der Credits: " + wertAllerCredits, 20, 140);
+
+        // Notendurchschnitt
+        doc.text("Notendurchschnitt: " + pdfNotenDurchschnitt, 120, 140);
+
+        doc.save("leistungsuebersicht.pdf");
 
     }
 
@@ -299,6 +313,7 @@
         <label style="visibility:hidden" id="pdf.matrikelnummer"> <%= student.matrikelnummer%></label>
         <label style="visibility:hidden" id="pdf.studiengang"> <%= studiengang[0].bezeichnung%></label>
         <label style="visibility:hidden" id="pdf.abschluss"> <%= studiengang[0].abschluss%></label>
+        <label style="visibility:hidden" id="pdf.durchschnitt"> <%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %></label>
 
         <div id="myTabContent" class="tab-content">
 
