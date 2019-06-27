@@ -159,7 +159,7 @@ router.post('/dashboard', async (req, res) => {
           id: id
         }
       });
-   
+
 
 
       // Student von der Prüfung abmelden
@@ -194,9 +194,9 @@ router.post('/dashboard', async (req, res) => {
       var modul_loeschen = true;
 
       // Alle Prüfungen überprüfen, ob der Student noch bei einer aus dieser Liste angemeldet ist
-      for (i=0; i< list_pruefungs; i++) {
+      for (i = 0; i < list_pruefungs; i++) {
 
- 
+
 
         var student_has_pruefung = await Students_has_pruefung.findOne({
           where: {
