@@ -6,16 +6,16 @@ var sequelize = require('../services/sequelize');
 const Model = Sequelize.Model;
 
 
-class Students_has_modul extends Model {}
+class Students_has_pruefung extends Model {}
 
 
-Students_has_modul.init({
+Students_has_pruefung.init({
     students_id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false
     },
-    moduls_id:{
+    pruefungs_id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false
@@ -24,15 +24,20 @@ Students_has_modul.init({
     status: {
         type: Sequelize.BOOLEAN,
         allowNull: false
+    },
+
+    note: {
+        type: Sequelize.FLOAT,
+        allowNull: true
     }
 }, {
   sequelize,
   timestamps: false,
-  modelName: 'Students_has_modul'
+  modelName: 'Students_has_pruefung'
  
 
 });
 
 
 
-module.exports = Students_has_modul;
+module.exports = Students_has_pruefung;

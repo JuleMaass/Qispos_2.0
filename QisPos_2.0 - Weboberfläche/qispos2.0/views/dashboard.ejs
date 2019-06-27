@@ -136,7 +136,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Modul">Module</a></a>
+                    <a class="nav-link" data-toggle="tab" href="#Module">Module</a></a>
                 </li>
 
                 <li class="nav-item">
@@ -287,7 +287,7 @@
             </div>
 
 
-            <div class="tab-pane fade, jumbotron" id="Modul">
+            <div class="tab-pane fade, jumbotron" id="Module">
 
                 <p
                     style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;">
@@ -470,17 +470,19 @@
                                         <td><%= pruefungs_studiengang[k].nachname %></td>
                                         <td>
 
-                                            <% var id = "pruefung_cb_" + pruefungs_studiengang[k].id%>
+                                            <% var id = "pruefung_cb_" + pruefungs_studiengang[k].id
 
-                                            <% 
+                                            var abmelden_id = "abmelden_but_" + pruefungs_studiengang[k].id
+
                                             var angemeldet = false;
+
                                             for ( l = 0; l < pruefungs_student.length; l++ ) {
                                             
                                             if (pruefungs_student[l].id == student.id &&  pruefungs_student[l].pruefungs_id == pruefungs_studiengang[k].id)   {
                                                 angemeldet = true;
                                                 %>
 
-                                            Angemeldet
+                                                <button type="submit" id="Bestaetigen" name = "<%= abmelden_id %>" class="btn btn-primary">Abmelden</button>
 
                                             <%      } 
                                                 }
