@@ -6,6 +6,7 @@ var Student = require('../models/Student');
 var Dozent = require('../models/Dozent');
 var Studiengang = require('../models/Studiengang');
 
+var hash = require('password-hash');
 
 // Welcome Page
 router.get('/', (req, res) => res.redirect('welcome'));
@@ -17,6 +18,17 @@ router.get('/welcome', (req, res) => res.render('welcome'));
 router.get('/register', async (req, res) => {
 
     var studiengangs = await Studiengang.findAll();
+
+    var students = await Student.findAll();
+
+
+    // for (i = 0; i < students.length; i++) {
+
+    //     students[i].update({
+    //         PW: hash.generate(students[i].PW)
+    //     });
+
+    // }
 
 
     res.render('register', {
@@ -81,13 +93,18 @@ router.post('/register', async (req, res) => {
             }
         })
 
+        var hashedPassword = hash.generate(PW);
+
+        console.log("This is your password" + PW);
+        console.log("This is the hashed password: " + hashedPassword);
+
 
         var email = benutzername.toLowerCase() + '@hs-bremen.de'
 
         var result = await Student.create({
             benutzername: benutzername.toLowerCase(),
             email: email,
-            PW: PW,
+            PW: hashedPassword,
             vorname: jsUcfirst(vorname.toLowerCase()),
             nachname: jsUcfirst(nachname.toLowerCase()),
         });
@@ -116,6 +133,8 @@ router.post('/register', async (req, res) => {
 //Login Page/view
 router.get('/login', (req, res) => res.render('login', {
 
+
+
     error: ''
 }));
 
@@ -143,12 +162,14 @@ router.post('/login', async (req, res) => {
     if (dozent) {
         var result = await Dozent.findOne({
             where: {
-                benutzername: benutzername,
-                PW: password
+                benutzername: benutzername
             }
         });
 
-        if (result == null) {
+  
+
+
+        if (result == null || await hash.verify(password, result.PW)) {
             errors.push({
                 msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
             });
@@ -174,12 +195,15 @@ router.post('/login', async (req, res) => {
     } else {
         var result = await Student.findOne({
             where: {
-                benutzername: benutzername,
-                PW: password
+                benutzername: benutzername
             }
         });
 
-        if (result == null) {
+        console.log(result.PW)
+        console.log(result.benutzername)
+
+        
+        if (result == null || await hash.verify(password, result.PW)) {
             errors.push({
                 msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
             });

@@ -9,12 +9,25 @@ Select * FROM studiengangs_has_moduls;
 Select * FROM moduls;
 Select * from studiengangs;
 
+DELETE FROM students_has_studiengangs WHERE students_id = 10026;
+DELETE FROM students WHERE id = 10026;
+
+
 
 Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note  
 from students T1, pruefungs T2, students_has_pruefungs T3
 where T1.id = 10002
 and T3.students_id = 10002
 and T2.id = T3.pruefungs_id;
+
+Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note, T4.credits  
+from students T1, pruefungs T2, students_has_pruefungs T3, moduls T4, students_has_moduls T5
+where T1.id = 10002
+and T3.students_id = 10002
+and T2.id = T3.pruefungs_id
+and T5.students_id = 10002
+and T4.id = T5.moduls_id
+and T2.moduls_id = T4.id;
 
 
 
@@ -61,7 +74,6 @@ and T6.id = T3.dozents_id;
 
 
 
-DELETE FROM students_has_moduls WHERE moduls_id = 6;
 
 
 /* Semester eines Studiengangs*/
