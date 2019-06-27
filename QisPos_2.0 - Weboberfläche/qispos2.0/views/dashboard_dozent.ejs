@@ -8,15 +8,12 @@
 
 <script>
     $(document).ready(function () {
-        $('#notenTable').DataTable({
-            "paging": false
-        });
-        $('#uebersichtTable').DataTable({
-            "paging": false
-        });
+        $('#notenEintragung').DataTable();
+        // $('#uebersichtTable').DataTable({
+        //     "paging": false
+        // });
 
-        $('#rankingTable').DataTable();
-
+       
 
         $('.dataTables_length').addClass('bs-select');
 
@@ -129,7 +126,7 @@
                 <div class="tab-pane fade, jumbotron">
 
                     <p
-                        style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;">
+                        style="font-size:200%; color: rgb(44, 62, 80); font-weight: bold; text-align: left; margin-top: -50px;">
                         Prüfungen </p>
                     <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%"
                         id="uebersichtTable">
@@ -145,27 +142,27 @@
                         <tbody>
 
 
-                            <% for (var i = 0; i < pruefungs.length; i++) {
+                            <% for (var i = 0; i < pruefungs_once.length; i++) {
     
                                 // Datum umstellen
     
     
-                                var neuesPruefungsDatum = pruefungs[i].pruefungsdatum[8] +
-                                pruefungs[i].pruefungsdatum[9] +
+                                var neuesPruefungsDatum = pruefungs_once[i].pruefungsdatum[8] +
+                                pruefungs_once[i].pruefungsdatum[9] +
                                 "." +
-                                pruefungs[i].pruefungsdatum[5] +
-                                pruefungs[i].pruefungsdatum[6] +
+                                pruefungs_once[i].pruefungsdatum[5] +
+                                pruefungs_once[i].pruefungsdatum[6] +
                                 "." +
-                                pruefungs[i].pruefungsdatum[0] +
-                                pruefungs[i].pruefungsdatum[1] +
-                                pruefungs[i].pruefungsdatum[2] +
-                                pruefungs[i].pruefungsdatum[3];
+                                pruefungs_once[i].pruefungsdatum[0] +
+                                pruefungs_once[i].pruefungsdatum[1] +
+                                pruefungs_once[i].pruefungsdatum[2] +
+                                pruefungs_once[i].pruefungsdatum[3];
                                 %>
 
                             <tr class="table-light">
 
-                                <td><%= pruefungs[i].pruefungs_bez %> </td>
-                                <td><%= pruefungs[i].pruefungsart %> </td>
+                                <td><%= pruefungs_once[i].bezeichnung %> </td>
+                                <td><%= pruefungs_once[i].pruefungsart %> </td>
                                 <td><%= neuesPruefungsDatum %> </td>
 
                             </tr>
@@ -186,7 +183,7 @@
                     style="font-size:200%; color: rgb(24, 188, 156); font-weight: bold; text-align: left; margin-top: -50px;">
                     Noteneintragung </p>
                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%"
-                    id="uebersichtTable">
+                    id="notenEintragung">
                     <thead>
                         <tr class="table-secondary">
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Prüf-Nr.</th>

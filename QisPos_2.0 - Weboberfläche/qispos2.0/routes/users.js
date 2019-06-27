@@ -57,6 +57,8 @@ router.post('/dashboard_dozent', async (req, res) => {
       }
     });
 
+
+
   res.redirect('/users/dashboard_dozent' + sess.hash);
 
 });
@@ -300,6 +302,22 @@ router.get('/dashboard', async (req, res) => {
         }
       });
 
+
+
+      var all_ges_note = [];
+
+      for (i=0; i< students.length; i++) {
+
+        all_ges_note[i] = await sequelize
+      .query(' call ges_note_student(:id)', {
+        replacements: {
+          id: students[i].id
+        }
+      });
+
+      }
+
+
     var semesters_studiengang = await sequelize
       .query(' call all_semesters_studiengang(:id)', {
         replacements: {
@@ -352,6 +370,7 @@ router.get('/dashboard', async (req, res) => {
       noten: noten,
       moduls: moduls,
       ges_note: ges_note,
+      all_ges_note: all_ges_note,
       semesters_studiengang: semesters_studiengang,
       moduls_studiengang: moduls_studiengang,
       pruefungs_studiengang: pruefungs_studiengang,
@@ -368,8 +387,20 @@ router.get('/dashboard', async (req, res) => {
 router.get('/dashboard_dozent', async (req, res) => {
   let sess = req.session;
   var students = await Student.findAll();
+  
+  
+  
   var pruefungs = await sequelize
     .query(' call all_pruefungs_dozent(:doz_id)', {
+      replacements: {
+        doz_id: sess.nutzer.id
+
+      }
+    });
+
+
+    var pruefungs_once = await sequelize
+    .query(' call all_pruefungs_once_dozent(:doz_id)', {
       replacements: {
         doz_id: sess.nutzer.id
 
@@ -385,7 +416,8 @@ router.get('/dashboard_dozent', async (req, res) => {
     res.render('dashboard_dozent', {
       students: students,
       dozent: sess.nutzer,
-      pruefungs: pruefungs
+      pruefungs: pruefungs,
+      pruefungs_once: pruefungs_once
     });
 
   }
