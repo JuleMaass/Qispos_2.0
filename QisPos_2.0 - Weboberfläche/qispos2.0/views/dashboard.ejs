@@ -1,6 +1,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
+    </script>
 
 <!-- CSS Bootstrap Datepicker Library -->
 <link rel='stylesheet prefetch'
@@ -12,13 +12,35 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.de.min.js'>
 </script>
 <script type="application/javascript" src="/logic.js"></script>
-<script type="application/javascript" src="/client.js"></script>
-<script type="application/javascript" src="/worker.js"></script>
+
+<script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+
+
+<script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('6e48ff07949cb7a49f5e', {
+        cluster: 'eu',
+        forceTLS: true
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function (data) {
+        alert(JSON.stringify(data));
+    });
+</script>
+
+
 
 <p class="lead mb-3"> </p>
 <div style="overflow: auto;" class="lead mb-4, jumbotron jumbotron-fluid">
     <h2 class="display-3, text-center">QisPos 2.0</h2>
     <p class="lead mb-3, text-center">Willkommen <%= student.vorname %></p>
+
+
+
+
     <br>
     <var table-size></var>
     <div class="container container-small">
