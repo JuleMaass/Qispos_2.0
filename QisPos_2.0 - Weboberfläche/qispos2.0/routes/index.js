@@ -56,7 +56,7 @@ router.post('/register', async (req, res) => {
     } = req.body;
     let errors = [];
 
-    console.log(req.body);
+    console.log("Requested body: " + req.body);
 
     //check requires fields
     if (!PW || !vorname || !nachname) {
@@ -135,8 +135,13 @@ router.post('/register', async (req, res) => {
             });
 
         
+        res.render('emailSent', {
+            Benutzername: benutzername.toLowerCase(),
+            Name: vorname
+    
+        });
 
-        res.redirect('/login')
+        // res.redirect('/login')
 
     }
 
