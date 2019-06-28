@@ -5,15 +5,15 @@ var Student = require('../models/Student');
 var Dozent = require('../models/Dozent');
 var Studiengang = require('../models/Studiengang');
 const bcrypt = require('bcrypt');
-const webpush = require('web-push');
 
 
 
 
-// Welcome Page
+
+// Start, goes to Welcome Page
 router.get('/', (req, res) => res.redirect('welcome'));
 
-
+// Welcome Page
 router.get('/welcome', (req, res) => res.render('welcome'));
 
 //Register Page/view
@@ -22,29 +22,17 @@ router.get('/register', async (req, res) => {
     var studiengangs = await Studiengang.findAll();
 
     // var students = await Student.findAll();
-
-
     // for (i = 0; i < students.length; i++) {
-
     //     var password = await  bcrypt.hash(students[i].PW, 10);
-
-
     //     console.log(password)
-
     //     students[i].update({
     //         PW: password
     //     });
-
-
-        
-
     // }
-
 
     res.render('register', {
         studiengangs
     });
-
 });
 
 //Register handle
@@ -57,14 +45,11 @@ router.post('/register', async (req, res) => {
     } = req.body;
     let errors = [];
 
-    console.log("Requested body: " + req.body);
-
     //check requires fields
     if (!PW || !vorname || !nachname) {
         errors.push({
             msg: 'Please fill in all fields'
         });
-
     }
     if (errors.length > 0) {
         res.render('register', {
@@ -75,40 +60,28 @@ router.post('/register', async (req, res) => {
         })
     } else {
 
-
         var buchstabenanzahl = 1;
         var benutzername = vorname.substring(0, buchstabenanzahl) + nachname;
         var test;
         do {
-
-            console.log(benutzername);
-            // search for attributes
             var test = await Student.findOne({
                 where: {
                     benutzername: benutzername.toLowerCase()
                 }
             });
-
             if (test != null) {
                 buchstabenanzahl++;
                 benutzername = (vorname.substring(0, buchstabenanzahl) + nachname).toLowerCase();
-                console.log(benutzername);
             }
         } while (test != null);
-
 
         var studiengang_id = await Studiengang.findOne({
             where: {
                 bezeichnung: studiengang
             }
         })
-       
-        var hashedPassword =  await  bcrypt.hash(PW, 10);
 
-        console.log("This is your password" + PW);
-        console.log("This is the hashed password: " + hashedPassword);
-
-
+        var hashedPassword = await bcrypt.hash(PW, 10);
         var email = benutzername.toLowerCase() + '@hs-bremen.de'
 
         var result = await Student.create({
@@ -135,31 +108,23 @@ router.post('/register', async (req, res) => {
                 }
             });
 
-        
         res.render('emailSent', {
             Benutzername: benutzername.toLowerCase(),
             Name: vorname
-    
+
         });
-
-        // res.redirect('/login')
-
     }
-
 });
-//Login Page/view
+
+
+//Login Page
 router.get('/login', (req, res) => res.render('login', {
-
-
-
     error: ''
 }));
-
 
 //Login handle
 router.post('/login', async (req, res) => {
     let sess = req.session;
-
     const {
         benutzername,
         password,
@@ -175,40 +140,28 @@ router.post('/login', async (req, res) => {
         });
     }
 
-
     if (dozent) {
         var result = await Dozent.findOne({
             where: {
                 benutzername: benutzername
             }
         });
-
         if (result != null) var answer = await bcrypt.compare(password, result.PW);
-
 
         if (result == null || !answer) {
             errors.push({
                 msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
             });
         }
-
         if (errors.length > 0) {
-
-
-
-            console.log(errors[0].msg)
             res.render('login', {
                 error: errors[0].msg
             })
         } else {
-
-
             sess.nutzer = result;
             sess.dozent = true;
             res.redirect('/users/dashboard_dozent');
         }
-
-
     } else {
         var result = await Student.findOne({
             where: {
@@ -216,65 +169,32 @@ router.post('/login', async (req, res) => {
             }
         });
 
-        
-
         if (result != null) var answer = await bcrypt.compare(password, result.PW);
-
         if (result == null || !answer) {
             errors.push({
                 msg: 'Bitte geben Sie die richtigen Nutzerdaten ein.'
             });
         }
-
         if (errors.length > 0) {
             console.log(errors[0].msg)
             res.render('login', {
                 error: errors[0].msg
             })
         } else {
+
             sess.hash = "Termine";
-
-
             sess.nutzer = result;
             sess.dozent = false;
-
-
             sess.studiengang = await sequelize
                 .query(' call student_studies(:id)', {
                     replacements: {
                         id: sess.nutzer.id
                     }
                 });
-
             res.redirect('/users/dashboard#' + sess.hash);
-
-
         }
-
-
-
-
-
     }
-
 });
-
-
-router.post('/subscribe', (req, res) => {
-    const subscription = req.body;
-
-    res.status(201).json({});
-    const payload = JSON.stringify({ title: 'test' });
-  
-    console.log("Sub")
-    console.log(subscription);
-  
-    webpush.sendNotification(subscription, payload).catch(error => {
-      console.error("error= " + error.stack);
-    });
-  });
-  
-
 
 function jsUcfirst(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

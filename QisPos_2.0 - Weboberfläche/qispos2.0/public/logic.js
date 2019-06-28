@@ -179,3 +179,19 @@
         doc.save("leistungsuebersicht.pdf");
 
     }
+
+    $('#datepicker').datepicker({
+        // Datums-Format, optional DD schreibt Wochentag aus
+        format: 'dd.mm.yyyy',
+        // Start-Datum aktiv ab -3 Tage vom Tagesdatum
+        startDate: '-3d',
+        // Tagesdatum hervorheben
+        todayHighlight: true,
+        // automatisch nach Datumswahl schließen 
+        autoclose: true,
+        // Sprache Deutsch setzen 
+        language: 'de'
+    });
+
+
+    

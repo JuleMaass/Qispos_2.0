@@ -7,24 +7,21 @@
     href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css'>
 
 <!-- PDF Library -->
-<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js">
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.de.min.js'>
 </script>
-
 <script type="application/javascript" src="/logic.js"></script>
-
+<script type="application/javascript" src="/client.js"></script>
+<script type="application/javascript" src="/worker.js"></script>
 
 <p class="lead mb-3"> </p>
 <div style="overflow: auto;" class="lead mb-4, jumbotron jumbotron-fluid">
     <h2 class="display-3, text-center">QisPos 2.0</h2>
-
     <p class="lead mb-3, text-center">Willkommen <%= student.vorname %></p>
-
     <br>
-
     <var table-size></var>
-
     <div class="container container-small">
-
         <table class="table " style="margin: auto; font-size:80%; width: 80%">
             <thead>
                 <tr>
@@ -32,7 +29,6 @@
                     <th scope="col">Studiengang</th>
                     <th scope="col">Angestrebter Abschluss</th>
                     <th scope="col">Matrikelnummer</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -99,7 +95,7 @@
 
         <input type="hidden" name="hash" id="hash">
 
- 
+
 
         <div id="myTabContent" class="tab-content">
 
@@ -131,7 +127,7 @@
                             termine[i].datum[3];
 
                         %>
-                    <a  class="list-group-item list-group-item-action flex-column align-items-start" >
+                    <a class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <%= neuesDatum %>
                             <h5 class="mb-1"><%= termine[i].termin_bezeichnung  %></h5>
@@ -140,9 +136,10 @@
                             <% var id = "termine_cb_id_" + termine[i].id%>
 
                             <div class="form-check">
-                              
-                                    <input class="form-check-input" name="<%= id %>" type="checkbox" style="width:110%; height:110%" unchecked> ‏‏‎
-                        
+
+                                <input class="form-check-input" name="<%= id %>" type="checkbox"
+                                    style="width:110%; height:110%" unchecked> ‏‏‎
+
                             </div>
                         </div>
                     </a>
@@ -183,15 +180,15 @@
                     style="font-size:150%; color: rgb(44, 62, 80); font-weight: bold; text-align: left; margin-top: -50px;">
                     Noten </p>
 
-                    <p style="font-size:100%; color: rgb(44, 62, 80); font-weight: bold; text-align: center;">
-                            Durchschnitt:
-                            <%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %>
-                        </p>
-    
-                    <p style="font-size:100%; color: rgb(44, 62, 80); font-weight: bold; text-align: center;"
-                        id="alleCreditsElement"> Gesamtzahl Credits:
-    
-                        </p>
+                <p style="font-size:100%; color: rgb(44, 62, 80); font-weight: bold; text-align: center;">
+                    Durchschnitt:
+                    <%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %>
+                </p>
+
+                <p style="font-size:100%; color: rgb(44, 62, 80); font-weight: bold; text-align: center;"
+                    id="alleCreditsElement"> Gesamtzahl Credits:
+
+                </p>
 
 
                 <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" id="notenTable">
@@ -237,7 +234,7 @@
                          %>
 
 
-                       
+
 
                     </tbody>
                 </table>
@@ -563,42 +560,21 @@
                     <br> Vielen Dank und einen guten Rutsch ins neue Jahr 2008.</p>
             </div>
         </div>
-               <!-- Studentendaten für die PDF verfügbar machen -->
-               <label style="display: none" id="pdf.vorname"> <%= student.vorname%></label>
-               <label style="display: none" id="pdf.nachname"> <%= student.nachname%></label>
-               <label style="display: none" id="pdf.matrikelnummer"> <%= student.matrikelnummer%></label>
-               <label style="display: none" id="pdf.studiengang"> <%= studiengang[0].bezeichnung%></label>
-               <label style="display: none" id="pdf.abschluss"> <%= studiengang[0].abschluss%></label>
-               <label style="display: none" id="pdf.durchschnitt"><%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %></label>
-               <label style="display: none" id="alleCredits"><%= alleCredits%> </label>
-               <label style="display: none" id="pdf.noten"><%= alleNotenAlsString%> </label>
-               <script>
-                            
-                    var creditsText = document.getElementById("alleCredits").innerHTML;
+        <!-- Studentendaten für die PDF verfügbar machen -->
+        <label style="display: none" id="pdf.vorname"> <%= student.vorname%></label>
+        <label style="display: none" id="pdf.nachname"> <%= student.nachname%></label>
+        <label style="display: none" id="pdf.matrikelnummer"> <%= student.matrikelnummer%></label>
+        <label style="display: none" id="pdf.studiengang"> <%= studiengang[0].bezeichnung%></label>
+        <label style="display: none" id="pdf.abschluss"> <%= studiengang[0].abschluss%></label>
+        <label style="display: none"
+            id="pdf.durchschnitt"><%= (ges_note[0].gesamtNote / ges_note[0].count).toFixed(1) %></label>
+        <label style="display: none" id="alleCredits"><%= alleCredits%> </label>
+        <label style="display: none" id="pdf.noten"><%= alleNotenAlsString%> </label>
+        <script>
+            var creditsText = document.getElementById("alleCredits").innerHTML;
 
-                    document.getElementById("alleCreditsElement").innerHTML += creditsText;
-                </script>
-    
-            </form>
+            document.getElementById("alleCreditsElement").innerHTML += creditsText;
+        </script>
+
+    </form>
 </div>
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js'></script>
-<!-- JS Datei Bootstrap Sprache Deutsch, muss als zweites JS stehen -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.de.min.js'>
-</script>
-
-<!-- Datepicker Aufruf als letztes, bei Bedarf anpassen -->
-<script>
-    $('#datepicker').datepicker({
-        // Datums-Format, optional DD schreibt Wochentag aus
-        format: 'dd.mm.yyyy',
-        // Start-Datum aktiv ab -3 Tage vom Tagesdatum
-        startDate: '-3d',
-        // Tagesdatum hervorheben
-        todayHighlight: true,
-        // automatisch nach Datumswahl schließen 
-        autoclose: true,
-        // Sprache Deutsch setzen 
-        language: 'de'
-    });
-</script>
