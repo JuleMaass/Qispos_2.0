@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
 var sequelize = require('../services/sequelize');
-
 var Student = require('../models/Student');
 var Dozent = require('../models/Dozent');
 var Studiengang = require('../models/Studiengang');
-
 const bcrypt = require('bcrypt');
 
 
