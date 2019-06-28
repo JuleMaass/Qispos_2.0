@@ -7,9 +7,16 @@ var Modul = require('../models/Modul');
 var Pruefung = require('../models/Pruefung');
 var Students_has_modul = require('../models/Students_has_modul');
 var Students_has_pruefung = require('../models/Students_has_pruefung');
-var url = require('url');
+
 
 var sess;
+
+
+
+
+
+
+
 
 // Welcome Page für nicht eingeloggte
 router.get('/', (req, res) => res.redirect('../login'));
@@ -304,18 +311,18 @@ router.get('/dashboard', async (req, res) => {
 
 
 
-      var all_ges_note = [];
+    var all_ges_note = [];
 
-      for (i=0; i< students.length; i++) {
+    for (i = 0; i < students.length; i++) {
 
-        all_ges_note[i] = await sequelize
-      .query(' call ges_note_student(:id)', {
-        replacements: {
-          id: students[i].id
-        }
-      });
+      all_ges_note[i] = await sequelize
+        .query(' call ges_note_student(:id)', {
+          replacements: {
+            id: students[i].id
+          }
+        });
 
-      }
+    }
 
 
     var semesters_studiengang = await sequelize
@@ -387,9 +394,9 @@ router.get('/dashboard', async (req, res) => {
 router.get('/dashboard_dozent', async (req, res) => {
   let sess = req.session;
   var students = await Student.findAll();
-  
-  
-  
+
+
+
   var pruefungs = await sequelize
     .query(' call all_pruefungs_dozent(:doz_id)', {
       replacements: {
@@ -399,7 +406,7 @@ router.get('/dashboard_dozent', async (req, res) => {
     });
 
 
-    var pruefungs_once = await sequelize
+  var pruefungs_once = await sequelize
     .query(' call all_pruefungs_once_dozent(:doz_id)', {
       replacements: {
         doz_id: sess.nutzer.id

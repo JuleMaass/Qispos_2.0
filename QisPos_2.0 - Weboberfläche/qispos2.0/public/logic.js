@@ -22,21 +22,6 @@
 
     });
 
-    // function addClass() {
-    //     var v = document.getElementById("p");
-    //     v.className += "addCSS";
-
-
-    //     var backOfferButton = document.getElementById('back_offer_button');
-
-    //     console.log(backOfferButton.dataset.target);
-
-    //     backOfferButton.dataset.target = "#addDifferentOffer";
-
-    //     console.log(backOfferButton.dataset.target);
-    // }
-
-
     $(function () {
         $("#Bestaetigen").click(function () {
 
@@ -51,10 +36,7 @@
 
         window.location.hash && $('ul.nav.nav-pills a[href="' + window.location.hash + '"]').tab('show');
 
-
-        document.forms[0].hash.value = window.location.hash;
-
-
+       document.forms[0].hash.value = window.location.hash;
 
         $('ul.nav.nav-pills a').click(function (e) {
             $(this).tab('show');
@@ -64,14 +46,7 @@
 
             document.forms[0].hash.value = this.hash;
 
-
-
-
         });
-
-
-
-
 
     });
 
@@ -177,8 +152,6 @@
 
                     wertAllerCredits += Number(pdfAlleNoten[i + 1]);
 
-                
-
                 }
 
                 if (spalte == 5) {
@@ -193,7 +166,6 @@
                 }
 
                 wort = "";
-
             }
 
         }

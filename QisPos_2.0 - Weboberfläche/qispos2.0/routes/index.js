@@ -5,6 +5,7 @@ var Student = require('../models/Student');
 var Dozent = require('../models/Dozent');
 var Studiengang = require('../models/Studiengang');
 const bcrypt = require('bcrypt');
+const webpush = require('web-push');
 
 
 
@@ -257,6 +258,22 @@ router.post('/login', async (req, res) => {
     }
 
 });
+
+
+router.post('/subscribe', (req, res) => {
+    const subscription = req.body;
+
+    res.status(201).json({});
+    const payload = JSON.stringify({ title: 'test' });
+  
+    console.log("Sub")
+    console.log(subscription);
+  
+    webpush.sendNotification(subscription, payload).catch(error => {
+      console.error("error= " + error.stack);
+    });
+  });
+  
 
 
 function jsUcfirst(string) {

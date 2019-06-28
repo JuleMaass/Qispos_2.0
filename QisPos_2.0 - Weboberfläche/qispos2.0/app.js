@@ -1,11 +1,11 @@
+require('dotenv').config({ path: 'variables.env' });
+
 const express = require('express');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
 
-var Student = require('./models/Student');
-
-
+const webpush = require('web-push');
 
 const app = express();
 
@@ -31,6 +31,23 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+
+// const vapidKeys = webpush.generateVAPIDKeys();
+
+// console.log(vapidKeys);
+
+
+const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
+
+const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
+
+
+webpush.setVapidDetails(
+  'mailto:masterbuchi@gmail.com',
+  publicVapidKey,
+  privateVapidKey
+);
+
 get_breadcrumbs = function(url) {
   var rtn = [{name: "HOME", url: "/"}],
       acc = "", // accumulative url
@@ -50,13 +67,7 @@ app.use(function(req, res, next) {
 
 
 //Set the static files location.
-app.use(express.static('public'))
-
-
-
-// app.get('/logo.jpeg/', function(req,res) {
-//   res.sendFile("https://drive.google.com/open?id=1mq0IgXmAzUw0Nnjcca4bMYkP6cfbsFAp");
-// });
+app.use(express.static('public'));
 
 //Routes
 app.use('/', require('./routes/index'));
@@ -65,9 +76,9 @@ app.use('/users', require('./routes/users'));
 
 
 
-
-
 const PORT = process.env.PORT || 5000;
+
+
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
 
 
