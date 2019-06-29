@@ -32,11 +32,7 @@ Modul.init({
     beschreibung: {
         type: Sequelize.STRING,
         allowNull: true
-    },
-    nummer: {
-        type: Sequelize.INTEGER,
-        allowNull: true
-    }
+    }    
 }, {
   sequelize,
   timestamps: false,
