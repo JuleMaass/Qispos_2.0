@@ -36,7 +36,6 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use(cors());
 
 get_breadcrumbs = function(url) {
   var rtn = [

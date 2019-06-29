@@ -36,6 +36,8 @@ router.get("/logout", (req, res) => {
 
 // Antwort vom Dozenten-Dashboard
 router.post("/dashboard_dozent", async (req, res) => {
+
+  console.log(req.session)
   
   sess = req.session;
   
@@ -74,7 +76,7 @@ router.post("/dashboard_dozent", async (req, res) => {
         }
 
         pusher.trigger('noten', 'neue-noten', {
-          all_ges_note: all_ges_note
+         
         });
 
         sess.hash = "#Noteneintragung";
@@ -410,7 +412,5 @@ router.get("/dashboard_dozent", async (req, res) => {
     });
   }
 });
-
-
 
 module.exports = router;
