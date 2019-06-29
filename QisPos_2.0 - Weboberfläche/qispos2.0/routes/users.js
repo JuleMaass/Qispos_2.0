@@ -43,7 +43,7 @@ router.post("/dashboard_dozent", async (req, res) => {
     res.redirect("../login");
   } else {
     sess.hash = req.body.hash;
-    // console.log(req.body);
+
 
     for (var note in req.body) {
       if (note.split("_")[0] == "note") {
@@ -178,7 +178,6 @@ router.post("/dashboard", async (req, res) => {
     for (var abmelden in req.body) {
       if (abmelden.split("_")[0] == "abmelden") {
         var id = abmelden.split("_")[2];
-        console.log("Ping!");
         // Prüfung finden
         var pruefung_abmelden = await Pruefung.findOne({
           where: {
@@ -269,8 +268,6 @@ router.post("/dashboard", async (req, res) => {
 //Dashboard
 router.get("/dashboard", async (req, res) => {
   sess = req.session;
-
-  console.log(req.session)
 
   if (sess.nutzer == null) {
     res.redirect("../login");

@@ -14,8 +14,6 @@ router.get("/", (req, res) => res.redirect("welcome"));
 // Welcome Page
 router.get("/welcome", async (req, res) => {
   
-  console.log(req.session)
-
   sess = req.session;
 
 
@@ -132,7 +130,6 @@ router.get("/login", (req, res) => {
   
   
   sess = req.session;
-  console.log(req.session)
 
   if(sess.nutzer != null) {
     res.redirect("/users/dashboard"+ "#Termine");
