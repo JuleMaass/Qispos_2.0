@@ -39,7 +39,7 @@ CREATE TABLE `dozents` (
 
 LOCK TABLES `dozents` WRITE;
 /*!40000 ALTER TABLE `dozents` DISABLE KEYS */;
-INSERT INTO `dozents` VALUES (100,'pkrug','pkrug@hs-bremen.de','$2b$10$lLS.jESvlzHfd7n3Vc66/.MhZx1dalrENz8pq8j7/mZBfEbBE08f2','peter','krug'),(200,'oheike','oheike@hs-bremen.de','$2b$10$cMrV8V.ybMc2aoGxgscawedxokSOizh7dx4pcfvWEiTh6Kzxrx9BG','otto','heike'),(300,'tbruns','tbruns@hs-bremen.de','$2b$10$QP09zU/OnFDHOAw48H1W1OvwNKeR1SDh4/t8V7E.vetESG/5hS6D6','torben','bruns'),(301,'btannert','btannert@hs-bremen.de','$2b$10$anMWlnwgIqJij1G.caEhp.iEsEQXeK8gdHb2zT.WkeQQjykBy76E.','Benjamin','Tannert'),(302,'ggeißner','ggeißner@hs-bremen.de','$2b$10$/31dcI9QUre9S6hkdKa8G.bIn2RbuOLsr3bek5IGMoO50itzkc.e6','Gesine','Geißner'),(303,'rmüller','rmüller@hs-bremen.de','$2b$10$Cij1DvVMYMUl8IfSxvZIau/ueiim3Fq1i1LNjLwLxDRRfVpIXxG3u','Rudi','Müller');
+INSERT INTO `dozents` VALUES (100,'pkrug','pkrug@hs-bremen.de','$2b$10$lLS.jESvlzHfd7n3Vc66/.MhZx1dalrENz8pq8j7/mZBfEbBE08f2','Peter','Krug'),(200,'oheike','oheike@hs-bremen.de','$2b$10$cMrV8V.ybMc2aoGxgscawedxokSOizh7dx4pcfvWEiTh6Kzxrx9BG','Otto','Heike'),(300,'tbruns','tbruns@hs-bremen.de','$2b$10$QP09zU/OnFDHOAw48H1W1OvwNKeR1SDh4/t8V7E.vetESG/5hS6D6','Torben','Bruns'),(301,'btannert','btannert@hs-bremen.de','$2b$10$anMWlnwgIqJij1G.caEhp.iEsEQXeK8gdHb2zT.WkeQQjykBy76E.','Benjamin','Tannert'),(302,'ggeißner','ggeißner@hs-bremen.de','$2b$10$/31dcI9QUre9S6hkdKa8G.bIn2RbuOLsr3bek5IGMoO50itzkc.e6','Gesine','Geißner'),(303,'rmüller','rmüller@hs-bremen.de','$2b$10$Cij1DvVMYMUl8IfSxvZIau/ueiim3Fq1i1LNjLwLxDRRfVpIXxG3u','Rudi','Müller');
 /*!40000 ALTER TABLE `dozents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +103,7 @@ CREATE TABLE `pruefungs` (
 
 LOCK TABLES `pruefungs` WRITE;
 /*!40000 ALTER TABLE `pruefungs` DISABLE KEYS */;
-INSERT INTO `pruefungs` VALUES (3,1,'Programmieren 1','Klausur',1,'2019-05-14','2019-08-23',1111,1,100),(4,1,'Mathe 1','Klasur',1,'2019-02-20','2019-07-20',1112,2,200),(5,1,'Gestaltung 1','Klasur',1,'2019-02-22','2019-07-22',1113,3,200),(6,2,'Programmieren 2','Projekt',1,'2019-06-14','2019-09-07',1211,6,100),(7,1,'Medieninformatik','Klausur',1,'2019-06-14','2019-09-07',1241,4,100),(8,1,'Informatik','Klausur',1,'2019-06-14','2019-09-07',1251,5,100),(9,2,'Gestaltung 2','Klausur',1,'2019-06-14','2019-09-07',1231,8,100),(10,2,'Medieninformatik 2','Projekt',1,'2019-06-14','2019-09-07',1241,9,100),(11,2,'Mathe 2','Klausur',1,'2019-06-14','2019-09-07',1221,7,100),(12,2,'Rechnernetze','Klausur',1,'2019-06-14','2019-09-07',1251,10,100),(13,3,'Softwaretechnik','Klausur',1,'2020-06-14','2020-09-07',1311,11,302),(14,3,'Medienformate und Algorithmen','Klausur',1,'2020-06-14','2020-09-07',1321,12,302),(15,3,'Informationssicherheit','Klausur',1,'2020-06-14','2020-09-07',1331,13,302),(17,3,'Video','Klausur',1,'2020-06-14','2020-09-07',1342,14,303),(18,3,'Open Code','Klausur',1,'2000-02-01','2020-09-07',1341,14,200),(19,3,'Mensch-Computer-Interaktion','Klausur',1,'2020-06-14','2020-09-07',1331,15,302),(21,4,'Datenbanbasierte Webanwendung','Projekt',1,'2020-06-20','2020-09-20',1411,17,301),(24,4,'Computergrafik','Klausur',1,'2020-06-20','2020-09-20',1421,18,301),(25,4,'Betaville','Projekt',1,'2020-06-20','2020-09-20',1431,14,301);
+INSERT INTO `pruefungs` VALUES (3,1,'Programmieren 1','Klausur',1,'2019-05-14','2019-08-23',1111,1,100),(4,1,'Mathe 1','Klausur',1,'2019-02-20','2019-07-20',1112,2,200),(5,1,'Gestaltung 1','Klausur',1,'2019-02-22','2019-07-22',1113,3,200),(6,2,'Programmieren 2','Projekt',1,'2019-06-14','2019-09-07',1211,6,100),(7,1,'Medieninformatik','Klausur',1,'2019-06-14','2019-09-07',1141,4,100),(8,1,'Informatik','Klausur',1,'2019-06-14','2019-09-07',1151,5,100),(9,2,'Gestaltung 2','Klausur',1,'2019-06-14','2019-09-07',1231,8,100),(10,2,'Medieninformatik 2','Projekt',1,'2019-06-14','2019-09-07',1241,9,100),(11,2,'Mathe 2','Klausur',1,'2019-06-14','2019-09-07',1221,7,100),(12,2,'Rechnernetze','Klausur',1,'2019-06-14','2019-09-07',1251,10,100),(13,3,'Softwaretechnik','Klausur',1,'2020-06-14','2020-09-07',1311,11,302),(14,3,'Medienformate und Algorithmen','Klausur',1,'2020-06-14','2020-09-07',1321,12,302),(15,3,'Informationssicherheit','Klausur',1,'2020-06-14','2020-09-07',1331,13,302),(17,3,'Video','Klausur',1,'2020-06-14','2020-09-07',1341,14,303),(18,3,'Open Code','Klausur',1,'2000-02-01','2020-09-07',1341,14,200),(19,3,'Mensch-Computer-Interaktion','Klausur',1,'2020-06-14','2020-09-07',1342,15,302),(21,4,'Datenbankbasierte Webanwendung','Projekt',1,'2020-06-20','2020-09-20',1411,17,301),(24,4,'Computergrafik','Klausur',1,'2020-06-20','2020-09-20',1421,18,301),(25,4,'Betaville','Projekt',1,'2020-06-20','2020-09-20',1431,14,301);
 /*!40000 ALTER TABLE `pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +190,7 @@ CREATE TABLE `students_has_moduls` (
 
 LOCK TABLES `students_has_moduls` WRITE;
 /*!40000 ALTER TABLE `students_has_moduls` DISABLE KEYS */;
-INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10001,2,0),(10001,3,0),(10001,4,0),(10001,5,0),(10002,1,0),(10002,2,0),(10002,3,0),(10002,4,0),(10002,5,0),(10002,6,0),(10002,7,0),(10002,8,0),(10002,9,0),(10002,10,0),(10002,11,0),(10002,17,0),(10002,18,0),(10031,10,0),(10031,14,0),(10031,17,0),(10031,18,0),(10031,19,0),(10032,14,0),(10032,17,0),(10032,18,0),(10032,19,0),(10033,14,0),(10033,15,0),(10033,17,0),(10033,18,0),(10033,19,0);
+INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10001,2,0),(10001,3,0),(10001,4,0),(10001,5,0),(10002,1,0),(10002,2,0),(10002,3,0),(10002,4,0),(10002,5,0),(10002,6,0),(10002,8,0),(10002,9,0),(10002,10,0),(10002,11,0),(10002,17,0),(10002,18,0),(10031,10,0),(10031,14,0),(10031,17,0),(10031,18,0),(10031,19,0),(10032,14,0),(10032,17,0),(10032,18,0),(10032,19,0),(10033,14,0),(10033,15,0),(10033,17,0),(10033,18,0),(10033,19,0);
 /*!40000 ALTER TABLE `students_has_moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +220,7 @@ CREATE TABLE `students_has_pruefungs` (
 
 LOCK TABLES `students_has_pruefungs` WRITE;
 /*!40000 ALTER TABLE `students_has_pruefungs` DISABLE KEYS */;
-INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10001,4,0,0),(10001,5,0,0),(10001,7,0,0),(10001,8,0,0),(10002,3,0,3),(10002,4,0,0),(10002,5,0,2.3),(10002,6,0,1.7),(10002,7,0,0),(10002,8,0,0),(10002,9,0,0),(10002,10,0,0),(10002,11,0,0),(10002,12,0,0),(10002,13,0,0),(10002,21,0,1),(10002,24,0,1),(10031,12,0,0),(10031,17,0,0),(10031,21,0,2.3),(10031,24,0,2.3),(10031,25,0,1.3),(10032,21,0,1),(10032,24,0,1),(10032,25,0,1.3),(10033,19,0,0),(10033,21,0,1),(10033,24,0,1),(10033,25,0,1.3);
+INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10001,4,0,0),(10001,5,0,0),(10001,7,0,0),(10001,8,0,3.7),(10002,3,0,2.7),(10002,5,0,2.3),(10002,6,0,1.7),(10002,7,0,0),(10002,8,0,0),(10002,9,0,5),(10002,10,0,0),(10002,12,0,0),(10002,13,0,0),(10002,21,0,1),(10002,24,0,1),(10031,12,0,0),(10031,17,0,0),(10031,21,0,2.3),(10031,24,0,2.3),(10031,25,0,1.3),(10032,21,0,1),(10032,24,0,1),(10032,25,0,1.3),(10033,19,0,0),(10033,21,0,1),(10033,24,0,1),(10033,25,0,1.3);
 /*!40000 ALTER TABLE `students_has_pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +275,7 @@ CREATE TABLE `studiengangs` (
 
 LOCK TABLES `studiengangs` WRITE;
 /*!40000 ALTER TABLE `studiengangs` DISABLE KEYS */;
-INSERT INTO `studiengangs` VALUES (1,'Internationaler Studiengang Medieninformatik','','Bachelor of Science',210),(2,'Technische Informatik','Die Langweiler vom Dienst.','Bachelor of Science',210);
+INSERT INTO `studiengangs` VALUES (1,'Internationaler Studiengang Medieninformatik','','Bachelor of Science',210),(2,'Technische Informatik','Die Langweiler vom Dienst','Bachelor of Science',210);
 /*!40000 ALTER TABLE `studiengangs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,4 +345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-29 15:05:58
+-- Dump completed on 2019-06-29 15:42:08
