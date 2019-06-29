@@ -46,7 +46,7 @@
 
 <p class="lead mb-3"> </p>
 <div style="overflow: auto;" class="lead mb-4, jumbotron jumbotron-fluid">
-    <h2 class="display-3, text-center">QisPos 2.0</h2>
+    <h2 class="display-3, text-center">QISPOS 2.0</h2>
     <p class="lead mb-3, text-center">Willkommen <%= student.vorname %></p>
 
     <br>
@@ -55,7 +55,7 @@
         <table class="table " style="margin: auto; font-size:80%; width: 80%">
             <thead>
                 <tr>
-                    <th scope="col">Name des Studierenden</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Studiengang</th>
                     <th scope="col">Angestrebter Abschluss</th>
                     <th scope="col">Matrikelnummer</th>
@@ -65,7 +65,7 @@
 
                 <tr class="table">
 
-                    <td><%= student.benutzername %></td>
+                    <td><%= student.vorname + " " + student.nachname %></td>
                     <td><%= studiengang[0].bezeichnung %></td>
                     <td><%= studiengang[0].abschluss %></td>
                     <td><%= student.matrikelnummer %></td>
