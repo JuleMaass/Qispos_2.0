@@ -82,15 +82,6 @@ router.post("/dashboard_dozent", async (req, res) => {
       }
     }
 
-    // var pruefungs = await sequelize.query(
-    //   " call all_pruefungs_dozent(:doz_id)",
-    //   {
-    //     replacements: {
-    //       doz_id: sess.nutzer.id
-    //     }
-    //   }
-    // );
-
     res.redirect("/users/dashboard_dozent" + sess.hash);
   }
 });
@@ -161,6 +152,15 @@ router.post("/dashboard", async (req, res) => {
           }
         );
 
+
+        await sequelize.query(" call new_termin(:bezeichnung, :datum, :id)", {
+          replacements: {
+            id: sess.nutzer.id,
+            bezeichnung: "Prüfung " + pruefung.bezeichnung,
+            datum: pruefung.pruefungsdatum
+          }
+        });
+
         // Wenn der Student noch nicht im Modul angemeldet ist, dann anmelden
         if (student_has_modul == null) {
           await sequelize.query(
@@ -173,21 +173,6 @@ router.post("/dashboard", async (req, res) => {
             }
           );
         }
-
-
-
-// await sequelize.query(
-//             " call new_student_has_moduls(:student_id, :modul_id)",
-//             {
-//               replacements: {
-//                 student_id: sess.nutzer.id,
-//                 modul_id: modul.id
-//               }
-//             }
-//           );
-
-
-
 
         sess.hash = "#Module";
       }
