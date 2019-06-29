@@ -292,7 +292,6 @@
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Semester</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfung</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfer</th>
-                            <th style="background-color:rgb(44, 62, 80);" scope="col">Termin</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfungsdatum</th>
 
                         </tr>
@@ -320,8 +319,7 @@ if (noten[i].note== 0 || noten[i].note> 4) {
                         <tr class="table-light">
                             <td><%= noten[i].semester %> </td>
                             <td><%= noten[i].bezeichnung %> </td>
-                            <td><%= noten[i].dozent_name %> </td>
-                            <td>1 </td>
+                            <td><%= noten[i].dozent_vorname + " " + noten[i].dozent_nachname %> </td>
                             <td><%= neuesPruefungsDatum %> </td>
                         </tr>
                         <% }} %>

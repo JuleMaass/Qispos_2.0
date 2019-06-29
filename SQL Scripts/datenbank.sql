@@ -357,7 +357,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `all_grades_student`(stud_id VARCHAR
 BEGIN
 
 /*Select alle Prüfungen mit Modul mit noten für einen Studenten*/
-Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note, T4.credits, T2.pruefungsdatum, T6.benutzername as dozent_name  
+Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note, T4.credits, T2.pruefungsdatum, T6.vorname as dozent_vorname,  T6.nachname as dozent_nachname 
 from students T1, pruefungs T2, students_has_pruefungs T3, moduls T4, students_has_moduls T5, dozents T6
 where T1.id = stud_id
 and T3.students_id = stud_id
@@ -874,4 +874,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-30  1:42:59
+-- Dump completed on 2019-06-30  1:51:20
