@@ -12,7 +12,8 @@ config.db = {
 config.db.details = {
     host: 'localhost',
     port: '3306',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    logging: false
 };
 
 config.keys ={

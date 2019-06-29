@@ -23,15 +23,25 @@ var sess;
 router.get("/", (req, res) => res.redirect("../login"));
 
 //Logout Page/view
-router.get("/logout", (req, res) => res.redirect("../welcome"));
+router.get("/logout", (req, res) => {
+
+
+  req.session.destroy();
+    res.redirect('../welcome');
+
+
+  
+});
+
 
 // Antwort vom Dozenten-Dashboard
 router.post("/dashboard_dozent", async (req, res) => {
+  
+  sess = req.session;
+  
   if (sess.nutzer == null) {
     res.redirect("../login");
   } else {
-    sess = req.session;
-
     sess.hash = req.body.hash;
     // console.log(req.body);
 
@@ -63,11 +73,9 @@ router.post("/dashboard_dozent", async (req, res) => {
           );
         }
 
-
-
-        // pusher.trigger('noten', 'neue-noten', {
-        //   all_ges_note: all_ges_note
-        // });
+        pusher.trigger('noten', 'neue-noten', {
+          all_ges_note: all_ges_note
+        });
 
         sess.hash = "#Noteneintragung";
       }
@@ -87,10 +95,12 @@ router.post("/dashboard_dozent", async (req, res) => {
 });
 
 router.post("/dashboard", async (req, res) => {
-  if (sess == null) {
+
+  sess = req.session;
+
+  if (sess.nutzer == null) {
     res.redirect("../login");
   } else {
-    sess = req.session;
     sess.hash = req.body.hash;
 
     // Termin löschen
@@ -260,9 +270,18 @@ router.post("/dashboard", async (req, res) => {
 router.get("/dashboard", async (req, res) => {
   sess = req.session;
 
+  console.log(req.session)
+
   if (sess.nutzer == null) {
     res.redirect("../login");
-  } else {
+  }
+  
+  if (sess.dozent) {
+    res.redirect("/users/dashboard_dozent"+ "#Pruefungen");
+  }
+  
+  
+  else {
     var students = await Student.findAll();
 
     var termine = await sequelize.query(" call all_termins_student(:id)", {
@@ -355,6 +374,11 @@ router.get("/dashboard", async (req, res) => {
 //Dashboard Dozent
 router.get("/dashboard_dozent", async (req, res) => {
   let sess = req.session;
+
+  if (sess.nutzer == null) {
+    res.redirect("../login");
+  }
+
   var students = await Student.findAll();
 
   var pruefungs = await sequelize.query(" call all_pruefungs_dozent(:doz_id)", {
@@ -374,7 +398,13 @@ router.get("/dashboard_dozent", async (req, res) => {
 
   if (sess.nutzer.benutzername == null) {
     res.redirect("../login");
-  } else {
+  } 
+  
+  if (!sess.dozent) {
+    res.redirect("/users/dashboard"+ "#Termine");
+  }
+  
+  else {
     res.render("dashboard_dozent", {
       students: students,
       dozent: sess.nutzer,
@@ -383,5 +413,7 @@ router.get("/dashboard_dozent", async (req, res) => {
     });
   }
 });
+
+
 
 module.exports = router;

@@ -6,11 +6,27 @@ var Dozent = require("../models/Dozent");
 var Studiengang = require("../models/Studiengang");
 const bcrypt = require("bcrypt");
 
+var sess;
+
 // Start, goes to Welcome Page
 router.get("/", (req, res) => res.redirect("welcome"));
 
 // Welcome Page
-router.get("/welcome", (req, res) => res.render("welcome"));
+router.get("/welcome", async (req, res) => {
+  
+  console.log(req.session)
+
+  sess = req.session;
+
+
+  if(sess.nutzer != null) {
+    res.redirect("/users/dashboard"+ "#Termine");
+  } else {
+  
+  res.render("welcome")}
+}
+  
+  );
 
 //Register Page/view
 router.get("/register", async (req, res) => {
@@ -112,10 +128,25 @@ router.post("/register", async (req, res) => {
 });
 
 //Login Page
-router.get("/login", (req, res) =>
+router.get("/login", (req, res) => {
+  
+  
+  sess = req.session;
+  console.log(req.session)
+
+  if(sess.nutzer != null) {
+    res.redirect("/users/dashboard"+ "#Termine");
+  } else {
+
+
+ 
   res.render("login", {
     error: ""
   })
+
+}
+}
+ 
 );
 
 //Login handle

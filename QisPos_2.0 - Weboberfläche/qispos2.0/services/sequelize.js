@@ -8,6 +8,5 @@ module.exports = new Sequelize(
     config.db.database,
     config.db.user,
     config.db.password,
-  
-    config.db.details,
+    config.db.details
 );

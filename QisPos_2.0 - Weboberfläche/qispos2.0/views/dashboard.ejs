@@ -8,9 +8,7 @@
 
 <!-- PDF Library -->
 <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.de.min.js'>
-</script>
+
 <script type="application/javascript" src="/logic.js"></script>
 
 <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
@@ -27,7 +25,7 @@
 
     var channel = pusher.subscribe('noten');
     channel.bind('neue-noten', function (data) {
-           
+        alert('Es gibt neue Noten!');
     });
 </script>
 
@@ -597,6 +595,29 @@
 
             document.getElementById("alleCreditsElement").innerHTML += creditsText;
         </script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js'></script>
+<!-- JS Datei Bootstrap Sprache Deutsch, muss als zweites JS stehen -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.de.min.js'>
+</script>
+
+<!-- Datepicker Aufruf als letztes, bei Bedarf anpassen -->
+<script>
+    $('#datepicker').datepicker({
+        // Datums-Format, optional DD schreibt Wochentag aus
+        format: 'dd.mm.yyyy',
+        // Start-Datum aktiv ab -3 Tage vom Tagesdatum
+        startDate: '-3d',
+        // Tagesdatum hervorheben
+        todayHighlight: true,
+        // automatisch nach Datumswahl schließen 
+        autoclose: true,
+        // Sprache Deutsch setzen 
+        language: 'de'
+    });
+</script>
+
+
 
     </form>
 </div>
