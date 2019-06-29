@@ -6,35 +6,31 @@
 <link rel='stylesheet prefetch'
     href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.standalone.min.css'>
 
+
+<script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+
+
 <script>
+    // // Enable pusher logging - don't include this in production
+    // Pusher.logToConsole = true;
+
+    // var pusher = new Pusher('6e48ff07949cb7a49f5e', {
+    //     cluster: 'eu',
+    //     forceTLS: true
+    // });
+
+    // var channel = pusher.subscribe('noten');
+    // channel.bind('neue-noten', function (data) {
+    //     alert(JSON.stringify(data));
+    // });
+
     $(document).ready(function () {
         $('#notenEintragung').DataTable();
-        // $('#uebersichtTable').DataTable({
-        //     "paging": false
-        // });
-
-       
-
+    
         $('.dataTables_length').addClass('bs-select');
 
-
-
     });
-
-    // function addClass() {
-    //     var v = document.getElementById("p");
-    //     v.className += "addCSS";
-
-
-    //     var backOfferButton = document.getElementById('back_offer_button');
-
-    //     console.log(backOfferButton.dataset.target);
-
-    //     backOfferButton.dataset.target = "#addDifferentOffer";
-
-    //     console.log(backOfferButton.dataset.target);
-    // }
-
+ 
 
     $(function () {
         $("#Bestaetigen").click(function () {

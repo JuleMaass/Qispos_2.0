@@ -48,18 +48,39 @@ router.post("/dashboard_dozent", async (req, res) => {
           }
         });
 
+        var students = await Student.findAll();
+ 
+        var all_ges_note = [];
+
+        for (i = 0; i < students.length; i++) {
+          all_ges_note[i] = await sequelize.query(
+            " call ges_note_student(:id)",
+            {
+              replacements: {
+                id: students[i].id
+              }
+            }
+          );
+        }
+
+
+
+        // pusher.trigger('noten', 'neue-noten', {
+        //   all_ges_note: all_ges_note
+        // });
+
         sess.hash = "#Noteneintragung";
       }
     }
 
-    var pruefungs = await sequelize.query(
-      " call all_pruefungs_dozent(:doz_id)",
-      {
-        replacements: {
-          doz_id: sess.nutzer.id
-        }
-      }
-    );
+    // var pruefungs = await sequelize.query(
+    //   " call all_pruefungs_dozent(:doz_id)",
+    //   {
+    //     replacements: {
+    //       doz_id: sess.nutzer.id
+    //     }
+    //   }
+    // );
 
     res.redirect("/users/dashboard_dozent" + sess.hash);
   }
@@ -71,11 +92,6 @@ router.post("/dashboard", async (req, res) => {
   } else {
     sess = req.session;
     sess.hash = req.body.hash;
-
- 
-    // pusher.trigger('noten', 'test', {
-    //   noten: noten
-    // });
 
     // Termin löschen
     for (var termin in req.body) {
