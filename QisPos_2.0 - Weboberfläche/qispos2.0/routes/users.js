@@ -194,8 +194,6 @@ router.post("/dashboard", async (req, res) => {
           }
         });
 
-        console.log(termin_pruefung);
-
         if (termin_pruefung != null) {
           await sequelize.query(" call delete_termin(:id)", {
             replacements: {
