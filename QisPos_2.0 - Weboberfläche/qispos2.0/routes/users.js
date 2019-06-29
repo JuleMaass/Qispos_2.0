@@ -5,6 +5,7 @@ const router = express.Router();
 var Student = require("../models/Student");
 var Modul = require("../models/Modul");
 var Pruefung = require("../models/Pruefung");
+var Termin = require("../models/Termin");
 var Students_has_modul = require("../models/Students_has_modul");
 var Students_has_pruefung = require("../models/Students_has_pruefung");
 var Pusher = require("pusher");
@@ -24,27 +25,18 @@ router.get("/", (req, res) => res.redirect("../../login"));
 
 //Logout Page/view
 router.get("/logout", (req, res) => {
-
-
   req.session.destroy();
-    res.redirect('../welcome');
-
-
-  
+  res.redirect("../welcome");
 });
-
 
 // Antwort vom Dozenten-Dashboard
 router.post("/dashboard_dozent", async (req, res) => {
-
-  
   sess = req.session;
-  
+
   if (sess.nutzer == null) {
     res.redirect("../../login");
   } else {
     sess.hash = req.body.hash;
-
 
     for (var note in req.body) {
       if (note.split("_")[0] == "note") {
@@ -60,7 +52,7 @@ router.post("/dashboard_dozent", async (req, res) => {
         });
 
         var students = await Student.findAll();
- 
+
         var all_ges_note = [];
 
         for (i = 0; i < students.length; i++) {
@@ -74,9 +66,7 @@ router.post("/dashboard_dozent", async (req, res) => {
           );
         }
 
-        pusher.trigger('noten', 'neue-noten', {
-         
-        });
+        pusher.trigger("noten", "neue-noten", {});
 
         sess.hash = "#Noteneintragung";
       }
@@ -87,10 +77,6 @@ router.post("/dashboard_dozent", async (req, res) => {
 });
 
 router.post("/dashboard", async (req, res) => {
-
-
-  console.log(req)
-
   sess = req.session;
 
   if (sess.nutzer == null) {
@@ -152,7 +138,6 @@ router.post("/dashboard", async (req, res) => {
           }
         );
 
-
         await sequelize.query(" call new_termin(:bezeichnung, :datum, :id)", {
           replacements: {
             id: sess.nutzer.id,
@@ -182,6 +167,7 @@ router.post("/dashboard", async (req, res) => {
     for (var abmelden in req.body) {
       if (abmelden.split("_")[0] == "abmelden") {
         var id = abmelden.split("_")[2];
+
         // Prüfung finden
         var pruefung_abmelden = await Pruefung.findOne({
           where: {
@@ -199,6 +185,24 @@ router.post("/dashboard", async (req, res) => {
             }
           }
         );
+
+        // Passenden Termin dazu löschen
+        var termin_pruefung = await Termin.findOne({
+          where: {
+            termin_bezeichnung: "Prüfung " + pruefung_abmelden.bezeichnung,
+            students_id: sess.nutzer.id
+          }
+        });
+
+        console.log(termin_pruefung);
+
+        if (termin_pruefung != null) {
+          await sequelize.query(" call delete_termin(:id)", {
+            replacements: {
+              id: termin_pruefung.id
+            }
+          });
+        }
 
         // Modul finden
         var modul = await Modul.findOne({
@@ -276,13 +280,10 @@ router.get("/dashboard", async (req, res) => {
   if (sess.nutzer == null) {
     res.redirect("../../login");
   }
-  
+
   if (sess.dozent) {
-    res.redirect("/users/dashboard_dozent"+ "#Pruefungen");
-  }
-  
-  
-  else {
+    res.redirect("/users/dashboard_dozent" + "#Pruefungen");
+  } else {
     var students = await Student.findAll();
 
     var termine = await sequelize.query(" call all_termins_student(:id)", {
@@ -399,13 +400,11 @@ router.get("/dashboard_dozent", async (req, res) => {
 
   if (sess.nutzer.benutzername == null) {
     res.redirect("../../login");
-  } 
-  
-  if (!sess.dozent) {
-    res.redirect("/users/dashboard"+ "#Termine");
   }
-  
-  else {
+
+  if (!sess.dozent) {
+    res.redirect("/users/dashboard" + "#Termine");
+  } else {
     res.render("dashboard_dozent", {
       students: students,
       dozent: sess.nutzer,

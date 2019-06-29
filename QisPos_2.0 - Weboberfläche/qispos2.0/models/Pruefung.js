@@ -46,14 +46,14 @@ Pruefung.init({
     moduls_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: Modul, // Can be both a string representing the table name or a Sequelize model
+          model: Modul, 
           key: 'id'
         }
     },
     dozents_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: Dozent, // Can be both a string representing the table name or a Sequelize model
+          model: Dozent,
           key: 'id'
         }
     }
