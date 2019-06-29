@@ -387,8 +387,8 @@
 
                 // Set their ids
                 for (var i = 0; i < cardlinks.length; i++) {
-                    cardlinks[i].dataset.target = ("#" + cardlinks[i].innerHTML).replace(/ /g, "_");
-                    cardlinks[i].id = cardlinks[i].innerHTML;
+                    cardlinks[i].dataset.target = ("#" + "link_"+i);
+                    
                 }
             </script>
 
@@ -534,7 +534,7 @@
 
                 // Set their ids
                 for (var i = 0; i < modals.length; i++) {
-                    modals[i].id = (cardlinks[i].innerHTML).replace(/ /g, "_");
+                    modals[i].id = (cardlinks[i].dataset.target).replace("#", "");
                 }
             </script>
 

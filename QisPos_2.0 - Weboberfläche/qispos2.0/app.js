@@ -1,13 +1,7 @@
-require("dotenv").config({
-  path: "variables.env"
-});
-
 const express = require("express");
 const session = require("express-session");
 const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
-const cors = require("cors");
-
 const app = express();
 
 ///Sessions

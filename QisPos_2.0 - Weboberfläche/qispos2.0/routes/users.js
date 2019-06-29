@@ -20,7 +20,7 @@ var pusher = new Pusher({
 var sess;
 
 // Welcome Page für nicht eingeloggte
-router.get("/", (req, res) => res.redirect("../login"));
+router.get("/", (req, res) => res.redirect("../../login"));
 
 //Logout Page/view
 router.get("/logout", (req, res) => {
@@ -37,12 +37,11 @@ router.get("/logout", (req, res) => {
 // Antwort vom Dozenten-Dashboard
 router.post("/dashboard_dozent", async (req, res) => {
 
-  console.log(req.session)
   
   sess = req.session;
   
   if (sess.nutzer == null) {
-    res.redirect("../login");
+    res.redirect("../../login");
   } else {
     sess.hash = req.body.hash;
 
@@ -98,10 +97,13 @@ router.post("/dashboard_dozent", async (req, res) => {
 
 router.post("/dashboard", async (req, res) => {
 
+
+  console.log(req)
+
   sess = req.session;
 
   if (sess.nutzer == null) {
-    res.redirect("../login");
+    res.redirect("../../login");
   } else {
     sess.hash = req.body.hash;
 
@@ -171,6 +173,21 @@ router.post("/dashboard", async (req, res) => {
             }
           );
         }
+
+
+
+// await sequelize.query(
+//             " call new_student_has_moduls(:student_id, :modul_id)",
+//             {
+//               replacements: {
+//                 student_id: sess.nutzer.id,
+//                 modul_id: modul.id
+//               }
+//             }
+//           );
+
+
+
 
         sess.hash = "#Module";
       }
@@ -272,7 +289,7 @@ router.get("/dashboard", async (req, res) => {
   sess = req.session;
 
   if (sess.nutzer == null) {
-    res.redirect("../login");
+    res.redirect("../../login");
   }
   
   if (sess.dozent) {
@@ -375,7 +392,7 @@ router.get("/dashboard_dozent", async (req, res) => {
   let sess = req.session;
 
   if (sess.nutzer == null) {
-    res.redirect("../login");
+    res.redirect("../../login");
   }
 
   var students = await Student.findAll();
@@ -396,7 +413,7 @@ router.get("/dashboard_dozent", async (req, res) => {
   );
 
   if (sess.nutzer.benutzername == null) {
-    res.redirect("../login");
+    res.redirect("../../login");
   } 
   
   if (!sess.dozent) {
