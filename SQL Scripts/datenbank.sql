@@ -67,7 +67,7 @@ CREATE TABLE `moduls` (
 
 LOCK TABLES `moduls` WRITE;
 /*!40000 ALTER TABLE `moduls` DISABLE KEYS */;
-INSERT INTO `moduls` VALUES (1,'Programmieren 1',1,1,6,''),(2,'Mathe 1',1,2,6,''),(3,'Gestaltung 1',1,3,6,''),(4,'Medieninformatik 1',1,4,6,NULL),(5,'Informatik',1,5,6,NULL),(6,'Programmieren 2',2,1,6,NULL),(7,'Mathe 2',2,2,6,NULL),(8,'Gestaltung 2',2,3,6,NULL),(9,'Medieninformatik 2',2,4,6,NULL),(10,'Rechnernetze',2,5,6,NULL),(11,'Softwaretechnik',3,1,6,NULL),(12,'Medienformate und Algorithmen',3,2,6,NULL),(13,'Informationssicherheit',3,3,6,NULL),(14,'Projekt 1',3,4,6,'Wahlpflicht Projekt 1'),(15,'Mensch-Computer-Interaktion',3,5,6,NULL),(17,'Datenbankbasierte Web-Anwendung',4,1,6,NULL),(18,'Computergrafik',4,2,6,NULL),(19,'Projekt 2',4,3,6,NULL),(20,'Gestaltung: Ausgewählte Kapitel',4,4,6,NULL),(21,'Wahlpflichtmodul Medieninformatik (Ausland) 1',5,1,6,NULL),(22,'Wahlpflichtmodul Medieninformatik (Ausland) 2',5,2,6,NULL),(23,'Wahlmodul Medieninformatik (Ausland) 1',5,3,6,NULL),(24,'Wahlmodul Medieninformatik 1 (HSB)',5,4,6,NULL),(25,'Auslandssemester-Begleitung',5,5,6,NULL),(26,'Praxisvorbereitung',6,2,6,NULL),(31,'Mikrocontroller',6,1,6,NULL),(32,'Praxisvorbereitung',6,2,6,NULL),(33,'XML-Technologien',6,3,6,NULL),(34,'Data Mining',6,4,6,NULL),(35,'Software Projektmanagement',6,5,6,NULL),(36,'Spezielle Gebiete der Medientheorie',6,6,6,NULL),(38,'Aktuelle Themen der Medieninformatik',6,8,6,NULL),(39,'Praxis in Unternehmen',7,1,6,NULL),(40,'Bachelor Thesis Gesamt',7,2,6,NULL);
+INSERT INTO `moduls` VALUES (1,'Programmieren 1',1,1,6,''),(2,'Mathe 1',1,2,6,''),(3,'Gestaltung 1',1,3,6,''),(4,'Medieninformatik 1',1,4,6,NULL),(5,'Informatik',1,5,6,NULL),(6,'Programmieren 2',2,1,6,NULL),(7,'Mathe 2',2,2,6,NULL),(8,'Gestaltung 2',2,3,6,NULL),(9,'Medieninformatik 2',2,4,6,NULL),(10,'Rechnernetze',2,5,6,NULL),(11,'Softwaretechnik',3,1,6,NULL),(12,'Medienformate und Algorithmen',3,2,6,NULL),(13,'Informationssicherheit',3,3,6,NULL),(14,'Projekt 1',3,4,6,'Wahlpflicht Projekt 1'),(15,'Mensch-Computer-Interaktion',3,5,6,NULL),(17,'Datenbankbasierte Web-Anwendung',4,1,6,NULL),(18,'Computergrafik',4,2,6,NULL),(19,'Projekt 2',4,3,6,NULL),(20,'Gestaltung - Ausgewählte Kapitel',4,4,6,NULL),(21,'Wahlpflichtmodul Medieninformatik (Ausland) 1',5,1,6,NULL),(22,'Wahlpflichtmodul Medieninformatik (Ausland) 2',5,2,6,NULL),(23,'Wahlmodul Medieninformatik (Ausland) 1',5,3,6,NULL),(24,'Wahlmodul Medieninformatik 1 (HSB)',5,4,6,NULL),(25,'Auslandssemester-Begleitung',5,5,6,NULL),(26,'Praxisvorbereitung',6,2,6,NULL),(31,'Mikrocontroller',6,1,6,NULL),(32,'Praxisvorbereitung',6,2,6,NULL),(33,'XML-Technologien',6,3,6,NULL),(34,'Data Mining',6,4,6,NULL),(35,'Software Projektmanagement',6,5,6,NULL),(36,'Spezielle Gebiete der Medientheorie',6,6,6,NULL),(38,'Aktuelle Themen der Medieninformatik',6,8,6,NULL),(39,'Praxis in Unternehmen',7,1,6,NULL),(40,'Bachelor Thesis Gesamt',7,2,6,NULL);
 /*!40000 ALTER TABLE `moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +190,7 @@ CREATE TABLE `students_has_moduls` (
 
 LOCK TABLES `students_has_moduls` WRITE;
 /*!40000 ALTER TABLE `students_has_moduls` DISABLE KEYS */;
-INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10001,2,0),(10001,3,0),(10001,4,0),(10001,5,0),(10002,1,0),(10002,2,0),(10002,3,0),(10002,4,0),(10002,5,0),(10002,6,0),(10002,8,0),(10002,9,0),(10002,10,0),(10002,11,0),(10002,17,0),(10002,18,0),(10031,10,0),(10031,14,0),(10031,17,0),(10031,18,0),(10031,19,0),(10032,14,0),(10032,17,0),(10032,18,0),(10032,19,0),(10033,14,0),(10033,15,0),(10033,17,0),(10033,18,0),(10033,19,0);
+INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10001,2,0),(10001,3,0),(10001,4,0),(10001,5,0),(10002,1,0),(10002,2,0),(10002,3,0),(10002,4,0),(10002,5,0),(10002,6,0),(10002,7,0),(10002,8,0),(10002,9,0),(10002,10,0),(10002,11,0),(10002,17,0),(10002,18,0),(10031,10,0),(10031,14,0),(10031,17,0),(10031,18,0),(10031,19,0),(10032,14,0),(10032,17,0),(10032,18,0),(10032,19,0),(10033,14,0),(10033,15,0),(10033,17,0),(10033,18,0),(10033,19,0);
 /*!40000 ALTER TABLE `students_has_moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +220,7 @@ CREATE TABLE `students_has_pruefungs` (
 
 LOCK TABLES `students_has_pruefungs` WRITE;
 /*!40000 ALTER TABLE `students_has_pruefungs` DISABLE KEYS */;
-INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10001,4,0,0),(10001,5,0,0),(10001,7,0,0),(10001,8,0,3.7),(10002,3,0,2.7),(10002,5,0,2.3),(10002,6,0,1.7),(10002,7,0,0),(10002,8,0,0),(10002,9,0,5),(10002,10,0,0),(10002,12,0,0),(10002,13,0,0),(10002,21,0,1),(10002,24,0,1),(10031,12,0,0),(10031,17,0,0),(10031,21,0,2.3),(10031,24,0,2.3),(10031,25,0,1.3),(10032,21,0,1),(10032,24,0,1),(10032,25,0,1.3),(10033,19,0,0),(10033,21,0,1),(10033,24,0,1),(10033,25,0,1.3);
+INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10001,4,0,0),(10001,5,0,0),(10001,7,0,0),(10001,8,0,3.7),(10002,3,0,2.7),(10002,5,0,2.3),(10002,6,0,1.7),(10002,7,0,0),(10002,8,0,0),(10002,9,0,5),(10002,10,0,0),(10002,11,0,0),(10002,12,0,0),(10002,13,0,0),(10002,21,0,1),(10002,24,0,1),(10031,12,0,0),(10031,17,0,0),(10031,21,0,2.3),(10031,24,0,2.3),(10031,25,0,1.3),(10032,21,0,1),(10032,24,0,1),(10032,25,0,1.3),(10033,19,0,0),(10033,21,0,1),(10033,24,0,1),(10033,25,0,1.3);
 /*!40000 ALTER TABLE `students_has_pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,9 +332,536 @@ CREATE TABLE `termins` (
 
 LOCK TABLES `termins` WRITE;
 /*!40000 ALTER TABLE `termins` DISABLE KEYS */;
-INSERT INTO `termins` VALUES (9,'Datenbanken Abgabe','2019-06-26',0,10002),(12,'Hausaufgaben','2019-09-13',0,10002),(20,'Serkan bequatschen','2019-06-28',0,10002);
+INSERT INTO `termins` VALUES (9,'Datenbanken Abgabe','2019-06-26',0,10002),(12,'Hausaufgaben','2019-09-13',0,10002);
 /*!40000 ALTER TABLE `termins` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'mynewdb'
+--
+
+--
+-- Dumping routines for database 'mynewdb'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `all_grades_student` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_grades_student`(stud_id VARCHAR(45))
+BEGIN
+
+/*Select alle Prüfungen mit Modul mit noten für einen Studenten*/
+Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note, T4.credits  
+from students T1, pruefungs T2, students_has_pruefungs T3, moduls T4, students_has_moduls T5
+where T1.id = stud_id
+and T3.students_id = stud_id
+and T2.id = T3.pruefungs_id
+and T5.students_id = stud_id
+and T4.id = T5.moduls_id
+and T2.moduls_id = T4.id;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_moduls_semester` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_moduls_semester`(sem VARCHAR(45))
+BEGIN
+/* Module eines Semesters */
+select distinct moduls.semester, moduls.bezeichnung, moduls.beschreibung as moduls_bez
+ from pruefungs, moduls
+ where moduls.semester = sem;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_moduls_student` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_moduls_student`(stud_id VARCHAR(45))
+BEGIN
+/* select module für student*/
+select DISTINCT T1.id, T3.bezeichnung, T3.nummer, T3.versuch, T3.dozents_id, T2.semester, T3.anmeldedatum, T3.pruefungsdatum, T4.status, T6.benutzername
+from students T1, moduls T2, pruefungs T3, students_has_moduls T4, students_has_pruefungs T5, dozents T6
+where T1.id = stud_id
+and T4.students_id = stud_id
+and T2.id = T4.moduls_id
+and T5.students_id = stud_id
+and T3.moduls_id = T4.moduls_id
+and T6.id = T3.dozents_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_moduls_studiengang` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_moduls_studiengang`(studiengangs_id VARCHAR(45))
+BEGIN
+select T1.* 
+from moduls T1, studiengangs_has_moduls T3
+where T3.studiengangs_id = studiengangs_id
+and T1.id = T3.moduls_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_pruefungsinformationen_studiengang` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_pruefungsinformationen_studiengang`(studiengangs_id VARCHAR(45))
+BEGIN
+
+/*pruefungsinformationen eines Moduls*/
+ select moduls.id as moduls_id, pruefungs.bezeichnung as pruefungs_bez,  pruefungs.pruefungsdatum,  dozents.nachname, pruefungs.id
+ from pruefungs, moduls, dozents, studiengangs_has_moduls
+ where studiengangs_has_moduls.studiengangs_id = studiengangs_id
+ and moduls.id = studiengangs_has_moduls.moduls_id
+ and pruefungs.moduls_id = moduls.id
+ and dozents.id = pruefungs.dozents_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_pruefungs_dozent` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_pruefungs_dozent`(doz_id VARCHAR(45))
+BEGIN
+select T1.nummer, T1.bezeichnung as pruefungs_bez, T1.pruefungsart, T1. pruefungsdatum, T2.id as stud_id, T2.matrikelnummer, T3.note, T3.pruefungs_id as pruef_id
+from pruefungs T1, students T2, students_has_pruefungs T3
+where T1.dozents_id = doz_id
+and T3.pruefungs_id = T1.id
+and T3.students_id = T2.id; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_pruefungs_once_dozent` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_pruefungs_once_dozent`(doz_id VARCHAR(45))
+BEGIN
+select bezeichnung, pruefungsart, pruefungsdatum
+from pruefungs
+where dozents_id = doz_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_pruefung_student` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_pruefung_student`(student_id VARCHAR(45))
+BEGIN
+/* Select Prüfungen für Studenten */
+select T1.id, T1.benutzername, T2.note, T2.pruefungs_id, T3.bezeichnung, T3.pruefungsdatum
+from students T1, students_has_pruefungs T2, pruefungs T3
+where T1.id = student_id
+and T2.students_id = student_id
+and T3.id = T2.pruefungs_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_semesters_studiengang` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_semesters_studiengang`(studiengangs_id VARCHAR(45))
+BEGIN
+/* Semester eines Studiengangs*/
+select distinct T1.semester  
+from moduls T1, studiengangs_has_moduls T2
+where T2.studiengangs_id = studiengangs_id
+and T1.id = T2.moduls_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `all_termins_student` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `all_termins_student`(stud_id VARCHAR(45))
+BEGIN
+select  T2.id, T2.termin_bezeichnung, T2.datum, T2.erledigt
+from  termins T2
+where T2.students_id = stud_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `count_students` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `count_students`()
+BEGIN
+/*anzahl der studeierenden die noten haben*/
+select count(DISTINCT students_id) as summe_studs 
+from students_has_pruefungs;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `delete_students_has_moduls` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_students_has_moduls`(stud_id VARCHAR(45), modul_id VARCHAR(45))
+BEGIN
+delete from students_has_moduls 
+where students_id = stud_id
+and moduls_id = modul_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `delete_students_has_pruefungs` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_students_has_pruefungs`(stud_id VARCHAR(45), pruef_id VARCHAR(45))
+BEGIN
+delete from students_has_pruefungs 
+where students_id = stud_id
+and pruefungs_id = pruef_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `delete_termin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_termin`(termin_id VARCHAR(45))
+BEGIN
+DELETE FROM termins WHERE id = termin_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ges_note_student` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ges_note_student`(stud_id VARCHAR(45))
+BEGIN
+select T1.students_id, sum(T1.note) as gesamtNote, count(*) as count, T2.matrikelnummer
+from students_has_pruefungs T1, students T2
+where students_id = stud_id 
+and note is not null 
+and note != 0 and note < 4.0
+and T2.id = stud_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `new_student_has_moduls` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `new_student_has_moduls`(student_id VARCHAR(45), modul_id VARCHAR(45))
+BEGIN
+insert into students_has_moduls values (student_id,  modul_id,0);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `new_student_has_pruefungs` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `new_student_has_pruefungs`(student_id VARCHAR(45), pruefungs_id VARCHAR(45))
+BEGIN
+insert into students_has_pruefungs values (student_id, pruefungs_id,0,0);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `new_student_has_studiengangs` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `new_student_has_studiengangs`(student_id VARCHAR(45), studiengangs_id VARCHAR(45))
+BEGIN
+insert into students_has_studiengangs values (student_id, studiengangs_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `new_termin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `new_termin`(bezeichnung VARCHAR(45), datum DATE, stud_id VARCHAR(45))
+BEGIN
+INSERT into termins
+values (NULL,bezeichnung,datum,0,stud_id);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `student_studies` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `student_studies`(stud_id VARCHAR(45))
+BEGIN
+/* select Studiengang und abschluss für student*/
+select DISTINCT T1.id, T1.benutzername, T2.bezeichnung, T2.abschluss, T2.id
+from students T1, studiengangs T2, students_has_studiengangs T3
+where T1.id = stud_id
+and T3.students_id = stud_id
+and T2.id = T3.studiengangs_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `studiengang_with_moduls` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `studiengang_with_moduls`()
+BEGIN
+/*alle module mit semestern eines studiengangs, */
+select T1.bezeichnung as studBezeichnung, T2.bezeichnung as modBezeichnung, T2.semester
+from studiengangs T1, moduls T2, studiengangs_has_moduls T3
+where T1.id = T3.studiengangs_id
+and T2.id = T3.moduls_id;
+
+/*anzahl der semester eines studiengangs zählen das ist möglicherweise auch im code direkt zu berechnen
+select T1.bezeichnung as stud_ezeichnung, count(distinct T2.semester) as semester_anzahl
+from studiengangs T1, moduls T2, studiengangs_has_moduls T3
+where T1.id = T3.studiengangs_id
+and T2.id = T3.moduls_id;*/
+      
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_note` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_note`(pruef VARCHAR(45), stud_id VARCHAR(45), note_neu VARCHAR(45))
+BEGIN
+update students_has_pruefungs 
+set note = note_neu
+where students_id = stud_id
+and pruefungs_id = pruef ;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_termin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_termin`(termin_id INT)
+BEGIN
+UPDATE termins
+SET erledigt = 1
+WHERE id = termin_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -345,4 +872,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-29 15:42:08
+-- Dump completed on 2019-06-30  0:04:12
