@@ -190,7 +190,7 @@ CREATE TABLE `students_has_moduls` (
 
 LOCK TABLES `students_has_moduls` WRITE;
 /*!40000 ALTER TABLE `students_has_moduls` DISABLE KEYS */;
-INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10001,2,0),(10001,3,0),(10001,4,0),(10001,5,0),(10002,1,0),(10002,2,0),(10002,3,0),(10002,4,0),(10002,5,0),(10002,6,0),(10002,7,0),(10002,8,0),(10002,9,0),(10002,10,0),(10002,11,0),(10002,17,0),(10002,18,0),(10031,10,0),(10031,14,0),(10031,17,0),(10031,18,0),(10031,19,0),(10032,14,0),(10032,17,0),(10032,18,0),(10032,19,0),(10033,14,0),(10033,15,0),(10033,17,0),(10033,18,0),(10033,19,0);
+INSERT INTO `students_has_moduls` VALUES (10001,1,0),(10001,2,0),(10001,3,0),(10001,4,0),(10001,5,0),(10002,1,0),(10002,2,0),(10002,3,0),(10002,4,0),(10002,5,0),(10002,6,0),(10002,8,0),(10002,9,0),(10002,10,0),(10002,11,0),(10002,14,0),(10002,17,0),(10002,18,0),(10031,10,0),(10031,14,0),(10031,17,0),(10031,18,0),(10031,19,0),(10032,14,0),(10032,17,0),(10032,18,0),(10032,19,0),(10033,14,0),(10033,15,0),(10033,17,0),(10033,18,0),(10033,19,0);
 /*!40000 ALTER TABLE `students_has_moduls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +220,7 @@ CREATE TABLE `students_has_pruefungs` (
 
 LOCK TABLES `students_has_pruefungs` WRITE;
 /*!40000 ALTER TABLE `students_has_pruefungs` DISABLE KEYS */;
-INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10001,4,0,0),(10001,5,0,0),(10001,7,0,0),(10001,8,0,3.7),(10002,3,0,2.7),(10002,5,0,2.3),(10002,6,0,1.7),(10002,7,0,0),(10002,8,0,0),(10002,9,0,5),(10002,10,0,0),(10002,11,0,0),(10002,12,0,0),(10002,13,0,0),(10002,21,0,1),(10002,24,0,1),(10031,12,0,0),(10031,17,0,0),(10031,21,0,2.3),(10031,24,0,2.3),(10031,25,0,1.3),(10032,21,0,1),(10032,24,0,1),(10032,25,0,1.3),(10033,19,0,0),(10033,21,0,1),(10033,24,0,1),(10033,25,0,1.3);
+INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10001,4,0,0),(10001,5,0,0),(10001,7,0,0),(10001,8,0,3.7),(10002,3,0,2.7),(10002,4,0,0),(10002,5,0,2.3),(10002,6,0,1.7),(10002,7,0,0),(10002,8,0,0),(10002,9,0,5),(10002,10,0,0),(10002,12,0,0),(10002,13,0,0),(10002,21,0,1),(10002,24,0,1),(10002,25,0,0),(10031,12,0,0),(10031,17,0,0),(10031,21,0,2.3),(10031,24,0,2.3),(10031,25,0,1.3),(10032,21,0,1),(10032,24,0,1),(10032,25,0,1.3),(10033,19,0,0),(10033,21,0,1),(10033,24,0,1),(10033,25,0,1.3);
 /*!40000 ALTER TABLE `students_has_pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,10 +320,10 @@ CREATE TABLE `termins` (
   `datum` date NOT NULL,
   `erledigt` tinyint(4) NOT NULL,
   `students_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`students_id`),
+  PRIMARY KEY (`id`),
   KEY `fk_termins_students1_idx` (`students_id`),
   CONSTRAINT `fk_termins_students1` FOREIGN KEY (`students_id`) REFERENCES `students` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -332,7 +332,7 @@ CREATE TABLE `termins` (
 
 LOCK TABLES `termins` WRITE;
 /*!40000 ALTER TABLE `termins` DISABLE KEYS */;
-INSERT INTO `termins` VALUES (9,'Datenbanken Abgabe','2019-06-26',0,10002),(12,'Hausaufgaben','2019-09-13',0,10002);
+INSERT INTO `termins` VALUES (9,'Datenbanken Abgabe','2019-06-26',0,10002),(12,'Hausaufgaben','2019-09-13',0,10002),(35,'Prüfung Softwaretechnik','2020-09-07',0,10002),(36,'Prüfung Mathe 1','2019-07-20',0,10002),(37,'Prüfung Medieninformatik','2019-09-07',0,10002),(39,'Prüfung Medieninformatik 2','2019-09-07',0,10002),(40,'Prüfung Informatik','2019-09-07',0,10002),(47,'Prüfung Betaville','2020-09-20',0,10002);
 /*!40000 ALTER TABLE `termins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,15 +357,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `all_grades_student`(stud_id VARCHAR
 BEGIN
 
 /*Select alle Prüfungen mit Modul mit noten für einen Studenten*/
-Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note, T4.credits  
-from students T1, pruefungs T2, students_has_pruefungs T3, moduls T4, students_has_moduls T5
+Select T1.id,  T1.benutzername, T2.nummer, T2.bezeichnung, T2.versuch, T2.pruefungsart, T2.semester, T3.note, T4.credits, T2.pruefungsdatum, T6.benutzername as dozent_name  
+from students T1, pruefungs T2, students_has_pruefungs T3, moduls T4, students_has_moduls T5, dozents T6
 where T1.id = stud_id
 and T3.students_id = stud_id
 and T2.id = T3.pruefungs_id
 and T5.students_id = stud_id
 and T4.id = T5.moduls_id
-and T2.moduls_id = T4.id;
-
+and T2.moduls_id = T4.id
+and T6.id = T2.dozents_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -574,7 +574,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `all_termins_student`(stud_id VARCHA
 BEGIN
 select  T2.id, T2.termin_bezeichnung, T2.datum, T2.erledigt
 from  termins T2
-where T2.students_id = stud_id;
+where T2.students_id = stud_id
+order by
+T2.datum;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -872,4 +874,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-30  0:04:12
+-- Dump completed on 2019-06-30  1:42:59

@@ -97,7 +97,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#Module">Module</a></a>
+                    <a class="nav-link" data-toggle="tab" href="#Pruefungen">Prüfungen</a></a>
                 </li>
 
                 <li class="nav-item">
@@ -275,11 +275,11 @@
             </div>
 
 
-            <div class="tab-pane fade, jumbotron" id="Module">
+            <div class="tab-pane fade, jumbotron" id="Pruefungen">
 
                 <p
                     style="font-size:150%; color: rgb(44, 62, 80); font-weight: bold; text-align: left; margin-top: -50px;">
-                    Module </p>
+                    Prüfungen </p>
 
 
                 <p class="lead mb-3"> </p>
@@ -290,53 +290,41 @@
                     <thead>
                         <tr class="table-secondary">
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Semester</th>
-                            <th style="background-color:rgb(44, 62, 80);" scope="col">Modul</th>
+                            <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfung</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfer</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Termin</th>
-                            <th style="background-color:rgb(44, 62, 80);" scope="col">Anmeldedatum</th>
                             <th style="background-color:rgb(44, 62, 80);" scope="col">Prüfungsdatum</th>
 
                         </tr>
                     </thead>
                     <tbody>
+                        
 
-
-                        <% for (var i = 0; i < moduls.length; i++) {
+                        <% for (var i = 0; i < noten.length; i++) {
 
                             // Datum umstellen
 
-                            var neuesAnmeldeDatum = moduls[i].anmeldedatum[8] +
-                            moduls[i].anmeldedatum[9] +
+if (noten[i].note== 0 || noten[i].note> 4) {
+                            var neuesPruefungsDatum = noten[i].pruefungsdatum[8] +
+                            noten[i].pruefungsdatum[9] +
                             "." +
-                            moduls[i].anmeldedatum[5] +
-                            moduls[i].anmeldedatum[6] +
+                            noten[i].pruefungsdatum[5] +
+                            noten[i].pruefungsdatum[6] +
                             "." +
-                            moduls[i].anmeldedatum[0] +
-                            moduls[i].anmeldedatum[1] +
-                            moduls[i].anmeldedatum[2] +
-                            moduls[i].anmeldedatum[3];
-
-                            var neuesPruefungsDatum = moduls[i].pruefungsdatum[8] +
-                            moduls[i].pruefungsdatum[9] +
-                            "." +
-                            moduls[i].pruefungsdatum[5] +
-                            moduls[i].pruefungsdatum[6] +
-                            "." +
-                            moduls[i].pruefungsdatum[0] +
-                            moduls[i].pruefungsdatum[1] +
-                            moduls[i].pruefungsdatum[2] +
-                            moduls[i].pruefungsdatum[3];
+                            noten[i].pruefungsdatum[0] +
+                            noten[i].pruefungsdatum[1] +
+                            noten[i].pruefungsdatum[2] +
+                            noten[i].pruefungsdatum[3];
                             %>
 
                         <tr class="table-light">
-                            <td><%= moduls[i].semester %> </td>
-                            <td><%= moduls[i].bezeichnung %> </td>
-                            <td><%= moduls[i].benutzername %> </td>
-                            <td><%= moduls[i].versuch %> </td>
-                            <td><%= neuesAnmeldeDatum %> </td>
+                            <td><%= noten[i].semester %> </td>
+                            <td><%= noten[i].bezeichnung %> </td>
+                            <td><%= noten[i].dozent_name %> </td>
+                            <td>1 </td>
                             <td><%= neuesPruefungsDatum %> </td>
                         </tr>
-                        <% } %>
+                        <% }} %>
                     </tbody>
                 </table>
 
