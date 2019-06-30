@@ -220,7 +220,7 @@ CREATE TABLE `students_has_pruefungs` (
 
 LOCK TABLES `students_has_pruefungs` WRITE;
 /*!40000 ALTER TABLE `students_has_pruefungs` DISABLE KEYS */;
-INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10001,4,0,0),(10001,5,0,0),(10001,7,0,0),(10001,8,0,3.7),(10002,3,0,2.7),(10002,4,0,0),(10002,5,0,2.3),(10002,6,0,1.7),(10002,7,0,0),(10002,8,0,0),(10002,9,0,5),(10002,10,0,0),(10002,12,0,0),(10002,13,0,0),(10002,21,0,1),(10002,24,0,1),(10002,25,0,0),(10031,12,0,0),(10031,17,0,0),(10031,21,0,2.3),(10031,24,0,2.3),(10031,25,0,1.3),(10032,21,0,1),(10032,24,0,1),(10032,25,0,1.3),(10033,19,0,0),(10033,21,0,1),(10033,24,0,1),(10033,25,0,1.3);
+INSERT INTO `students_has_pruefungs` VALUES (10001,3,0,5),(10001,4,0,0),(10001,5,0,0),(10001,7,0,0),(10001,8,0,3.7),(10002,3,0,1),(10002,4,0,0),(10002,5,0,1),(10002,6,0,1.3),(10002,7,0,0),(10002,8,0,0),(10002,9,0,1.3),(10002,10,0,0),(10002,12,0,0),(10002,13,0,0),(10002,21,0,1),(10002,24,0,1),(10002,25,0,0),(10031,12,0,0),(10031,17,0,0),(10031,21,0,2.3),(10031,24,0,2.3),(10031,25,0,1.3),(10032,21,0,1),(10032,24,0,1),(10032,25,0,1.3),(10033,19,0,0),(10033,21,0,1),(10033,24,0,1),(10033,25,0,1.3);
 /*!40000 ALTER TABLE `students_has_pruefungs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +323,7 @@ CREATE TABLE `termins` (
   PRIMARY KEY (`id`),
   KEY `fk_termins_students1_idx` (`students_id`),
   CONSTRAINT `fk_termins_students1` FOREIGN KEY (`students_id`) REFERENCES `students` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -332,7 +332,7 @@ CREATE TABLE `termins` (
 
 LOCK TABLES `termins` WRITE;
 /*!40000 ALTER TABLE `termins` DISABLE KEYS */;
-INSERT INTO `termins` VALUES (9,'Datenbanken Abgabe','2019-06-26',0,10002),(12,'Hausaufgaben','2019-09-13',0,10002),(35,'Prüfung Softwaretechnik','2020-09-07',0,10002),(36,'Prüfung Mathe 1','2019-07-20',0,10002),(37,'Prüfung Medieninformatik','2019-09-07',0,10002),(39,'Prüfung Medieninformatik 2','2019-09-07',0,10002),(40,'Prüfung Informatik','2019-09-07',0,10002),(47,'Prüfung Betaville','2020-09-20',0,10002);
+INSERT INTO `termins` VALUES (9,'Datenbanken Abgabe','2019-06-26',0,10002),(12,'Hausaufgaben','2019-09-13',0,10002),(35,'Prüfung Softwaretechnik','2020-09-07',0,10002),(36,'Prüfung Mathe 1','2019-07-20',0,10002),(37,'Prüfung Medieninformatik','2019-09-07',0,10002),(39,'Prüfung Medieninformatik 2','2019-09-07',0,10002),(40,'Prüfung Informatik','2019-09-07',0,10002),(47,'Prüfung Betaville','2020-09-20',0,10002),(48,'Prüfung Rechnernetze','2019-09-07',0,10002);
 /*!40000 ALTER TABLE `termins` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -874,4 +874,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-30 10:38:43
+-- Dump completed on 2019-06-30 22:02:56
