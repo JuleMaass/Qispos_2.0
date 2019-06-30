@@ -159,7 +159,7 @@ router.post("/dashboard", async (req, res) => {
           );
         }
 
-        sess.hash = "#Module";
+        sess.hash = "#Pruefungen";
       }
     }
 
