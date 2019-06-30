@@ -1,53 +1,93 @@
-<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+
+<script
+  type="text/javascript"
+  src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"
+></script>
 <script type="text/javascript">
+  // Get username
+  var username = "<%= Benutzername%>";
+  // Get name
+  var name = "<%= Name%>";
 
-    // Get username
-    var username = "<%= Benutzername%>";
-    // Get name
-    var name = "<%= Name%>";
+ 
 
-    function sendMail() {
+ 
 
-        var val = document.getElementById("mailEingabe").value;
+  function sendMail() {
+    var val = document.getElementById("mailEingabe").value;
 
-        console.log("Deine Mail-Adresse lautet: " + val);
+    console.log("Deine E-Mail-Adresse lautet: " + val);
 
-        var service_id = 'gmail';
-        var template_id = 'benutzername';
-        var template_params = {
-            user_name: username,
-            to_email: val,
-            to_name: name 
-        };
+    var service_id = "gmail";
+    var template_id = "benutzername";
+    var template_params = {
+      user_name: username,
+      to_email: val,
+      to_name: name
+    };
 
-        (function(){
-            emailjs.init("user_SpSLbCCrYO4XtBnoWBtAX");
-         })();
+    (function() {
+      emailjs.init("user_SpSLbCCrYO4XtBnoWBtAX");
+    })();
 
-        // Code auskommentieren um Mails zu verschicken
-        // emailjs.send(service_id,template_id,template_params);
+    // Code auskommentieren um Mails zu verschicken
+    emailjs.send(service_id, template_id, template_params);
 
-        // console.log("Email gesendet");
+    var x = document.getElementById("message_sent");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+   
+   
+    console.log("Email gesendet");
+  }
 
-    }
-
+  function login() {
+    location.href = "./login";
+  }
 </script>
 
 <div class="row mt-5">
-        <div class="col-md-6 m-auto">
-          <div class="card card-body text-center">
-            <!-- <h1><i class="fab fa-node-js fa-3x"></i></h1> -->
-            <h3>E-Mail</h3>
+  <div class="col-md-6 m-auto">
+    <div class="card card-body text-center">
+      <!-- <h1><i class="fab fa-node-js fa-3x"></i></h1> -->
+      <h3>E-Mail</h3>
 
-            
-            
-            Wohin sollen wir deinen Nutzernamen schicken? <input id="mailEingabe" type="text" name="txt" placeholder="Enter E-Mail" value="">  
+      Wohin sollen wir deinen Nutzernamen schicken?
+      <input
+        id="mailEingabe"
+        type="text"
+        name="txt"
+        placeholder="Enter E-Mail"
+        value=""
+      />
 
-            <p class="lead mt-4"> 
-            <a class="btn btn-primary btn-block mb-2" onclick="sendMail()" style="color: white;"
-              >Bestätigen</a
-            >
-            <a href="/login" class="btn btn-secondary btn-block">Login</a>
-          </div>
-        </div>
+      <p class="lead mt-4">
+        <button
+          type="button"
+          class="btn btn-primary btn-lg btn-block"
+          onclick="sendMail()"
+        >
+          Bestätigen
+        </button>
+        <br />
+        <button
+          type="button"
+          class="btn btn-secondary btn-lg btn-block"
+          onclick=" login()"
+        >
+          Login
+        </button>
+      </p>
+
+      <div id="message_sent" class="text-info" style ="display: none;">
+        Ihr Benutzername wurde Ihnen zugesandt.
       </div>
+    </div>
+  </div>
+</div>
