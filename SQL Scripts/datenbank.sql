@@ -161,7 +161,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (10000,'phans','phans@hs-bremen.de','$2b$10$BTusOz/GiBeKZkMk5/gqAOVSmFhppQaa5g64zuy.gIZUec28HHGI2','Peter','Hans',50000),(10001,'hschmitz','hschmitz@hs-bremen.de','$2b$10$DVXNqe7mG1bsM72hL4fX7.ySoDZw0Ifb4OFUagZhORMncTzaITU5G','Heinz','Schmitz',50001),(10002,'jmaass','jmaass@hs-bremen.de','$2b$10$PQThyYmD8zy60tWvwzRc7OydqIOJf9DmBJQWbc3KeSDLe1eKcHdMa','Jule','Maaß',50002),(10031,'cflocke','cflocke@hs-bremen.de','$2b$10$3GXfbPaK9/5x1eSokmqbcuf0VhE2tkh/PmFZZVxyq2317AeUDhq0e','Claudia','Flocke',50031),(10032,'fbuchholz','fbuchholz@hs-bremen.de','$2b$10$B9iMFDEhlIh2Ve2.Eza.Pu8gO.QwEmn2CdKbXXdUVIj1qDoLRY2yu','Florian','Buchholz',50032),(10033,'lwerdermann','lwerdermann@hs-bremen.de','$2b$10$YWbVuyTbA0T5l5WIKMUxC.Co//BZB1S4N1sZ4jVgQdaQXy/Jdnsk.','Lukas','Werdermann',50033);
+INSERT INTO `students` VALUES (10001,'hschmitz','hschmitz@hs-bremen.de','$2b$10$DVXNqe7mG1bsM72hL4fX7.ySoDZw0Ifb4OFUagZhORMncTzaITU5G','Heinz','Schmitz',50001),(10002,'jmaass','jmaass@hs-bremen.de','$2b$10$PQThyYmD8zy60tWvwzRc7OydqIOJf9DmBJQWbc3KeSDLe1eKcHdMa','Jule','Maaß',50002),(10031,'cflocke','cflocke@hs-bremen.de','$2b$10$3GXfbPaK9/5x1eSokmqbcuf0VhE2tkh/PmFZZVxyq2317AeUDhq0e','Claudia','Flocke',50031),(10032,'fbuchholz','fbuchholz@hs-bremen.de','$2b$10$B9iMFDEhlIh2Ve2.Eza.Pu8gO.QwEmn2CdKbXXdUVIj1qDoLRY2yu','Florian','Buchholz',50032),(10033,'lwerdermann','lwerdermann@hs-bremen.de','$2b$10$YWbVuyTbA0T5l5WIKMUxC.Co//BZB1S4N1sZ4jVgQdaQXy/Jdnsk.','Lukas','Werdermann',50033);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -874,4 +874,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-30  1:51:20
+-- Dump completed on 2019-06-30 10:38:43

@@ -1,42 +1,42 @@
-var Sequelize = require('sequelize');
-var sequelize = require('../services/sequelize');
+var Sequelize = require("sequelize");
+var sequelize = require("../services/sequelize");
 
 const Model = Sequelize.Model;
 
-
 class Dozent extends Model {}
 
-Dozent.init({
-    id:{
-        type: Sequelize.STRING,
-        primaryKey: true,
-        allowNull: false
+Dozent.init(
+  {
+    id: {
+      type: Sequelize.STRING,
+      primaryKey: true,
+      allowNull: false
     },
-    benutzername:{
-        type: Sequelize.STRING,
-        allowNull: false
+    benutzername: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
-    email:{
-        type: Sequelize.STRING,
+    email: {
+      type: Sequelize.STRING
     },
-    PW:{
-        type: Sequelize.STRING,
-        allowNull: false
+    PW: {
+      type: Sequelize.STRING,
+      allowNull: false
     },
     vorname: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: Sequelize.STRING,
+      allowNull: false
     },
     nachname: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: Sequelize.STRING,
+      allowNull: false
     }
-}, {
-  sequelize,
-  timestamps: false,
-  modelName: 'dozent'
- 
-
-});
+  },
+  {
+    sequelize,
+    timestamps: false,
+    modelName: "dozent"
+  }
+);
 
 module.exports = Dozent;
