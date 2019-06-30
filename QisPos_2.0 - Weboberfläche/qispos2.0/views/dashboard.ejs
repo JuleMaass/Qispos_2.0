@@ -165,12 +165,23 @@
                             <!-- WICHTIG! -->
                             <% var id = "termine_cb_id_" + termine[i].id%>
 
+                            <% if (termine[i].termin_bezeichnung.includes("Prüfung")) { %>
+                            <div class="form-check">
+
+                                <input class="form-check-input" name="<%= id %>" type="checkbox"
+                                    style="width:110%; height:110%; display: none;" unchecked> ‏‏‎
+
+                            </div>
+                            <% } else { %>
                             <div class="form-check">
 
                                 <input class="form-check-input" name="<%= id %>" type="checkbox"
                                     style="width:110%; height:110%" unchecked> ‏‏‎
 
                             </div>
+                            <% } %>
+
+
                         </div>
                     </a>
                     <% } %>
@@ -303,7 +314,7 @@
 
                             // Datum umstellen
 
-if (noten[i].note== 0 || noten[i].note> 4) {
+                            if (noten[i].note== 0 || noten[i].note> 4) {
                             var neuesPruefungsDatum = noten[i].pruefungsdatum[8] +
                             noten[i].pruefungsdatum[9] +
                             "." +
