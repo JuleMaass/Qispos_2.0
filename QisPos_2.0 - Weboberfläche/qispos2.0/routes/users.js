@@ -43,6 +43,14 @@ router.post("/dashboard_dozent", async (req, res) => {
         var stud_id = parseInt(note.split("_")[2]);
         var pruef_id = parseInt(note.split("_")[3]);
 
+        var aktuelle_pruefung = await Pruefung.findOne({
+          where: {
+            id: pruef_id
+          }
+        
+        })
+
+
         await sequelize.query(" call update_note(:pruef_id, :stud_id, :note)", {
           replacements: {
             pruef_id: pruef_id,
@@ -51,20 +59,24 @@ router.post("/dashboard_dozent", async (req, res) => {
           }
         });
 
-        var students = await Student.findAll();
 
-        var all_ges_note = [];
+         // Passenden Termin dazu löschen
+         var termin_pruefung = await Termin.findOne({
+          where: {
+            termin_bezeichnung: "Prüfung " + aktuelle_pruefung.bezeichnung,
+            students_id: stud_id
+          }
+        });
 
-        for (i = 0; i < students.length; i++) {
-          all_ges_note[i] = await sequelize.query(
-            " call ges_note_student(:id)",
-            {
-              replacements: {
-                id: students[i].id
-              }
+        if (termin_pruefung != null) {
+          await sequelize.query(" call delete_termin(:id)", {
+            replacements: {
+              id: termin_pruefung.id
             }
-          );
+          });
         }
+   
+
 
         pusher.trigger("noten", "neue-noten", {});
 
